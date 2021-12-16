@@ -20,7 +20,6 @@ export type Content = {
     language: string | null
 }
 
-
 export type Post = {
     id: string,
     title: string,
@@ -28,7 +27,9 @@ export type Post = {
     ymd: string,
     createdTs: string,
     lastEditedTs: string,
-    contents: Content[]
+    contents: Content[],
+    url: any,
+    num: any,
 }
 
 const notion = new Client({
@@ -78,6 +79,8 @@ export const getPosts = async (databaseResponse: QueryDatabaseResponse, ids?: st
         const page = ids ? databaseResponse.results.find((result) => result.id === ids[i]) : databaseResponse.results[i];
         // @ts-ignore
         const date: string = page.properties.date.date.start;
+        const image: any = page?.properties.image;
+        const num: any = page?.properties.num;
         const post: Post = {
             id: page?.id || '',
             // @ts-ignore
@@ -86,7 +89,9 @@ export const getPosts = async (databaseResponse: QueryDatabaseResponse, ids?: st
             ymd: date.replace(/-/g, ''),
             createdTs: page?.created_time || '',
             lastEditedTs: page?.last_edited_time || '',
-            contents: []
+            contents: [],
+            url: image.files[0].file.url || '',
+            num: num.number,
         }
         postContent.results.forEach((result) => {
             switch (result.type) {

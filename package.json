@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:rss": "node .next/serverless/scripts/build-rss.js",
     "start": "next start",
     "lint": "next lint"
   },

@@ -4,8 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
-    "build:rss": "node .next/serverless/scripts/build-rss.js",
+    "build": "next build --output public",
     "start": "next start",
     "lint": "next lint"
   },

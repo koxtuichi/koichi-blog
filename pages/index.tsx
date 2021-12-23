@@ -1,8 +1,9 @@
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import { Post, getPosts, getDatabaseData, PostIndex, getPostIndex } from '@/lib/util/notion';
 import Head from "next/head";
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link'
+import { Dialog, DialogContent } from '@material-ui/core';
 
 export const getStaticProps: GetStaticProps<{ posts: Post[], postsIndex: PostIndex[] }> = async () => {
     const database = await getDatabaseData();
@@ -18,7 +19,7 @@ export const getStaticProps: GetStaticProps<{ posts: Post[], postsIndex: PostInd
 }
 
 const Index = ({ posts, postsIndex }: InferGetStaticPropsType<typeof getStaticProps>) => {
-
+    const [selectedPhoto, openPhoto] = useState<any>(null);
     return (
         <div>
             <Head>
@@ -47,11 +48,18 @@ const Index = ({ posts, postsIndex }: InferGetStaticPropsType<typeof getStaticPr
                 <div style={{ display: "flex", alignItems: "center", justifyContent: "space-around", flexWrap: "wrap", margin: "auto 24px", width: "80vw" }}>
                 {posts.sort((a, b) => a.num - b.num).map((post, i) => (
                     <React.Fragment key={i}>
-                        <img src={post.url} style={{ maxHeight: 290, margin: "0 8px 12px 8px" }} />
+                        <img src={post.url} style={{ maxHeight: 290, margin: "0 8px 12px 8px" }} onClick={() => openPhoto(post)} />
                     </React.Fragment>
                 ))}
                 </div>
             </div>
+            <Dialog
+                open={!!selectedPhoto}
+                onClose={() => openPhoto(null)}>
+                <DialogContent>
+                    <img src={selectedPhoto && selectedPhoto.url} style={{ marginBottom: "10px", overflow: "hidden" }} onClick={() => openPhoto(null)} />
+                </DialogContent>
+            </Dialog>
         </div>
 
     );

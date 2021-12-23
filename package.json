@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@material-ui/core": "^4.12.3",
     "@notionhq/client": "^0.4.9",
     "babel-plugin-prismjs": "^2.1.0",
     "fs": "^0.0.1-security",

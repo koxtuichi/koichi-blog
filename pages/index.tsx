@@ -55,8 +55,9 @@ const Index = ({ posts, postsIndex }: InferGetStaticPropsType<typeof getStaticPr
             </div>
             <Dialog
                 open={!!selectedPhoto}
-                onClose={() => openPhoto(null)}>
-                <DialogContent style={{ padding: 4 }}>
+                onClose={() => openPhoto(null)}
+                PaperProps={{ style:{ padding: 4 } }}>
+                <DialogContent style={{ padding: 0 }}>
                     <img src={selectedPhoto && selectedPhoto.url} style={{ overflow: "hidden" }} onClick={() => openPhoto(null)} />
                 </DialogContent>
             </Dialog>

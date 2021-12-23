@@ -48,7 +48,7 @@ const Index = ({ posts, postsIndex }: InferGetStaticPropsType<typeof getStaticPr
                 <div style={{ display: "flex", alignItems: "center", justifyContent: "space-around", flexWrap: "wrap", margin: "auto 24px", width: "80vw" }}>
                 {posts.sort((a, b) => a.num - b.num).map((post, i) => (
                     <React.Fragment key={i}>
-                        <img src={post.url} style={{ maxHeight: 290, margin: "0 8px 12px 8px" }} onClick={() => openPhoto(post)} />
+                        <img src={post.url} style={{ maxHeight: 290, margin: "0 8px 12px 8px", cursor: "pointer" }} onClick={() => openPhoto(post)} />
                     </React.Fragment>
                 ))}
                 </div>

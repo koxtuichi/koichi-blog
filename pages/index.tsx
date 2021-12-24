@@ -9,6 +9,7 @@ export const getStaticProps: GetStaticProps<{ posts: Post[], postsIndex: PostInd
     const database = await getDatabaseData();
     // console.dir(database, { depth: null })
     const posts = await getPosts(database);
+    console.log(posts)
     return {
         props: {
             posts: posts,

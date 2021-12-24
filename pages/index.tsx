@@ -5,20 +5,19 @@ import React, { useState } from 'react';
 import Link from 'next/link'
 import { Dialog, DialogContent } from '@material-ui/core';
 
-export const getStaticProps: GetStaticProps<{ posts: Post[], postsIndex: PostIndex[] }> = async () => {
+export const getStaticProps: GetStaticProps<{ posts: Post[] }> = async () => {
     const database = await getDatabaseData();
     // console.dir(database, { depth: null })
     const posts = await getPosts(database);
     return {
         props: {
             posts: posts,
-            postsIndex: getPostIndex(database)
         },
         revalidate: 60
     }
 }
 
-const Index = ({ posts, postsIndex }: InferGetStaticPropsType<typeof getStaticProps>) => {
+const Index = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
     const [selectedPhoto, openPhoto] = useState<any>(null);
     return (
         <div>

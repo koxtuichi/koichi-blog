@@ -11,7 +11,7 @@ export const getStaticProps: GetStaticProps<{ posts: Post[], postsIndex: PostInd
     const posts = await getPosts(database);
     return {
         props: {
-            posts: posts.splice(0, 10),
+            posts: posts,
             postsIndex: getPostIndex(database)
         },
         revalidate: 60

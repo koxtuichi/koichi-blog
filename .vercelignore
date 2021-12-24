@@ -1,1 +1,5 @@
-index.tsx
+/*
+!api
+!vercel.json
+!*.html
+!*.css

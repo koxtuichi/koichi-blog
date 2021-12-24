@@ -9,7 +9,6 @@ export const getStaticProps: GetStaticProps<{ posts: Post[], postsIndex: PostInd
     const database = await getDatabaseData();
     // console.dir(database, { depth: null })
     const posts = await getPosts(database);
-    console.log(posts)
     return {
         props: {
             posts: posts,
@@ -49,7 +48,9 @@ const Index = ({ posts, postsIndex }: InferGetStaticPropsType<typeof getStaticPr
                 <div style={{ display: "flex", alignItems: "center", justifyContent: "space-around", flexWrap: "wrap", margin: "auto 24px", width: "80vw" }}>
                 {posts.sort((a, b) => a.num - b.num).map((post, i) => (
                     <React.Fragment key={i}>
-                        <img src={post.url} style={{ maxHeight: 290, margin: "0 8px 12px 8px", cursor: "pointer" }} onClick={() => openPhoto(post)} />
+                        <div>{post.url}</div>
+                        <br></br>
+                        {/* <img src={post.url} style={{ maxHeight: 290, margin: "0 8px 12px 8px", cursor: "pointer" }} onClick={() => openPhoto(post)} /> */}
                     </React.Fragment>
                 ))}
                 </div>

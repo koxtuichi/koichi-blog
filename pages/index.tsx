@@ -22,7 +22,7 @@ const Index = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
     return (
         <div>
             <Head>
-                <title>Cartesian Theater</title>
+                <title>SHINJI SUGIMOTO</title>
                 <meta property="og:title" content="SHINJI SUGIMOTO" />
                 <meta property="og:image" content="/public/shinjiPhotoMainImg.jpg" />
                 <meta name="twitter:card" content="SHINJI SUGIMOTO" />

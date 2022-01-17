@@ -23,10 +23,10 @@ const Index = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
         <div>
             <Head>
                 <title>Cartesian Theater</title>
-                <meta property="og:title" content="Cartesian Theater" />
-                <meta property="og:image" content="https://diary.unronritaro.net/top.png" />
-                <meta name="twitter:card" content="summary" />
-                <meta name="twitter:image" content="https://diary.unronritaro.net/top.png" />
+                <meta property="og:title" content="SHINJI SUGIMOTO" />
+                <meta property="og:image" content="/public/shinjiPhotoMainImg.jpg" />
+                <meta name="twitter:card" content="SHINJI SUGIMOTO" />
+                <meta name="twitter:image" content="/public/shinjiPhotoMainImg.jpg" />
             </Head>
             <div style={{ display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column", color: "#212529", fontSize: 16, whiteSpace: "nowrap" }}>
                 <img src="/head.jpg" style={{ margin: "24px auto", width: "60vw" }} />

@@ -8,9 +8,9 @@ class MyDocument extends Document {
                 <Head>
                     <meta property="og:url" content="https://diary.unronritaro.net" />
                     <meta property="og:type" content="website" />
-                    <meta property="og:description" content="Yuki Oshima's diary powered by Notion API" />
-                    <meta property="og:site_name" content="Cartesian Theater" />
-                    <meta name="description" content="Yuki Oshima's diary powered by Notion API"></meta>
+                    <meta property="og:description" content="sugimoto shinji's photo" />
+                    <meta property="og:site_name" content="SUGIMOTO SHINJI" />
+                    <meta name="description" content="sugimoto shinji's photo"></meta>
                 </Head>
                 <body>
                     <Main />

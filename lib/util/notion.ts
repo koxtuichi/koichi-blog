@@ -1,25 +1,6 @@
 import { Client } from '@notionhq/client';
 import { isFullPage } from '@jitl/notion-api';
 
-export type PostIndex = {
-    id: string,
-    ymd: string,
-    year: string,
-    month: string,
-    date: string,
-}
-
-export type Content = {
-    type: 'paragraph' | 'quote',
-    text: string | null,
-    link: string | null,
-} | {
-    type: 'code',
-    text: string | null,
-    link: string | null,
-    language: string | null
-}
-
 export type Post = {
     id: string,
     title: string,

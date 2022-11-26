@@ -8,29 +8,32 @@
     "start": "next start",
     "lint": "next lint"
   },
-  "dependencies": {
-  },
   "devDependencies": {
-    "@types/prismjs": "^1.16.6",
+    "@material-ui/core": "^4.12.4",
+    "@notionhq/client": "^0.4.13",
+    "@types/prismjs": "^1.26.0",
     "@types/react": "17.0.14",
-    "@types/react-dom": "^17.0.9",
-    "autoprefixer": "^10.3.1",
+    "@types/react-dom": "^17.0.18",
+    "autoprefixer": "^10.4.13",
+    "babel-plugin-prismjs": "^2.1.0",
     "eslint": "7.30.0",
     "eslint-config-next": "11.0.1",
-    "postcss": "^8.3.5",
-    "tailwindcss": "^2.2.4",
-    "typescript": "4.3.5",
-    "@material-ui/core": "^4.12.3",
-    "@notionhq/client": "^0.4.9",
-    "babel-plugin-prismjs": "^2.1.0",
     "fs": "^0.0.1-security",
-    "moment": "^2.29.1",
-    "next": "11.0.1",
+    "moment": "^2.29.4",
+    "next": "^11.0.1",
     "playwright-aws-lambda": "^0.7.0",
-    "playwright-core": "^1.13.0",
-    "prismjs": "^1.25.0",
+    "playwright-core": "^1.28.1",
+    "postcss": "^8.4.19",
+    "prismjs": "^1.29.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "react-icons": "^4.2.0"
+    "react-icons": "^4.6.0",
+    "tailwindcss": "^2.2.19",
+    "typescript": "4.3.5"
+  },
+  "dependencies": {
+    "@jitl/notion-api": "^0.2.2",
+    "debug": "^4.3.4",
+    "notion-client": "^6.15.6"
   }
 }

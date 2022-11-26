@@ -45,7 +45,7 @@ const Index = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
 
                 <div style={{ display: "flex", alignItems: "center", justifyContent: "space-around", flexWrap: "wrap", margin: "auto 24px", width: "80vw" }}>
                 {posts && posts.sort((a, b) => a.num - b.num).map((post, i) => (
-                    <img key={i} style={{ maxHeight: 290, height: "100%", margin: "0 8px 12px 8px", cursor: "pointer" }} src={post.url} onClick={() => openPhoto(post)} alt={post.title} />
+                    <img key={i} style={{ maxHeight: 290, margin: "0 8px 12px 8px", cursor: "pointer" }} src={post.url} onClick={() => openPhoto(post)} alt={post.title} />
                 ))}
                 </div>
             </div>
@@ -53,7 +53,7 @@ const Index = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
                 open={!!selectedPhoto}
                 onClose={() => openPhoto(null)}
                 PaperProps={{ style:{ padding: 4 } }}>
-                <DialogContent style={{ padding: 0 }}>
+                <DialogContent style={{ padding: 0, overflowY: "hidden" }}>
                     <img src={selectedPhoto && selectedPhoto.url} style={{ overflow: "hidden" }} onClick={() => openPhoto(null)} alt={selectedPhoto && selectedPhoto.title} />
                 </DialogContent>
             </Dialog>

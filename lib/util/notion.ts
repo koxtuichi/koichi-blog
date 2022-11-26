@@ -42,6 +42,8 @@ export const getPageDatas = async () => {
 		if (!isFullPage(page)) {
 			continue
 		}
+		const published: any = page.properties.published;
+		if (!published.checkbox) continue;
 		const post: any = page.properties.post;
 		const image: any = page.properties.image;
 		const num: any = page.properties.num;

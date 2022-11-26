@@ -28,7 +28,7 @@ const Index = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
                 <meta name="twitter:image" content="/public/shinjiPhotoMainImg.jpg" />
             </Head>
             <div style={{ color: "#4b4e45", fontFamily: "Bebas Neue, cursive", fontWeight: 400, fontSize: "26px", display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column", whiteSpace: "nowrap" }}>
-                <img src="/head.jpg" style={{ margin: "24px auto", width: "60vw" }} alt="head"/>
+                <img src="/head.jpg" style={{ width: "100vw", marginBottom: "24px" }} alt="head"/>
                 <div style={{ marginBottom: 16 }}>SHINJI SUGIMOTO</div>
                 <div style={{ marginBottom: 16 }}>1998/8/4</div>
                 <div style={{ marginBottom: 16 }}>Born in Mie, Japan.</div>

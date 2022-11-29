@@ -1,22 +1,21 @@
-import { GetStaticProps, InferGetStaticPropsType } from 'next';
+import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import { Post, getPageDatas } from '@/lib/util/notion';
 import Head from "next/head";
 import React, { useState } from 'react';
 import Link from 'next/link'
 import { Dialog, DialogContent } from '@material-ui/core';
-import Image from 'next/image';
 
-export const getStaticProps: GetStaticProps<{ posts: Post[] }> = async () => {
-    const posts = await getPageDatas();
-    return {
-        props: {
-            posts: posts,
-        },
-        revalidate: 1
-    }
-}
 
-const Index = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
+export const getServerSideProps: GetServerSideProps<{ posts: Post[] }> = async (context) => {
+  const posts = await getPageDatas();
+	return {
+			props: {
+					posts: posts || [],
+			}
+	}
+};
+
+const Index = ({ posts }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
     const [selectedPhoto, openPhoto] = useState<any>(null);
     return (
         <div>

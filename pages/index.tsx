@@ -25,7 +25,7 @@ export const getServerSideProps: GetServerSideProps<{ posts: Post[] }> = async (
 const Index = ({
   posts,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-  const [useSelectedPhoto, useSetelectPhoto] = useState<any>(null);
+  const [selectedPhoto, setSelectedPhoto] = useState<any>(null);
   return (
     <>
       <Header as="h2" icon textAlign="center">
@@ -46,12 +46,12 @@ const Index = ({
               .sort((a, b) => b.updatedAt - a.updatedAt)
               .map((post, index) => {
                 return (
-                  <Grid.Column>
+                  <Grid.Column key={index}>
                     <Image
                       src={post.url}
                       wrapped
                       ui={false}
-                      onClick={() => useSetelectPhoto(post)}
+                      onClick={() => setSelectedPhoto(post)}
                     />
                     <Card.Content>
                       <Card.Header>{post.title}</Card.Header>
@@ -67,22 +67,23 @@ const Index = ({
         </Grid>
       </Container>
       <Dialog
-        open={!!useSelectedPhoto}
-        onClose={() => useSetelectPhoto(null)}
+        open={!!selectedPhoto}
+        onClose={() => setSelectedPhoto(null)}
         PaperProps={{ style: { padding: 4 } }}
       >
         <DialogContent
           style={{ padding: 0, overflowY: "hidden", width: "100%" }}
         >
           <Image
-            src={useSelectedPhoto && useSelectedPhoto.url}
+            src={selectedPhoto && selectedPhoto.url}
             wrapped
             ui={false}
-            onClick={() => useSetelectPhoto(null)}
+            onClick={() => setSelectedPhoto(null)}
           />
         </DialogContent>
       </Dialog>
     </>
   );
 };
+
 export default Index;

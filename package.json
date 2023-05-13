@@ -34,6 +34,8 @@
   "dependencies": {
     "@jitl/notion-api": "^0.2.2",
     "debug": "^4.3.4",
-    "notion-client": "^6.15.6"
+    "notion-client": "^6.15.6",
+    "semantic-ui-css": "^2.5.0",
+    "semantic-ui-react": "^2.1.4"
   }
 }

@@ -28,7 +28,6 @@ export const getPageDatas = async () => {
     if (!published.checkbox) continue;
     const properties: any = page.properties;
     const image: any = page.properties.url;
-    console.dir(properties.updatedAt);
     posts.push({
       id: page.id,
       title: properties.title.title[0].plain_text,

@@ -4,6 +4,12 @@ import Head from "next/head";
 import React, { useState } from "react";
 import Link from "next/link";
 import { Dialog, DialogContent } from "@material-ui/core";
+import { Grid } from "semantic-ui-react";
+import { Button } from "semantic-ui-react";
+import { Card, Container, Image, Divider } from "semantic-ui-react";
+import { Header, Icon } from "semantic-ui-react";
+// semantic-uiはスタイルを含まないので以下のimportが必要
+import "semantic-ui-css/semantic.min.css";
 
 export const getServerSideProps: GetServerSideProps<{ posts: Post[] }> = async (
   context
@@ -19,108 +25,64 @@ export const getServerSideProps: GetServerSideProps<{ posts: Post[] }> = async (
 const Index = ({
   posts,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-  const [selectedPhoto, openPhoto] = useState<any>(null);
+  const [useSelectedPhoto, useSetelectPhoto] = useState<any>(null);
   return (
-    <div>
-      <Head>
-        <title>SHINJI SUGIMOTO</title>
-        <meta property="og:title" content="SHINJI SUGIMOTO" />
-        <meta property="og:image" content="/public/shinjiPhotoMainImg.jpg" />
-        <meta name="twitter:card" content="SHINJI SUGIMOTO" />
-        <meta name="twitter:image" content="/public/shinjiPhotoMainImg.jpg" />
-      </Head>
-      <div
-        style={{
-          color: "#4b4e45",
-          fontFamily: "Bebas Neue, cursive",
-          fontWeight: 400,
-          fontSize: "26px",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          flexDirection: "column",
-          whiteSpace: "nowrap",
-        }}
-      >
-        <img
-          src="/head.jpg"
-          style={{ width: "100vw", marginBottom: "24px" }}
-          alt="head"
-        />
-        <div style={{ marginBottom: 16 }}>SHINJI SUGIMOTO</div>
-        <div style={{ marginBottom: 16 }}>1998/8/4</div>
-        <div style={{ marginBottom: 16 }}>Born in Mie, Japan.</div>
-        <div style={{ marginBottom: 16 }}>Based In Tokyo.</div>
-        <div style={{ marginBottom: 16 }}>---</div>
-        <div style={{ marginBottom: 16 }}>Contact</div>
-        <div style={{ marginBottom: 16 }}>sugimotoshinji11@gmail.com</div>
-        <div
-          style={{
-            marginBottom: 16,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          <Link
-            href={
-              "https://www.instagram.com/shinjisugimoto84/?igshid=1eh2ijp64yeun"
-            }
-            passHref
-          >
-            <img
-              src="/insta.png"
-              style={{ width: 30, height: 30, cursor: "pointer" }}
-              alt="insta"
-            />
-          </Link>
-          <div>Instagram</div>
-        </div>
-        <div style={{ marginBottom: 16 }}>---</div>
-
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-around",
-            flexWrap: "wrap",
-            margin: "auto 24px",
-            width: "80vw",
-          }}
-        >
-          {posts &&
-            posts
-              .sort((a, b) => a.updatedAt - b.updatedAt)
-              .map((post, i) => (
-                <img
-                  key={i}
-                  style={{
-                    maxHeight: 290,
-                    margin: "0 8px 12px 8px",
-                    cursor: "pointer",
-                  }}
-                  src={post.url}
-                  onClick={() => openPhoto(post)}
-                  alt={post.title}
-                />
-              ))}
-        </div>
-      </div>
+    <>
+      <Header as="h2" icon textAlign="center">
+        <Image src="/profileImg.png" avatar />
+        <Header.Content>
+          <p>KAKUKIKE KOICHI</p>
+        </Header.Content>
+      </Header>
+      <Container text textAlign="center">
+        <p>1992/9/14</p>
+        <p>since 2023/2</p>
+      </Container>
+      <Divider />
+      <Container>
+        <Grid divided="vertically">
+          <Grid.Row columns={2}>
+            {posts
+              .sort((a, b) => b.updatedAt - a.updatedAt)
+              .map((post, index) => {
+                return (
+                  <Grid.Column>
+                    <Image
+                      src={post.url}
+                      wrapped
+                      ui={false}
+                      onClick={() => useSetelectPhoto(post)}
+                    />
+                    <Card.Content>
+                      <Card.Header>{post.title}</Card.Header>
+                      <Card.Meta>
+                        <span className="date">{post.updatedAt}</span>
+                      </Card.Meta>
+                      <Card.Description>{post.description}</Card.Description>
+                    </Card.Content>
+                  </Grid.Column>
+                );
+              })}
+          </Grid.Row>
+        </Grid>
+      </Container>
       <Dialog
-        open={!!selectedPhoto}
-        onClose={() => openPhoto(null)}
+        open={!!useSelectedPhoto}
+        onClose={() => useSetelectPhoto(null)}
         PaperProps={{ style: { padding: 4 } }}
       >
-        <DialogContent style={{ padding: 0, overflowY: "hidden" }}>
-          <img
-            src={selectedPhoto && selectedPhoto.url}
-            style={{ overflow: "hidden" }}
-            onClick={() => openPhoto(null)}
-            alt={selectedPhoto && selectedPhoto.title}
+        <DialogContent
+          style={{ padding: 0, overflowY: "hidden", width: "100%" }}
+        >
+          <Image
+            src={useSelectedPhoto && useSelectedPhoto.url}
+            wrapped
+            ui={false}
+            onClick={() => useSetelectPhoto(null)}
           />
         </DialogContent>
       </Dialog>
-    </div>
+    </>
   );
 };
 export default Index;

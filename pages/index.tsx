@@ -1,15 +1,19 @@
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import { Post, getPageDatas } from "@/lib/util/notion";
-import Head from "next/head";
 import React, { useState } from "react";
-import Link from "next/link";
-import { Dialog, DialogContent } from "@material-ui/core";
-import { Grid } from "semantic-ui-react";
-import { Button } from "semantic-ui-react";
-import { Card, Container, Image, Divider } from "semantic-ui-react";
-import { Header, Icon } from "semantic-ui-react";
+import {
+  Card,
+  Container,
+  Divider,
+  Grid,
+  Header,
+  Icon,
+  Image,
+  Modal,
+} from "semantic-ui-react";
 // semantic-uiはスタイルを含まないので以下のimportが必要
 import "semantic-ui-css/semantic.min.css";
+import { ImageComponent } from "./styles/index";
 
 export const getServerSideProps: GetServerSideProps<{ posts: Post[] }> = async (
   context
@@ -36,7 +40,22 @@ const Index = ({
       </Header>
       <Container text textAlign="center">
         <p>1992/9/14</p>
-        <p>since 2023/2</p>
+        <Grid centered>
+          <Grid.Row>
+            <Icon
+              name="instagram"
+              size="big"
+              link
+              onClick={() =>
+                window.open(
+                  "https://www.instagram.com/kakikuke_koichi/",
+                  "_blank"
+                )
+              }
+            />
+            <p style={{ lineHeight: 2 }}>since 2023/2</p>
+          </Grid.Row>
+        </Grid>
       </Container>
       <Divider />
       <Container>
@@ -47,7 +66,7 @@ const Index = ({
               .map((post, index) => {
                 return (
                   <Grid.Column key={index}>
-                    <Image
+                    <ImageComponent
                       src={post.url}
                       wrapped
                       ui={false}
@@ -66,22 +85,21 @@ const Index = ({
           </Grid.Row>
         </Grid>
       </Container>
-      <Dialog
+      <Modal
         open={!!selectedPhoto}
         onClose={() => setSelectedPhoto(null)}
-        PaperProps={{ style: { padding: 4 } }}
+        closeIcon
+        size="fullscreen"
+        centered={false}
       >
-        <DialogContent
-          style={{ padding: 0, overflowY: "hidden", width: "100%" }}
-        >
+        <Modal.Content image>
           <Image
             src={selectedPhoto && selectedPhoto.url}
-            wrapped
-            ui={false}
             onClick={() => setSelectedPhoto(null)}
+            fluid
           />
-        </DialogContent>
-      </Dialog>
+        </Modal.Content>
+      </Modal>
     </>
   );
 };

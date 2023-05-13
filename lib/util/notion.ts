@@ -1,42 +1,42 @@
-import { Client } from '@notionhq/client';
-import { isFullPage } from '@jitl/notion-api';
+import { Client } from "@notionhq/client";
+import { isFullPage } from "@jitl/notion-api";
 
 export type Post = {
-    id: string,
-    title: string,
-    url: any,
-    num: any,
-}
+  id: string;
+  title: string;
+  description: string;
+  url: any;
+  updatedAt: any;
+};
 
 const notion = new Client({
-    auth: process.env.NOTION_SECRET,
+  auth: process.env.NOTION_SECRET,
 });
 
 export const getPageDatas = async () => {
-	const fullOrPartialPages = await notion.databases.query({
-		database_id: process.env.NOTION_DATABASE_ID || "",
-	});
+  const fullOrPartialPages = await notion.databases.query({
+    database_id: process.env.NOTION_DATABASE_ID || "",
+  });
 
-	const posts: Post[] = [];
+  const posts: Post[] = [];
 
-	for (const page of fullOrPartialPages.results) {
-		if (!isFullPage(page)) {
-			continue
-		}
-		const published: any = page.properties.published;
-		if (!published.checkbox) continue;
-		const post: any = page.properties.post;
-		const image: any = page.properties.image;
-		const num: any = page.properties.num;
-		posts.push(
-			{
-				id: page.id,
-				title: post.title[0].plain_text,
-				url: image.files[0]?.file?.url || "",
-				num: num.number,
-			}
-		);
-	}
+  for (const page of fullOrPartialPages.results) {
+    if (!isFullPage(page)) {
+      continue;
+    }
+    const published: any = page.properties.published;
+    if (!published.checkbox) continue;
+    const properties: any = page.properties;
+    const image: any = page.properties.url;
+    console.dir(properties.updatedAt);
+    posts.push({
+      id: page.id,
+      title: properties.title.title[0].plain_text,
+      description: properties.description.rich_text[0].plain_text,
+      url: image.files[0]?.file?.url || "",
+      updatedAt: properties.updatedAt.date.start,
+    });
+  }
 
-	return posts;
-}
+  return posts;
+};

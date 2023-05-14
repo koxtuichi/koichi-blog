@@ -13,7 +13,7 @@ import {
 } from "semantic-ui-react";
 // semantic-uiはスタイルを含まないので以下のimportが必要
 import "semantic-ui-css/semantic.min.css";
-import { ImageComponent } from "./styles/index";
+import { ImageComponent } from "../../styles/homeStyles";
 
 export const getServerSideProps: GetServerSideProps<{ posts: Post[] }> = async (
   context

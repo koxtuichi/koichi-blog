@@ -7,6 +7,7 @@ export type Post = {
   description: string;
   url: any;
   updatedAt: any;
+  shootingDate: any;
 };
 
 const notion = new Client({
@@ -34,6 +35,7 @@ export const getPageDatas = async () => {
       description: properties.description.rich_text[0].plain_text,
       url: image.files[0]?.file?.url || "",
       updatedAt: properties.updatedAt.date.start,
+      shootingDate: properties.shootingDate.date.start,
     });
   }
 

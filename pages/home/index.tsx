@@ -80,8 +80,11 @@ const Home = ({
       <Container>
         <Grid divided="vertically">
           <Grid.Row columns={2}>
-            {posts
-              .sort((a, b) => b.updatedAt - a.updatedAt)
+            {posts.sort((a, b) => {
+                const dateA = new Date(a.updatedAt.replace(/-/g, '/'));
+                const dateB = new Date(b.updatedAt.replace(/-/g, '/'));
+                return dateB.getTime() - dateA.getTime();
+              })
               .map((post, index) => {
                 return (
                   <Grid.Column key={index}>

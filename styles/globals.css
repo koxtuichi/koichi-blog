@@ -1,19 +1,21 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Fira+Code&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Serif+JP&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fira+Code&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Stick&family=Zen+Maru+Gothic&display=swap');
 
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: 'Bebas Neue', cursive, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: "Bebas Neue", cursive, -apple-system, BlinkMacSystemFont,
+    Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans,
+    Helvetica Neue, sans-serif;
   font-weight: 400;
 }
 
-code{
-    font-family: 'Fira Code', monospace !important;
+code {
+  font-family: "Fira Code", monospace !important;
 }
 
 a {
@@ -25,9 +27,10 @@ a {
   box-sizing: border-box;
 }
 
-.titleFont{
-    font-family: 'Bebas Neue', cursive, 'Inter', 'Helvetica Neue', sans-serif;
+.titleFont {
+  font-family: "Bebas Neue", cursive, "Inter", "Helvetica Neue", sans-serif;
 }
-.bodyFont{
-    font-family: 'Bebas Neue', cursive, 'Hiragino Mincho ProN', 'Noto Serif JP', 'Times New Roman',  'Yu Mincho', 'serif';
+.bodyFont {
+  font-family: "Bebas Neue", cursive, "Hiragino Mincho ProN", "Noto Serif JP",
+    "Times New Roman", "Yu Mincho", "serif";
 }

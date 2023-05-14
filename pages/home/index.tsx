@@ -13,7 +13,10 @@ import {
 } from "semantic-ui-react";
 // semantic-uiはスタイルを含まないので以下のimportが必要
 import "semantic-ui-css/semantic.min.css";
-import { ImageComponent } from "../../styles/homeStyles";
+import {
+  ContainerSelfIntroductionComponent,
+  ImageComponent,
+} from "../../styles/homeStyles";
 
 export const getServerSideProps: GetServerSideProps<{ posts: Post[] }> = async (
   context
@@ -38,8 +41,24 @@ const Home = ({
           <p>KAKUKIKE KOICHI</p>
         </Header.Content>
       </Header>
-      <Container text textAlign="center">
-        <p>1992/9/14</p>
+      <ContainerSelfIntroductionComponent text textAlign="center">
+        <p>
+          1992/9/14生まれ。数年前からカメラは買ってきたが、すぐに飽きてしまい売却してしまうことを数回繰り返す。そのときに手放したカメラはdp2,
+          dp2x, dp2s, dp2quattro,
+          dp0quattroのSIGMAたち。またfoveon使いたいなとも思うけど、とりあえず今は使いやすいSIGMA
+          fpを使用中。
+        </p>
+        <p>
+          レンズはSteinheil MunchenのCassaron 40mm
+          f3.5。flickrでそのときメインで使っていた GXR
+          を検索していたところ、このレンズを使用していた写真があって気に入り、
+          #cassaron
+          でflickrを検索して画像を見漁った結果、即購入。つい最近、二代目を購入した。
+        </p>
+        <p>
+          そのため、カメラはSIGMA
+          fpとcassaron40mmのみ使用してる。ここに上げてる写真すべて。
+        </p>
         <Grid centered>
           <Grid.Row>
             <Icon
@@ -56,7 +75,7 @@ const Home = ({
             <p style={{ lineHeight: 2 }}>since 2023/2</p>
           </Grid.Row>
         </Grid>
-      </Container>
+      </ContainerSelfIntroductionComponent>
       <Divider />
       <Container>
         <Grid divided="vertically">

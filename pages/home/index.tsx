@@ -109,7 +109,8 @@ const Home = ({
         onClose={() => setSelectedPhoto(null)}
         closeIcon
         size="fullscreen"
-        centered={false}
+        centered={true}
+        basic
       >
         <Modal.Content image>
           <Image

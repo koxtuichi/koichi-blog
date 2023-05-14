@@ -38,7 +38,7 @@ const Home = ({
       <Header as="h2" icon textAlign="center">
         <Image src="/profileImg.png" avatar />
         <Header.Content>
-          <p>KAKUKIKE KOICHI</p>
+          <p>KAKIKUKE KOICHI</p>
         </Header.Content>
       </Header>
       <ContainerSelfIntroductionComponent text textAlign="center">

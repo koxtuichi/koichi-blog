@@ -97,6 +97,7 @@ const Home = ({
                     <Card.Content>
                       <Card.Header>{post.title}</Card.Header>
                       <Card.Meta>
+                        <Icon name='camera retro' />
                         <span>{post.shootingDate}</span>
                       </Card.Meta>
                       <Card.Description>{post.description}</Card.Description>

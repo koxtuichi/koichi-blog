@@ -97,7 +97,7 @@ const Home = ({
                     <Card.Content>
                       <Card.Header>{post.title}</Card.Header>
                       <Card.Meta>
-                        <span className="date">{post.shootingDate}</span>
+                        <span>{post.shootingDate}</span>
                       </Card.Meta>
                       <Card.Description>{post.description}</Card.Description>
                     </Card.Content>

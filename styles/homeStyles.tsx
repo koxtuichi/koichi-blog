@@ -10,5 +10,4 @@ export const ImageComponent = styled(Image)({
 export const ContainerSelfIntroductionComponent = styled(Container)({
   color: 'f5f5f5',
   fontWeight: 400,
-  fontFamily: 'Zen Maru Gothic, sans-serif !important',
 });

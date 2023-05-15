@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Image, Container } from 'semantic-ui-react';
+import { Image, Container, Grid } from 'semantic-ui-react';
 
 export const ImageComponent = styled(Image)({
   "> *": {
@@ -10,4 +10,8 @@ export const ImageComponent = styled(Image)({
 export const ContainerSelfIntroductionComponent = styled(Container)({
   color: 'f5f5f5',
   fontWeight: 400,
+});
+
+export const GridImageComponent = styled(Grid.Column)({
+  paddingBottom: '20px',
 });

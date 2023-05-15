@@ -15,6 +15,7 @@ import {
 import "semantic-ui-css/semantic.min.css";
 import {
   ContainerSelfIntroductionComponent,
+  GridImageComponent,
   ImageComponent,
 } from "../../styles/homeStyles";
 
@@ -78,16 +79,50 @@ const Home = ({
       </ContainerSelfIntroductionComponent>
       <Divider />
       <Container>
-        <Grid divided="vertically">
-          <Grid.Row columns={2}>
-            {posts.sort((a, b) => {
-                const dateA = new Date(a.updatedAt.replace(/-/g, '/'));
-                const dateB = new Date(b.updatedAt.replace(/-/g, '/'));
+        <Grid>
+          <Grid.Row columns={1}>
+            {posts
+              .sort((a, b) => {
+                const dateA = new Date(a.updatedAt.replace(/-/g, "/"));
+                const dateB = new Date(b.updatedAt.replace(/-/g, "/"));
                 return dateB.getTime() - dateA.getTime();
               })
               .map((post, index) => {
+                if (index === 0) {
+                  return (
+                    <Grid.Column key={index}>
+                      <ImageComponent
+                        src={post.url}
+                        wrapped
+                        ui={false}
+                        onClick={() => setSelectedPhoto(post)}
+                      />
+                      <Card.Content>
+                        <Card.Header>{post.title}</Card.Header>
+                        <Card.Meta>
+                          <Icon name="camera retro" />
+                          <span>{post.shootingDate}</span>
+                        </Card.Meta>
+                        <Card.Description>{post.description}</Card.Description>
+                      </Card.Content>
+                    </Grid.Column>
+                  );
+                }
+              })}
+          </Grid.Row>
+          <Grid.Row columns={2}>
+            {posts
+              .sort((a, b) => {
+                const dateA = new Date(a.updatedAt.replace(/-/g, "/"));
+                const dateB = new Date(b.updatedAt.replace(/-/g, "/"));
+                return dateB.getTime() - dateA.getTime();
+              })
+              .map((post, index) => {
+                if (index === 0) {
+                  return;
+                }
                 return (
-                  <Grid.Column key={index}>
+                  <GridImageComponent key={index}>
                     <ImageComponent
                       src={post.url}
                       wrapped
@@ -97,12 +132,12 @@ const Home = ({
                     <Card.Content>
                       <Card.Header>{post.title}</Card.Header>
                       <Card.Meta>
-                        <Icon name='camera retro' />
+                        <Icon name="camera retro" />
                         <span>{post.shootingDate}</span>
                       </Card.Meta>
                       <Card.Description>{post.description}</Card.Description>
                     </Card.Content>
-                  </Grid.Column>
+                  </GridImageComponent>
                 );
               })}
           </Grid.Row>

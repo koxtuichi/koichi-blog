@@ -86,7 +86,7 @@ const Home = ({
               generation.
             </p>
             <p>
-              That's why I use only SIGMA fp and cassaron 40mm camera. All the
+              That&apos;s why I use only SIGMA fp and cassaron 40mm camera. All the
               photos I put up here.
             </p>
           </>

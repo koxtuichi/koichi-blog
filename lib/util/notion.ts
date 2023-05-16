@@ -8,6 +8,8 @@ export type Post = {
   url: any;
   updatedAt: any;
   shootingDate: any;
+  titleEng: any;
+  eng: any;
 };
 
 const notion = new Client({
@@ -36,6 +38,8 @@ export const getPageDatas = async () => {
       url: image.files[0]?.file?.url || "",
       updatedAt: properties.updatedAt.date.start,
       shootingDate: properties.shootingDate.date.start,
+      titleEng: properties.titleEng.rich_text[0].plain_text,
+      eng: properties.eng.rich_text[0].plain_text,
     });
   }
 

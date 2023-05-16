@@ -4,6 +4,7 @@ import { Image, Container, Grid } from 'semantic-ui-react';
 export const ImageComponent = styled(Image)({
   "> *": {
     borderRadius: '6px',
+    margin: '0 auto',
   }
 });
 
@@ -14,4 +15,9 @@ export const ContainerSelfIntroductionComponent = styled(Container)({
 
 export const GridImageComponent = styled(Grid.Column)({
   paddingBottom: '20px',
+});
+
+export const ContainerCenter = styled(Container)({
+  width: 'fit-content !important',
+  margin: '20px auto',
 });

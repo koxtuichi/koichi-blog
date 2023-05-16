@@ -130,10 +130,6 @@ const Home = ({
                           onClick={() => setSelectedPhoto(post)}
                         />
                         <Card.Content>
-                          <TranslateButtonGroup
-                            setViewEng={setViewEng}
-                            viewEng={viewEng}
-                          />
                           <Card.Header>
                             {!viewEng ? post.title : post.titleEng}
                           </Card.Header>
@@ -171,10 +167,6 @@ const Home = ({
                       onClick={() => setSelectedPhoto(post)}
                     />
                     <Card.Content>
-                      <TranslateButtonGroup
-                        setViewEng={setViewEng}
-                        viewEng={viewEng}
-                      />
                       <Card.Header>
                         {!viewEng ? post.title : post.titleEng}
                       </Card.Header>

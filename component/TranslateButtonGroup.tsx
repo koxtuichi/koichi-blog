@@ -11,11 +11,18 @@ export const TranslateButtonGroup: React.FC<TranslateButtonGroupProps> = ({
   viewEng,
 }) => {
   return (
-    <div style={{ margin: '10px 0 0px 0' }}>
+    <div
+      style={{
+        margin: "10px 0 0px 0",
+        zIndex: 100,
+        position: "fixed",
+        bottom: 10,
+        right: 20,
+      }}
+    >
       <Button.Group size="mini">
         <Button
           size="mini"
-          basic
           color={!viewEng ? "olive" : "grey"}
           onClick={() => setViewEng(false)}
         >
@@ -24,7 +31,6 @@ export const TranslateButtonGroup: React.FC<TranslateButtonGroupProps> = ({
         <Button.Or size="mini" />
         <Button
           size="mini"
-          basic
           color={viewEng ? "teal" : "grey"}
           onClick={() => setViewEng(true)}
         >

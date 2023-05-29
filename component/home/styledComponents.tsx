@@ -4,7 +4,7 @@ import { Image, Container, Grid, Label } from 'semantic-ui-react';
 export const ImageComponent = styled(Image)({
   "> *": {
     borderRadius: '6px',
-    margin: '0 auto',
+    margin: '0 auto 4px auto',
   }
 });
 
@@ -23,5 +23,5 @@ export const ContainerCenter = styled(Container)({
 });
 
 export const TagLabel = styled(Label)({
-  transform: "translateX(4px)"
+  transform: "translateX(4px) translateY(-2px)"
 });

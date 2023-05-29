@@ -49,7 +49,7 @@ const MainPost: React.FC<MainPostProps> = ({
                         rel="noopener noreferrer"
                         href={post.link}
                       >
-                        <Icon name="shop" />
+                        {/* <Icon name="shop" /> */}
                         SHOP
                       </TagLabel>
                     )}

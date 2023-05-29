@@ -47,7 +47,7 @@ const SecondPost: React.FC<SecondPostProps> = ({
                       rel="noopener noreferrer"
                       href={post.link}
                     >
-                      <Icon name="shop" />
+                      {/* <Icon name="shop" size="mini" /> */}
                       SHOP
                     </TagLabel>
                   )}

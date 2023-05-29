@@ -2,7 +2,7 @@ import { Post } from "@/notionApi/notion";
 import React from "react";
 import { Card, Icon } from "semantic-ui-react";
 import SpeakButton from "./SpeakButton";
-import { GridImageComponent, ImageComponent } from "./styledComponents";
+import { GridImageComponent, ImageComponent, TagLabel } from "./styledComponents";
 
 type SecondPostProps = {
   posts: Post[];
@@ -37,6 +37,20 @@ const SecondPost: React.FC<SecondPostProps> = ({
               <Card.Content>
                 <Card.Header>
                   {!viewEng ? post.title : post.titleEng}
+                  {post.link && (
+                    <TagLabel
+                      as="a"
+                      color="black"
+                      tag
+                      size="mini"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      href={post.link}
+                    >
+                      <Icon name="shop" />
+                      SHOP
+                    </TagLabel>
+                  )}
                 </Card.Header>
                 <Card.Meta>
                   <Icon name="camera retro" />

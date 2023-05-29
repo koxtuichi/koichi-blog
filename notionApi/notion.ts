@@ -10,6 +10,7 @@ export type Post = {
   shootingDate: any;
   titleEng: any;
   eng: any;
+  link?: any;
 };
 
 const notion = new Client({
@@ -40,6 +41,7 @@ export const getPageDatas = async () => {
       shootingDate: properties.shootingDate.date.start,
       titleEng: properties.titleEng.rich_text[0].plain_text,
       eng: properties.eng.rich_text[0].plain_text,
+      link: properties.link.rich_text[0] ? properties.link.rich_text[0].plain_text : "",
     });
   }
 

@@ -16,7 +16,7 @@ export const TranslateButtonGroup: React.FC<TranslateButtonGroupProps> = ({
         margin: "10px 0 0px 0",
         zIndex: 100,
         position: "fixed",
-        bottom: 10,
+        bottom: 20,
         right: 20,
       }}
     >

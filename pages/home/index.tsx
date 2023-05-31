@@ -8,19 +8,21 @@ import {
   Header,
   Icon,
   Image,
-  Modal,
 } from "semantic-ui-react";
 // semantic-uiはスタイルを含まないので以下のimportが必要
 import "semantic-ui-css/semantic.min.css";
 import {
   ContainerCenter,
   ContainerSelfIntroductionComponent,
+  DividerNoneMarginBottom,
+  TagLabel,
 } from "../../component/home/styledComponents";
 import { TranslateButtonGroup } from "@/component/TranslateButtonGroup";
 import Profile from "@/component/home/profile";
 import MainPost from "@/component/home/MainPost";
 import SecondPost from "@/component/home/SecondPost";
 import ModalImage from "@/component/home/ModalImage";
+import SiteExplain from "@/component/home/SiteExplain";
 
 export const getServerSideProps: GetServerSideProps<{
   posts: Post[];
@@ -65,6 +67,8 @@ const Home = ({
             />
             <p style={{ lineHeight: 2 }}>since 2023/2</p>
           </Grid.Row>
+          <DividerNoneMarginBottom />
+          <SiteExplain viewEng={viewEng} />
         </Grid>
       </ContainerSelfIntroductionComponent>
       <Divider />

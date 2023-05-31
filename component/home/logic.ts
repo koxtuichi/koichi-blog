@@ -1,7 +1,7 @@
 export const speakEnglish = (text: string) => {
   const speechText = new SpeechSynthesisUtterance(text);
   speechText.lang = "en-US";
-  speechText.rate = 1.2;
+  speechText.rate = 1.0;
   speechText.pitch = 0.6;
   speechText.volume = 0.9;
   speechSynthesis.speak(speechText);

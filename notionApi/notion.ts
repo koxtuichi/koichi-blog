@@ -13,6 +13,8 @@ export type Post = {
   link?: any;
   keywords?: any;
   explanation?: any;
+  keywordsEng?: any;
+  explanationEng?: any;
 };
 
 const notion = new Client({
@@ -43,9 +45,21 @@ export const getPageDatas = async () => {
       shootingDate: properties.shootingDate.date.start,
       titleEng: properties.titleEng.rich_text[0].plain_text,
       eng: properties.eng.rich_text[0].plain_text,
-      link: properties.link.rich_text[0] ? properties.link.rich_text[0].plain_text : "",
-      keywords: properties.keywords.rich_text[0] ? properties.keywords.rich_text[0].plain_text : "",
-      explanation: properties.explanation.rich_text[0] ? properties.explanation.rich_text[0].plain_text : "",
+      link: properties.link.rich_text[0]
+        ? properties.link.rich_text[0].plain_text
+        : "",
+      keywords: properties.keywords.rich_text[0]
+        ? properties.keywords.rich_text[0].plain_text
+        : "",
+      explanation: properties.explanation.rich_text[0]
+        ? properties.explanation.rich_text[0].plain_text
+        : "",
+      keywordsEng: properties.keywordsEng.rich_text[0]
+        ? properties.keywordsEng.rich_text[0].plain_text
+        : "",
+      explanationEng: properties.explanationEng.rich_text[0]
+        ? properties.explanationEng.rich_text[0].plain_text
+        : "",
     });
   }
 

@@ -91,6 +91,7 @@ const Home = ({
       <ModalImage
         selectedPhoto={selectedPhoto}
         setSelectedPhoto={setSelectedPhoto}
+        viewEng={viewEng}
       />
     </>
   );

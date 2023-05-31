@@ -13,10 +13,12 @@ const ModalDescription = styled(Modal.Description)({
 type ModalImageProps = {
   selectedPhoto: Post | null;
   setSelectedPhoto: React.Dispatch<React.SetStateAction<Post | null>>;
+  viewEng: boolean;
 };
 const ModalImage: React.FC<ModalImageProps> = ({
   selectedPhoto,
   setSelectedPhoto,
+  viewEng,
 }) => {
   return (
     <Modal
@@ -39,14 +41,20 @@ const ModalImage: React.FC<ModalImageProps> = ({
         />
         {selectedPhoto?.keywords && (
           <ModalDescription onClick={() => setSelectedPhoto(null)}>
-            <p>キーワード</p>
-            <p>{selectedPhoto?.keywords}</p>
+            <p>{viewEng ? "KEYWORDS" : "キーワード"}</p>
+            <p>
+              {viewEng ? selectedPhoto?.keywordsEng : selectedPhoto?.keywords}
+            </p>
           </ModalDescription>
         )}
         {selectedPhoto?.explanation && (
           <ModalDescription onClick={() => setSelectedPhoto(null)}>
-            <p>解説</p>
-            <p>{selectedPhoto?.explanation}</p>
+            <p>{viewEng ? "EXPLANATION" : "解説"}</p>
+            <p>
+              {viewEng
+                ? selectedPhoto?.explanationEng
+                : selectedPhoto?.explanation}
+            </p>
           </ModalDescription>
         )}
       </Modal.Content>

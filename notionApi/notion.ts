@@ -11,6 +11,8 @@ export type Post = {
   titleEng: any;
   eng: any;
   link?: any;
+  keywords?: any;
+  explanation?: any;
 };
 
 const notion = new Client({
@@ -42,6 +44,8 @@ export const getPageDatas = async () => {
       titleEng: properties.titleEng.rich_text[0].plain_text,
       eng: properties.eng.rich_text[0].plain_text,
       link: properties.link.rich_text[0] ? properties.link.rich_text[0].plain_text : "",
+      keywords: properties.keywords.rich_text[0] ? properties.keywords.rich_text[0].plain_text : "",
+      explanation: properties.explanation.rich_text[0] ? properties.explanation.rich_text[0].plain_text : "",
     });
   }
 

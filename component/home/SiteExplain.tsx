@@ -18,14 +18,14 @@ const SiteExplain: React.FC<SiteExplain> = ({ viewEng }) => {
             lineHeight: 1,
           }}
         >
-          <Icon name="pencil" />
+          {/* <Icon name="pencil" /> */}
           <p style={{ lineHeight: 2 }}>
             {viewEng
               ? "Please choose the photo you are most interested in. It may reveal your state of mind."
               : "一番気になる写真を選んでください。あなたの心理状態がわかるかも。"}
           </p>
         </div>
-        <div
+        {/* <div
           style={{
             display: "flex",
             alignItems: "center",
@@ -56,7 +56,7 @@ const SiteExplain: React.FC<SiteExplain> = ({ viewEng }) => {
               ? "You can buy the keychain in the picture from the tag"
               : "タグをから写真のキーホルダーを購入できます"}
           </p>
-        </div>
+        </div> */}
       </div>
     </Grid.Row>
   );

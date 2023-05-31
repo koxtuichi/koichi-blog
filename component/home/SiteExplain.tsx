@@ -21,8 +21,8 @@ const SiteExplain: React.FC<SiteExplain> = ({ viewEng }) => {
           <Icon name="pencil" />
           <p style={{ lineHeight: 2 }}>
             {viewEng
-              ? "Choose your favorite photo and tap it to diagnose the problem."
-              : "好きな写真を選んでタップすると診断できます"}
+              ? "Please choose the photo you are most interested in. It may reveal your state of mind."
+              : "一番気になる写真を選んでください。あなたの心理状態がわかるかも。"}
           </p>
         </div>
         <div

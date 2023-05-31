@@ -7,7 +7,11 @@ const ModalDescription = styled(Modal.Description)({
   whiteSpace: "pre-wrap",
   padding: "10px",
   minWidth: "120px !important",
-  maxWidth: "400px !important",
+  maxWidth: "270px !important",
+});
+
+const ImageContain = styled(Image)({
+  objectFit: "contain",
 });
 
 type ModalImageProps = {
@@ -29,10 +33,9 @@ const ModalImage: React.FC<ModalImageProps> = ({
       basic
     >
       <Modal.Content image>
-        <Image
+        <ImageContain
           src={selectedPhoto && selectedPhoto.url}
           onClick={() => setSelectedPhoto(null)}
-          fluid
           size={
             selectedPhoto?.keywords && selectedPhoto?.explanation
               ? "medium"

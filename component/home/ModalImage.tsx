@@ -38,13 +38,13 @@ const ModalImage: React.FC<ModalImageProps> = ({
           }
         />
         {selectedPhoto?.keywords && (
-          <ModalDescription>
+          <ModalDescription onClick={() => setSelectedPhoto(null)}>
             <p>キーワード</p>
             <p>{selectedPhoto?.keywords}</p>
           </ModalDescription>
         )}
         {selectedPhoto?.explanation && (
-          <ModalDescription>
+          <ModalDescription onClick={() => setSelectedPhoto(null)}>
             <p>解説</p>
             <p>{selectedPhoto?.explanation}</p>
           </ModalDescription>

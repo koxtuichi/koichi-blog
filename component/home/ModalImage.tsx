@@ -1,17 +1,21 @@
 import { Post } from "@/notionApi/notion";
 import styled from "@emotion/styled";
 import React from "react";
-import { Image, Modal, Container } from "semantic-ui-react";
+import { Image, Modal, Header } from "semantic-ui-react";
+
+const ModalContent = styled(Modal.Content)({
+  display: "flex",
+  flexDirection: "column",
+})
 
 const ModalDescription = styled(Modal.Description)({
   whiteSpace: "pre-wrap",
   padding: "10px",
-  minWidth: "120px !important",
-  maxWidth: "270px !important",
 });
 
 const ImageContain = styled(Image)({
   objectFit: "contain",
+  marginRight: "10px"
 });
 
 type ModalImageProps = {
@@ -24,6 +28,14 @@ const ModalImage: React.FC<ModalImageProps> = ({
   setSelectedPhoto,
   viewEng,
 }) => {
+  const getKeyWords = (keywords: string) => {
+    const results = keywords
+      .split("\n") // 改行で文字列を分割
+      .map((line) => `「${line.trim()}」`) // 各行の前後の空白を削除し、「」かっこを付ける
+      .join("");
+    return results;
+  };
+
   return (
     <Modal
       open={!!selectedPhoto}
@@ -42,11 +54,12 @@ const ModalImage: React.FC<ModalImageProps> = ({
               : "huge"
           }
         />
+        <ModalContent>
         {selectedPhoto?.keywords && (
           <ModalDescription onClick={() => setSelectedPhoto(null)}>
             <p>{viewEng ? "KEYWORDS" : "キーワード"}</p>
             <p>
-              {viewEng ? selectedPhoto?.keywordsEng : selectedPhoto?.keywords}
+              {viewEng ? getKeyWords(selectedPhoto?.keywordsEng) : getKeyWords(selectedPhoto?.keywords)}
             </p>
           </ModalDescription>
         )}
@@ -60,6 +73,7 @@ const ModalImage: React.FC<ModalImageProps> = ({
             </p>
           </ModalDescription>
         )}
+        </ModalContent>
       </Modal.Content>
     </Modal>
   );

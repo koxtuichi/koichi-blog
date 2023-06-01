@@ -15,7 +15,6 @@ import {
   ContainerCenter,
   ContainerSelfIntroductionComponent,
   DividerNoneMarginBottom,
-  TagLabel,
 } from "../../component/home/styledComponents";
 import { TranslateButtonGroup } from "@/component/TranslateButtonGroup";
 import Profile from "@/component/home/profile";

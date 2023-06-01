@@ -35,6 +35,9 @@ const ModalImage: React.FC<ModalImageProps> = ({
       .join("");
     return results;
   };
+  const getExplanation = (explanation: string) => {
+    return explanation.split("\n").map(item => <p>{item}</p>);
+  }
 
   return (
     <Modal
@@ -68,8 +71,8 @@ const ModalImage: React.FC<ModalImageProps> = ({
             <p>{viewEng ? "EXPLANATION" : "解説"}</p>
             <p>
               {viewEng
-                ? selectedPhoto?.explanationEng
-                : selectedPhoto?.explanation}
+                ? getExplanation(selectedPhoto?.explanationEng)
+                : getExplanation(selectedPhoto?.explanation)}
             </p>
           </ModalDescription>
         )}

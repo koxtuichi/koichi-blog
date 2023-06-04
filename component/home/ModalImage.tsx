@@ -3,6 +3,11 @@ import styled from "@emotion/styled";
 import React from "react";
 import { Image, Modal, Header } from "semantic-ui-react";
 
+const ModalComponent = styled(Modal)({
+  background: "rgba(50, 50, 50, 0.5) !important",
+  borderRadius: "2px",
+});
+
 const ModalContent = styled(Modal.Content)({
   display: "flex",
   flexDirection: "column",
@@ -13,7 +18,7 @@ const ModalDescription = styled(Modal.Description)({
   padding: "10px",
 });
 
-const ImageContain = styled(Image)({
+const ImageComponent = styled(Image)({
   objectFit: "contain",
 });
 
@@ -39,15 +44,14 @@ const ModalImage: React.FC<ModalImageProps> = ({
   };
 
   return (
-    <Modal
+    <ModalComponent
       open={!!selectedPhoto}
       onClose={() => setSelectedPhoto(null)}
       size="large"
-      centered={true}
       basic
     >
       <Modal.Content image>
-        <ImageContain
+        <ImageComponent
           src={selectedPhoto && selectedPhoto.url}
           onClick={() => setSelectedPhoto(null)}
           size={
@@ -79,7 +83,7 @@ const ModalImage: React.FC<ModalImageProps> = ({
           )}
         </ModalContent>
       </Modal.Content>
-    </Modal>
+    </ModalComponent>
   );
 };
 

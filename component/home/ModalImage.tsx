@@ -15,10 +15,6 @@ const ModalDescription = styled(Modal.Description)({
 
 const ImageContain = styled(Image)({
   objectFit: "contain",
-  border: "2px solid #F2F2F2",
-  borderRadius: "2px",
-  height: "fit-content !important",
-  margin: "auto 10px auto 0",
 });
 
 type ModalImageProps = {

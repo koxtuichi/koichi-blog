@@ -1,12 +1,14 @@
 import { Post } from "@/notionApi/notion";
 import styled from "@emotion/styled";
 import React from "react";
-import { Image, Modal, Header } from "semantic-ui-react";
+import { Image, Modal } from "semantic-ui-react";
 
 const ModalComponent = styled(Modal)({
   background: "rgba(50, 50, 50, 0.5) !important",
   borderRadius: "2px",
   width: "100% !important",
+  transform: "translateY(-28px)",
+  padding: "20px 0 20px 0",
 });
 
 const ModalContent = styled(Modal.Content)({

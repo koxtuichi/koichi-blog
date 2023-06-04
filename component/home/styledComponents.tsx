@@ -3,7 +3,7 @@ import { Image, Container, Grid, Label, Divider } from "semantic-ui-react";
 
 export const ImageComponent = styled(Image)({
   "> *": {
-    borderRadius: "6px",
+    borderRadius: "2px",
     margin: "0 auto 4px auto",
   },
 });

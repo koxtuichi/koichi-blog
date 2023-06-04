@@ -6,9 +6,17 @@ import { Image, Modal, Header } from "semantic-ui-react";
 const ModalComponent = styled(Modal)({
   background: "rgba(50, 50, 50, 0.5) !important",
   borderRadius: "2px",
+  width: "100% !important",
 });
 
 const ModalContent = styled(Modal.Content)({
+  width: "100% !important",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+});
+
+const ModalContentColumn = styled(Modal.Content)({
   display: "flex",
   flexDirection: "column",
 });
@@ -16,10 +24,12 @@ const ModalContent = styled(Modal.Content)({
 const ModalDescription = styled(Modal.Description)({
   whiteSpace: "pre-wrap",
   padding: "10px",
+  maxWidth: "500px",
 });
 
 const ImageComponent = styled(Image)({
   objectFit: "contain",
+  marginRight: "10px",
 });
 
 type ModalImageProps = {
@@ -50,7 +60,7 @@ const ModalImage: React.FC<ModalImageProps> = ({
       size="large"
       basic
     >
-      <Modal.Content image>
+      <ModalContent image onClick={() => setSelectedPhoto(null)}>
         <ImageComponent
           src={selectedPhoto && selectedPhoto.url}
           onClick={() => setSelectedPhoto(null)}
@@ -60,7 +70,7 @@ const ModalImage: React.FC<ModalImageProps> = ({
               : "huge"
           }
         />
-        <ModalContent>
+        <ModalContentColumn>
           {selectedPhoto?.keywords && (
             <ModalDescription onClick={() => setSelectedPhoto(null)}>
               <p>{viewEng ? "KEYWORDS" : "キーワード"}</p>
@@ -81,8 +91,8 @@ const ModalImage: React.FC<ModalImageProps> = ({
               </p>
             </ModalDescription>
           )}
-        </ModalContent>
-      </Modal.Content>
+        </ModalContentColumn>
+      </ModalContent>
     </ModalComponent>
   );
 };

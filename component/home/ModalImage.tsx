@@ -6,7 +6,7 @@ import { Image, Modal, Header } from "semantic-ui-react";
 const ModalContent = styled(Modal.Content)({
   display: "flex",
   flexDirection: "column",
-})
+});
 
 const ModalDescription = styled(Modal.Description)({
   whiteSpace: "pre-wrap",
@@ -15,7 +15,10 @@ const ModalDescription = styled(Modal.Description)({
 
 const ImageContain = styled(Image)({
   objectFit: "contain",
-  marginRight: "10px"
+  border: "2px solid #F2F2F2",
+  borderRadius: "2px",
+  height: "fit-content !important",
+  margin: "auto 10px auto 0",
 });
 
 type ModalImageProps = {
@@ -36,14 +39,14 @@ const ModalImage: React.FC<ModalImageProps> = ({
     return results;
   };
   const getExplanation = (explanation: string) => {
-    return explanation.split("\n").map(item => <p>{item}</p>);
-  }
+    return explanation.split("\n").map((item) => <p>{item}</p>);
+  };
 
   return (
     <Modal
       open={!!selectedPhoto}
       onClose={() => setSelectedPhoto(null)}
-      size="small"
+      size="large"
       centered={true}
       basic
     >
@@ -53,29 +56,31 @@ const ModalImage: React.FC<ModalImageProps> = ({
           onClick={() => setSelectedPhoto(null)}
           size={
             selectedPhoto?.keywords && selectedPhoto?.explanation
-              ? "medium"
+              ? "large"
               : "huge"
           }
         />
         <ModalContent>
-        {selectedPhoto?.keywords && (
-          <ModalDescription onClick={() => setSelectedPhoto(null)}>
-            <p>{viewEng ? "KEYWORDS" : "キーワード"}</p>
-            <p>
-              {viewEng ? getKeyWords(selectedPhoto?.keywordsEng) : getKeyWords(selectedPhoto?.keywords)}
-            </p>
-          </ModalDescription>
-        )}
-        {selectedPhoto?.explanation && (
-          <ModalDescription onClick={() => setSelectedPhoto(null)}>
-            <p>{viewEng ? "EXPLANATION" : "解説"}</p>
-            <p>
-              {viewEng
-                ? getExplanation(selectedPhoto?.explanationEng)
-                : getExplanation(selectedPhoto?.explanation)}
-            </p>
-          </ModalDescription>
-        )}
+          {selectedPhoto?.keywords && (
+            <ModalDescription onClick={() => setSelectedPhoto(null)}>
+              <p>{viewEng ? "KEYWORDS" : "キーワード"}</p>
+              <p>
+                {viewEng
+                  ? getKeyWords(selectedPhoto?.keywordsEng)
+                  : getKeyWords(selectedPhoto?.keywords)}
+              </p>
+            </ModalDescription>
+          )}
+          {selectedPhoto?.explanation && (
+            <ModalDescription onClick={() => setSelectedPhoto(null)}>
+              <p>{viewEng ? "EXPLANATION" : "解説"}</p>
+              <p>
+                {viewEng
+                  ? getExplanation(selectedPhoto?.explanationEng)
+                  : getExplanation(selectedPhoto?.explanation)}
+              </p>
+            </ModalDescription>
+          )}
         </ModalContent>
       </Modal.Content>
     </Modal>

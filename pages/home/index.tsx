@@ -22,6 +22,7 @@ import MainPost from "@/component/home/MainPost";
 import SecondPost from "@/component/home/SecondPost";
 import ModalImage from "@/component/home/ModalImage";
 import SiteExplain from "@/component/home/SiteExplain";
+import { Analytics } from '@vercel/analytics/react';
 
 export const getServerSideProps: GetServerSideProps<{
   posts: Post[];
@@ -43,6 +44,7 @@ const Home = ({
   return (
     <>
       <Header as="h2" icon textAlign="center">
+        <Analytics />
         <Image src="/profileImg.png" alt="profileImg" avatar />
         <Header.Content>
           <p>KAKIKUKE KOICHI</p>

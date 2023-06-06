@@ -38,13 +38,19 @@ export const getPageDatas = async () => {
     const image: any = page.properties.url;
     posts.push({
       id: page.id,
-      title: properties.title.title[0].plain_text,
-      description: properties.description.rich_text[0].plain_text,
+      title: properties.title.title[0]
+        ? properties.title.title[0].plain_text
+        : "",
+      description: properties.description.rich_text[0]
+        ? properties.description.rich_text[0].plain_text
+        : "",
       url: image.files[0]?.file?.url || "",
       updatedAt: properties.updatedAt.date.start,
       shootingDate: properties.shootingDate.date.start,
       titleEng: properties.titleEng.rich_text[0].plain_text,
-      eng: properties.eng.rich_text[0].plain_text,
+      eng: properties.eng.rich_text[0]
+        ? properties.eng.rich_text[0].plain_text
+        : "",
       link: properties.link.rich_text[0]
         ? properties.link.rich_text[0].plain_text
         : "",

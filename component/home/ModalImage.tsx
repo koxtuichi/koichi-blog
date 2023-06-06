@@ -76,7 +76,7 @@ const ModalImage: React.FC<ModalImageProps> = ({
           {selectedPhoto?.keywords && (
             <ModalDescription onClick={() => setSelectedPhoto(null)}>
               <p>{viewEng ? "KEYWORDS" : "キーワード"}</p>
-              <p>
+              <p style={{ paddingLeft: "10px" }}>
                 {viewEng
                   ? getKeyWords(selectedPhoto?.keywordsEng)
                   : getKeyWords(selectedPhoto?.keywords)}
@@ -86,10 +86,20 @@ const ModalImage: React.FC<ModalImageProps> = ({
           {selectedPhoto?.explanation && (
             <ModalDescription onClick={() => setSelectedPhoto(null)}>
               <p>{viewEng ? "EXPLANATION" : "解説"}</p>
-              <p>
+              <p style={{ paddingLeft: "10px" }}>
                 {viewEng
                   ? getExplanation(selectedPhoto?.explanationEng)
                   : getExplanation(selectedPhoto?.explanation)}
+              </p>
+            </ModalDescription>
+          )}
+          {selectedPhoto?.person && (
+            <ModalDescription onClick={() => setSelectedPhoto(null)}>
+              <p>{viewEng ? "RELATED PERSON" : "関連する人物"}</p>
+              <p style={{ paddingLeft: "10px" }}>
+                {viewEng
+                  ? getExplanation(selectedPhoto?.personEng)
+                  : getExplanation(selectedPhoto?.person)}
               </p>
             </ModalDescription>
           )}

@@ -15,8 +15,8 @@ export type Post = {
   explanation?: any;
   keywordsEng?: any;
   explanationEng?: any;
-  person?: any;
-  personEng?: any;
+  // person?: any;
+  // personEng?: any;
 };
 
 const notion = new Client({
@@ -68,12 +68,12 @@ export const getPageDatas = async () => {
       explanationEng: properties.explanationEng.rich_text[0]
         ? properties.explanationEng.rich_text[0].plain_text
         : "",
-      person: properties.person.rich_text[0]
-        ? properties.person.rich_text[0].plain_text
-        : "",
-      personEng: properties.personEng.rich_text[0]
-        ? properties.personEng.rich_text[0].plain_text
-        : "",
+      // person: properties.person.rich_text[0]
+      //   ? properties.person.rich_text[0].plain_text
+      //   : "",
+      // personEng: properties.personEng.rich_text[0]
+      //   ? properties.personEng.rich_text[0].plain_text
+      //   : "",
     });
   }
 

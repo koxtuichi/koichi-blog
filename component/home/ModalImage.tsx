@@ -93,7 +93,7 @@ const ModalImage: React.FC<ModalImageProps> = ({
               </p>
             </ModalDescription>
           )}
-          {selectedPhoto?.person && (
+          {/* {selectedPhoto?.person && (
             <ModalDescription onClick={() => setSelectedPhoto(null)}>
               <p>{viewEng ? "RELATED PERSON" : "関連する人物"}</p>
               <p style={{ paddingLeft: "10px" }}>
@@ -102,7 +102,7 @@ const ModalImage: React.FC<ModalImageProps> = ({
                   : getExplanation(selectedPhoto?.person)}
               </p>
             </ModalDescription>
-          )}
+          )} */}
         </ModalContentColumn>
       </ModalContent>
     </ModalComponent>

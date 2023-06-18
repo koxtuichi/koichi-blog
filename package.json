@@ -36,8 +36,10 @@
     "@emotion/styled": "^11.11.0",
     "@jitl/notion-api": "^0.2.2",
     "@vercel/analytics": "^1.0.1",
+    "axios": "^1.4.0",
     "debug": "^4.3.4",
     "notion-client": "^6.15.6",
+    "openai": "^3.3.0",
     "semantic-ui-css": "^2.5.0",
     "semantic-ui-react": "^2.1.4"
   }

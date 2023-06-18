@@ -88,7 +88,7 @@ const Home = ({
                 <br />
                 関東でおすすめのスポットをAIが探してくれます。
               </p>
-              <div style={{ display: "flex", maxHeight: "36px" }}>
+              <div style={{ display: "flex", justifyContent: 'center', maxHeight: "36px" }}>
                 <Input
                   type="input"
                   name="searchWord"
@@ -97,7 +97,7 @@ const Home = ({
                   loading={loading}
                   maxLength={10}
                 />
-                <Button type="submit" disabled={loading}>
+                <Button type="submit" disabled={loading || !prompt}>
                   探す
                 </Button>
                 {0 < response.split(",").length && (

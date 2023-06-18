@@ -72,8 +72,7 @@ const Home = ({
             />
             <p style={{ lineHeight: 2 }}>since 2023/2</p>
           </Grid.Row>
-          <DividerNoneMarginBottom />
-          <SiteExplain viewEng={viewEng} />
+          {/* <DividerNoneMarginBottom /> */}
         </Grid>
       </ContainerSelfIntroductionComponent>
       <Divider />
@@ -84,11 +83,17 @@ const Home = ({
               <p style={{ marginBottom: "8p" }}>
                 どんな写真が撮りたいですか？
                 <br />
-                「お花」や「カフェ」などの撮りたいモノの名前を10文字以内で入れてみてください。
+                「お花」や「おしゃれなカフェ」などの撮りたいモノの名前を10文字以内で入れてみてください。
                 <br />
                 関東でおすすめのスポットをAIが探してくれます。
               </p>
-              <div style={{ display: "flex", justifyContent: 'center', maxHeight: "36px" }}>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  maxHeight: "36px",
+                }}
+              >
                 <Input
                   type="input"
                   name="searchWord"
@@ -100,16 +105,16 @@ const Home = ({
                 <Button type="submit" disabled={loading || !prompt}>
                   探す
                 </Button>
-                {0 < response.split(",").length && (
-                  <>
-                    {response.split(",").map((item, index) => (
-                      <p key={index} style={{ marginTop: "8px" }}>
-                        {item}
-                      </p>
-                    ))}
-                  </>
-                )}
               </div>
+              {0 < response.split(",").length && (
+                <>
+                  {response.split(",").map((item, index) => (
+                    <p key={index} style={{ marginTop: "8px" }}>
+                      {item}
+                    </p>
+                  ))}
+                </>
+              )}
             </ContainerCenter>
           </Grid>
         </Form>

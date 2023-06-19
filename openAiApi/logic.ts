@@ -14,7 +14,7 @@ const useAi = () => {
       const response = await axios.post(
         URL,
         {
-          model: "gpt-3.5-turbo",
+          model: "gpt-3.5-turbo-0613",
           messages: [
             { role: "system", content: "You are a helpful assistant." },
             {

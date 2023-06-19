@@ -52,12 +52,11 @@ const useAi = () => {
       if (!!functionCall) {
         const args = JSON.parse(functionCall.arguments || "{}");
         const funcResponse = searchRecommendedPhotoSpots(args["number"]);
-
         const response2 = await openai.createChatCompletion({
           model: "gpt-3.5-turbo-0613",
           messages: [
             chatMessage,
-            message1,
+            message1 as ChatCompletionRequestMessage,
             {
               role: "function",
               content: funcResponse,
@@ -66,7 +65,7 @@ const useAi = () => {
           ],
         });
         console.dir(response2.data.choices[0].message);
-        setResponse(response2.data.choices[0].message?.content || "");
+        setResponse(response2.data.choices[0].message?.content || '');
       }
     } catch (e) {
       console.dir(e);

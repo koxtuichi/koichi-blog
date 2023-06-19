@@ -1,38 +1,75 @@
 import axios from "axios";
 import { useState } from "react";
+import { Configuration, OpenAIApi, ChatCompletionRequestMessage } from "openai";
+import { searchRecommendedPhotoSpots } from "./searchRecommendedPhotoSpots";
+
+const API_KEY = "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";
 
 const useAi = () => {
   const [prompt, setPrompt] = useState<string>("");
   const [response, setResponse] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
-  const handleSubmit = async (e: any) => {
-    e.preventDefault();
+
+  const configuration = new Configuration({
+    apiKey: API_KEY,
+  });
+  const chatMessage: ChatCompletionRequestMessage = {
+    role: "system",
+    content: `${prompt}の数字を引数としてsearchRecommendedPhotoSpots関数を使用してほしい`,
+  };
+
+  const openai = new OpenAIApi(configuration);
+
+  const handleSubmit = async () => {
     setLoading(true);
-    const API_KEY = "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";
-    const URL = "https://api.openai.com/v1/chat/completions";
     try {
-      const response = await axios.post(
-        URL,
-        {
+      const response1 = await openai.createChatCompletion({
+        model: "gpt-3.5-turbo-0613",
+        messages: [chatMessage],
+        function_call: "auto",
+        functions: [
+          {
+            name: "searchRecommendedPhotoSpots",
+            description:
+              "数字を引数で取得してから1から9までの数字を計算し、それに紐づく象徴的な色と、特徴的な言葉を取得できる。そしてその色と言葉をに関連する写真を撮るためにはどんなものがあるかを一つだけおすすめする",
+            parameters: {
+              type: "object",
+              properties: {
+                number: {
+                  type: "string",
+                  description: "数字を取得する。0始まりでも良い。",
+                },
+              },
+              required: ["number"],
+            },
+          },
+        ],
+      });
+
+      const message1 = response1.data.choices[0].message;
+      console.dir(message1);
+      const functionCall = message1?.function_call;
+      if (!!functionCall) {
+        const args = JSON.parse(functionCall.arguments || "{}");
+        const funcResponse = searchRecommendedPhotoSpots(args["number"]);
+
+        const response2 = await openai.createChatCompletion({
           model: "gpt-3.5-turbo-0613",
           messages: [
-            { role: "system", content: "You are a helpful assistant." },
+            chatMessage,
+            message1,
             {
-              role: "user",
-              content: `関東で${prompt}を撮りに行きたいです。おすすめのお店または写真スポットを3つ教えてください。実在する場所を教えてください。理由を一言添えてください。説明書きは不要です。また次のようなテンプレートで答えてください。1.回答1つ目 2.回答2つ目 3.回答3つ目`,
+              role: "function",
+              content: funcResponse,
+              name: functionCall.name,
             },
           ],
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${API_KEY}`,
-          },
-        }
-      );
-      setResponse(response.data.choices[0].message.content);
-    } catch (error) {
-      console.log(error);
+        });
+        console.dir(response2.data.choices[0].message);
+        setResponse(response2.data.choices[0].message?.content || "");
+      }
+    } catch (e) {
+      console.dir(e);
     } finally {
       setLoading(false);
     }

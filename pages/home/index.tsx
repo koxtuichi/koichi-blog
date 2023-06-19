@@ -17,14 +17,12 @@ import "semantic-ui-css/semantic.min.css";
 import {
   ContainerCenter,
   ContainerSelfIntroductionComponent,
-  DividerNoneMarginBottom,
 } from "../../component/home/styledComponents";
 import { TranslateButtonGroup } from "@/component/TranslateButtonGroup";
 import Profile from "@/component/home/profile";
 import MainPost from "@/component/home/MainPost";
 import SecondPost from "@/component/home/SecondPost";
 import ModalImage from "@/component/home/ModalImage";
-import SiteExplain from "@/component/home/SiteExplain";
 import { Analytics } from "@vercel/analytics/react";
 import useAi from "../../openAiApi/logic";
 
@@ -72,7 +70,6 @@ const Home = ({
             />
             <p style={{ lineHeight: 2 }}>since 2023/2</p>
           </Grid.Row>
-          {/* <DividerNoneMarginBottom /> */}
         </Grid>
       </ContainerSelfIntroductionComponent>
       <Divider />
@@ -81,11 +78,11 @@ const Home = ({
           <Grid centered>
             <ContainerCenter>
               <p style={{ marginBottom: "8p" }}>
-                どんな写真が撮りたいですか？
+                あなたに関連する数字を入力してください。
                 <br />
-                「お花」や「おしゃれなカフェ」などの撮りたいモノの名前を10文字以内で入れてみてください。
+                たとえば電話番号や、生年月日など。
                 <br />
-                関東でおすすめのスポットをAIが探してくれます。
+                運気の上がる（当社比）おすすめのスポットをAIが探してくれます。
               </p>
               <div
                 style={{
@@ -95,12 +92,12 @@ const Home = ({
                 }}
               >
                 <Input
-                  type="input"
+                  type="number"
                   name="searchWord"
                   onChange={(e) => setPrompt(e.target.value)}
                   value={prompt}
                   loading={loading}
-                  maxLength={10}
+                  maxLength={15}
                 />
                 <Button type="submit" disabled={loading || !prompt}>
                   探す

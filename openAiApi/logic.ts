@@ -3,7 +3,8 @@ import { useState } from "react";
 import { Configuration, OpenAIApi, ChatCompletionRequestMessage } from "openai";
 import { searchRecommendedPhotoSpots } from "./searchRecommendedPhotoSpots";
 
-const API_KEY = "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";
+// const API_KEY = "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";
+const API_KEY = "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";
 
 
 const useAi = () => {
@@ -16,7 +17,7 @@ const useAi = () => {
   });
   const chatMessage: ChatCompletionRequestMessage = {
     role: "system",
-    content: `${prompt}の数字を引数としてsearchRecommendedPhotoSpots関数を必ず使用してほしい`,
+    content: `${prompt}の数字を引数としてsearchRecommendedPhotoSpots関数を使用してほしい`,
   };
 
   const openai = new OpenAIApi(configuration);
@@ -32,7 +33,7 @@ const useAi = () => {
           {
             name: "searchRecommendedPhotoSpots",
             description:
-              "数字を引数で取得してから1から9までの数字を計算し、それに紐づく象徴的な色と、特徴的な言葉を取得できる。そしてその色と言葉をに関連する写真を撮るためにはどんなものがあるかを一つだけおすすめする",
+              "取得した数字から、それに紐づく象徴的な色と、特徴的な言葉に関連する写真を撮るためにはどんなものがあるかを一つだけおすすめする",
             parameters: {
               type: "object",
               properties: {
@@ -67,9 +68,12 @@ const useAi = () => {
         });
         console.dir(response2.data.choices[0].message);
         setResponse(response2.data.choices[0].message?.content || '');
+      } else {
+        setResponse('AIが疲れて検索さぼったみたい。\n何回かボタンを押すとAIがやる気だしてくれるかも');
       }
-    } catch (e) {
+      } catch (e) {
       console.dir(e);
+      setResponse('少しAIを休ませてあげよう。\n働き過ぎたみたい。');
     } finally {
       setLoading(false);
     }

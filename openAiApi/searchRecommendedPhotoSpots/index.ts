@@ -70,7 +70,7 @@ const colors = [
 
 export const searchRecommendedPhotoSpots = (number: string | undefined) => {
   if (!number) return "";
-  let sum: number = 0;
+  let luckyNumber: number = 0;
   if (number !== "11" && number !== "22" && number !== "33") {
     const todayNumList = dayjs(new Date())
       .format("YYYYMMDD")
@@ -78,36 +78,32 @@ export const searchRecommendedPhotoSpots = (number: string | undefined) => {
       .split("");
     const numberList = number.replace(/[^0-9]/g, "").split("");
     const digits = [...numberList, ...todayNumList];
-
     for (let digit of digits) {
-      sum += parseInt(digit);
+      luckyNumber += parseInt(digit);
     }
 
-    while (sum > 9) {
-      const digitsSum = sum
+    while (luckyNumber > 9) {
+      const digitsluckyNumber = luckyNumber
         .toString()
         .split("")
         .reduce((acc, curr) => acc + parseInt(curr), 0);
-      sum = digitsSum;
+      luckyNumber = digitsluckyNumber;
     }
   } else {
-    sum = parseInt(number) || 0;
-    console.dir(sum);
+    luckyNumber = parseInt(number) || 0;
   }
 
-  if (sum === undefined) return;
-  const color = colors?.find((item) => item.no === sum);
+  if (luckyNumber === undefined) return;
+  const color = colors?.find((item) => item.no === luckyNumber);
   if (!color) return;
 
-  console.dir(sum);
-
-  return `今日のラッキーナンバーは${sum}です。ラッキーナンバーに関連する特徴的な色は${
+  return `今日のラッキーナンバーは${luckyNumber}です。ラッキーナンバーに関連する特徴的な色は${
     color.color
   }です。ラッキーナンバーに関連する象徴的な言葉は${
     color.word
-  }です。これらの色と言葉に関連するもののなかから、１つだけ写真を撮るのに適したものを教えてください。1つしか提案してはダメです。300文字以内でまとめてください。今日の日付は${dayjs(
+  }です。これらの色と言葉に関連するもののなかから、１つだけ写真を撮るのに適したものを教えてください。1つしか提案してはダメです。300文字以内でまとめてください。今の日時は${dayjs(
     new Date()
-  ).format("YYYY年MM月DD日")}です。ラッキーナンバー${sum}と色${
+  ).format("YYYY年MM月DD日hh時mm分")}です。今から撮影できるものをおすすめしてください。ラッキーナンバー${luckyNumber}と色${
     color.word
   }と言葉を最初に提示してください。`;
 };

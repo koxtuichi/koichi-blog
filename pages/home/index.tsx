@@ -98,6 +98,7 @@ const Home = ({
                   value={prompt}
                   loading={loading}
                   maxLength={15}
+                  disabled={loading}
                 />
                 <Button type="submit" disabled={loading || !prompt}>
                   探す
@@ -106,7 +107,7 @@ const Home = ({
               {0 < response.split(",").length && (
                 <>
                   {response.split(",").map((item, index) => (
-                    <p key={index} style={{ marginTop: "8px" }}>
+                    <p key={index} style={{ marginTop: "8px", whiteSpace: 'pre-line' }}>
                       {item}
                     </p>
                   ))}

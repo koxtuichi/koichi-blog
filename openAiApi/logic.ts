@@ -4,8 +4,9 @@ import { Configuration, OpenAIApi, ChatCompletionRequestMessage } from "openai";
 import { searchRecommendedPhotoSpots } from "./searchRecommendedPhotoSpots";
 
 // const API_KEY = "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";
-const API_KEY = "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";
-
+// const API_KEY = "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";
+const API_KEY = "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";
+//
 
 const useAi = () => {
   const [prompt, setPrompt] = useState<string>("");

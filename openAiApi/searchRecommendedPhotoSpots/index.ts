@@ -97,13 +97,13 @@ export const searchRecommendedPhotoSpots = (number: string | undefined) => {
   const color = colors?.find((item) => item.no === luckyNumber);
   if (!color) return;
 
-  return `今日のラッキーナンバーは${luckyNumber}です。ラッキーナンバーに関連する特徴的な色は${
-    color.color
-  }です。ラッキーナンバーに関連する象徴的な言葉は${
+  return `今日のラッキーナンバーは${luckyNumber}です。ラッキーナンバーに関連する象徴的な言葉は${
     color.word
-  }です。これらの色と言葉に関連するもののなかから、１つだけ写真を撮るのに適したものを教えてください。1つしか提案してはダメです。300文字以内でまとめてください。今の日時は${dayjs(
+  }です。この言葉に関連する被写体を１つ提案してください。1つしか提案してはダメです。300文字以内でまとめてください。今の日時は${dayjs(
     new Date()
-  ).format("YYYY年MM月DD日hh時mm分")}です。今から撮影できるものをおすすめしてください。ラッキーナンバー${luckyNumber}と色${
+  ).format(
+    "YYYY年MM月DD日hh時mm分"
+  )}です。今から撮影できるものをおすすめしてください。今の季節に撮影できるものを提案してください。ラッキーナンバー:${luckyNumber}と言葉:${
     color.word
-  }と言葉を最初に提示してください。`;
+  }を最初に提示してください。`;
 };

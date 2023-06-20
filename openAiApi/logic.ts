@@ -3,7 +3,8 @@ import { useState } from "react";
 import { Configuration, OpenAIApi, ChatCompletionRequestMessage } from "openai";
 import { searchRecommendedPhotoSpots } from "./searchRecommendedPhotoSpots";
 
-const API_KEY = "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";
+const API_KEY = "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";
+
 
 const useAi = () => {
   const [prompt, setPrompt] = useState<string>("");
@@ -15,7 +16,7 @@ const useAi = () => {
   });
   const chatMessage: ChatCompletionRequestMessage = {
     role: "system",
-    content: `${prompt}の数字を引数としてsearchRecommendedPhotoSpots関数を使用してほしい`,
+    content: `${prompt}の数字を引数としてsearchRecommendedPhotoSpots関数を必ず使用してほしい`,
   };
 
   const openai = new OpenAIApi(configuration);

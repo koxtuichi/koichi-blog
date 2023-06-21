@@ -42,7 +42,7 @@ const Home = ({
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const [selectedPhoto, setSelectedPhoto] = useState<Post | null>(null);
   const [viewEng, setViewEng] = useState<boolean>(false);
-  const { handleSubmit, response, setPrompt, loading, prompt } = useAi();
+  const { handleSubmit, response, setPrompt, loading, prompt } = useAi(viewEng);
   return (
     <>
       <Header as="h2" icon textAlign="center">
@@ -78,11 +78,17 @@ const Home = ({
           <Grid centered>
             <ContainerCenter>
               <p style={{ marginBottom: "8p" }}>
-                あなたに関連する数字を入力してください。
+                {viewEng
+                  ? "Please enter the numbers that are relevant to you."
+                  : "あなたに関連する数字を入力してください。"}
                 <br />
-                たとえば電話番号や、生年月日など。
+                {viewEng
+                  ? "For example, phone number, date of birth, etc."
+                  : "たとえば電話番号や、生年月日など。"}
                 <br />
-                運気の上がる（当社比）撮影スポットをAIが探してくれます。
+                {viewEng
+                  ? "AI will search for lucky photo spots."
+                  : "運気の上がる（当社比）撮影スポットをAIが探してくれます。"}
               </p>
               <div
                 style={{
@@ -104,14 +110,17 @@ const Home = ({
                   探す
                 </Button>
               </div>
-              {0 < response.split(",").length && (
-                <>
-                  {response.split(",").map((item, index) => (
-                    <p key={index} style={{ marginTop: "8px", whiteSpace: 'pre-line' }}>
-                      {item}
-                    </p>
-                  ))}
-                </>
+              {console.dir(response)}
+              {response && (
+                <p
+                  style={{
+                    marginTop: "8px",
+                    whiteSpace: "pre-line",
+                    maxWidth: "400px",
+                  }}
+                >
+                  {response}
+                </p>
               )}
             </ContainerCenter>
           </Grid>

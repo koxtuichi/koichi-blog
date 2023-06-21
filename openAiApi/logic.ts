@@ -9,7 +9,7 @@ import {
 // const API_KEY = "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";
 
 const useAi = (isEng: boolean = false) => {
-  const API_KEY = isEng ? "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" : "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";
+  const API_KEY = isEng ? "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" : "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";
   const [prompt, setPrompt] = useState<string>("");
   const [response, setResponse] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
@@ -41,7 +41,7 @@ const useAi = (isEng: boolean = false) => {
               properties: {
                 number: {
                   type: "string",
-                  description: "数字を取得する。0始まりでも良い。",
+                  description: "数字を取得する。何桁でも問題ない。0始まりでも良い。",
                 },
               },
               required: ["number"],
@@ -56,7 +56,7 @@ const useAi = (isEng: boolean = false) => {
               properties: {
                 number: {
                   type: "string",
-                  description: "Get a number, may start with 0.",
+                  description: "Get a number. It does not matter how many digits, even starting with 0.",
                 },
               },
               required: ["number"],

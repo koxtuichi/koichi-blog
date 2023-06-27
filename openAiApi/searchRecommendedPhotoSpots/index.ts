@@ -112,7 +112,7 @@ export const searchRecommendedPhotoSpots = (number: string | undefined) => {
 
   return `今日のラッキーナンバーは${luckyNumber}です。ラッキーナンバーに関連する象徴的な言葉は${
     color.word
-  }です。この言葉に関連する被写体を１つ提案してください。1つしか提案してはダメです。300文字以内でまとめてください。今の日時は${dayjs(
+  }です。この言葉に関連する被写体を１つ提案してください。1つしか提案してはダメです。改行してください。300文字以上は書いて欲しいです。今の日時は${dayjs(
     new Date()
   ).format(
     "YYYY年MM月DD日hh時mm分"

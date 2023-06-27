@@ -9,7 +9,7 @@ import {
 // const API_KEY = "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";
 
 const useAi = (isEng: boolean = false) => {
-  const API_KEY = isEng ? "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" : "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";
+  const API_KEY = isEng ? "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" : "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";
   const [prompt, setPrompt] = useState<string>("");
   const [response, setResponse] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
@@ -64,10 +64,10 @@ const useAi = (isEng: boolean = false) => {
           },
         ],
       });
-      console.dir(response1.data.choices[0].message);
+      // console.dir(response1.data.choices[0].message);
 
       const message1 = response1.data.choices[0].message;
-      console.dir(message1);
+      // console.dir(message1);
       const functionCall = message1?.function_call;
       if (!!functionCall) {
         const args = JSON.parse(functionCall.arguments || "{}");
@@ -86,7 +86,7 @@ const useAi = (isEng: boolean = false) => {
             },
           ],
         });
-        console.dir(response2.data.choices[0].message);
+        // console.dir(response2.data.choices[0].message);
         setResponse(response2.data.choices[0].message?.content || "");
       } else {
         setResponse(
@@ -96,7 +96,7 @@ const useAi = (isEng: boolean = false) => {
         );
       }
     } catch (e) {
-      console.dir(e);
+      // console.dir(e);
       setResponse(
         isEng
           ? "Let's give AI a little rest. It looks like it's been working too hard."
@@ -113,6 +113,7 @@ const useAi = (isEng: boolean = false) => {
     response,
     handleSubmit,
     loading,
+    setResponse,
   };
 };
 

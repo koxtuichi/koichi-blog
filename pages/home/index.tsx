@@ -1,6 +1,6 @@
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import { Post, getPageDatas } from "@/notionApi/notion";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Button,
   Container,
@@ -25,6 +25,7 @@ import SecondPost from "@/component/home/SecondPost";
 import ModalImage from "@/component/home/ModalImage";
 import { Analytics } from "@vercel/analytics/react";
 import useAi from "../../openAiApi/logic";
+import ModalText from "@/component/home/ModalText";
 
 export const getServerSideProps: GetServerSideProps<{
   posts: Post[];
@@ -42,7 +43,7 @@ const Home = ({
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const [selectedPhoto, setSelectedPhoto] = useState<Post | null>(null);
   const [viewEng, setViewEng] = useState<boolean>(false);
-  const { handleSubmit, response, setPrompt, loading, prompt } = useAi(viewEng);
+  const { handleSubmit, setResponse, response, setPrompt, loading, prompt } = useAi(viewEng);
   return (
     <>
       <Header as="h2" icon textAlign="center">
@@ -110,8 +111,7 @@ const Home = ({
                   探す
                 </Button>
               </div>
-              {console.dir(response)}
-              {response && (
+              {/* {response && (
                 <p
                   style={{
                     marginTop: "8px",
@@ -121,7 +121,7 @@ const Home = ({
                 >
                   {response}
                 </p>
-              )}
+              )} */}
             </ContainerCenter>
           </Grid>
         </Form>
@@ -148,6 +148,11 @@ const Home = ({
         </Grid>
       </Container>
       <Divider />
+      <ModalText
+        open={!!response}
+        setResponse={setResponse}
+        response={response}
+      />
       <ModalImage
         selectedPhoto={selectedPhoto}
         setSelectedPhoto={setSelectedPhoto}

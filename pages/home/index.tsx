@@ -80,7 +80,7 @@ const Home = ({
             <ContainerCenter>
               <p style={{ marginBottom: "8p" }}>
                 {viewEng
-                  ? "Please enter the numbers that are relevant to you."
+                  ? "Please Enter any number you like."
                   : "あなたが好きな数字を入力してください。"}
                 <br />
                 {viewEng
@@ -88,8 +88,8 @@ const Home = ({
                   : "たとえば電話番号や、生年月日など。"}
                 <br />
                 {viewEng
-                  ? "AI will search for lucky photo spots."
-                  : "運気の上がる撮影スポットを七原くん（AI）が探してくれます。"}
+                  ? "A slightly annoying AI will help you find a lucky photo spot."
+                  : "運気の上がる撮影スポットを少しウザいAIが探してくれます。"}
               </p>
               <div
                 style={{

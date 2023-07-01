@@ -81,7 +81,7 @@ const Home = ({
               <p style={{ marginBottom: "8p" }}>
                 {viewEng
                   ? "Please enter the numbers that are relevant to you."
-                  : "あなたに関連する数字を入力してください。"}
+                  : "あなたが好きな数字を入力してください。"}
                 <br />
                 {viewEng
                   ? "For example, phone number, date of birth, etc."
@@ -89,7 +89,7 @@ const Home = ({
                 <br />
                 {viewEng
                   ? "AI will search for lucky photo spots."
-                  : "運気の上がる（当社比）撮影スポットをAIが探してくれます。"}
+                  : "運気の上がる撮影スポットを七原くん（AI）が探してくれます。"}
               </p>
               <div
                 style={{
@@ -108,7 +108,7 @@ const Home = ({
                   disabled={loading}
                 />
                 <Button type="submit" disabled={loading || !prompt}>
-                  探す
+                {viewEng ? 'search' : '聞く'}
                 </Button>
               </div>
               {/* {response && (

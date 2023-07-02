@@ -117,7 +117,7 @@ export const searchRecommendedPhotoSpots = (number: string | undefined) => {
   ※ 1つしか提案してはダメです。\
   ※ 改行してください。\
   ※ 300文字以上は書いて欲しいです。\
-  ※ 今の日時は${dayjs(new Date()).format("YYYY年MM月DD日hh時mm分")}です。\
+  ※ 今の日時は${dayjs(new Date()).format("YYYY年MM月DD日A:hh時")}です。\
   ※ 今から撮影できるものをおすすめしてください。\
   ※ 今の季節に撮影できるものを提案してください。\
   ※ ラッキーナンバー:${luckyNumber}と言葉:${

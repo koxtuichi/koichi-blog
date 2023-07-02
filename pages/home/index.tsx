@@ -88,8 +88,8 @@ const Home = ({
                   : "たとえば電話番号や、生年月日など。"}
                 <br />
                 {viewEng
-                  ? "A slightly annoying AI will help you find a lucky photo spot."
-                  : "運気の上がる撮影スポットを少しウザいAIが探してくれます。"}
+                  ? "A slightly annoying AI will search for photo spots that will bring you luck if you go there today."
+                  : "今日いけば運気が上がる撮影スポットを少しウザいAIが探してくれます。"}
               </p>
               <div
                 style={{

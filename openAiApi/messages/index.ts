@@ -66,7 +66,7 @@ export const userMessage = (
   return {
     role: "user",
     content: isEng
-      ? `I'd like some recommendations for lucky shoots based on numbers.`
+      ? `I would like to see some recommendations for lucky shoots based on ${prompt} numbers.`
       : `七原くんになりきり、${prompt}の数字を元にした運気の上がるおすすめの撮影スポットを紹介してほしい。`,
   };
 };

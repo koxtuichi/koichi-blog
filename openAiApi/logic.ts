@@ -11,8 +11,8 @@ import {
   searchRecommendedPhotoSpotsForEng,
 } from "./searchRecommendedPhotoSpots";
 
+const API_KEY = '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';
 const useAi = (isEng: boolean = false) => {
-  const API_KEY = process.env.OPEN_AI_ID;
   const [prompt, setPrompt] = useState<string>("");
   const [response, setResponse] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
@@ -21,8 +21,8 @@ const useAi = (isEng: boolean = false) => {
     apiKey: API_KEY,
   });
   const chatMessage: ChatCompletionRequestMessage[] = isEng
-    ? [...systemMessages, userMessage(prompt, isEng)]
-    : [userMessage(prompt, isEng)];
+    ? [userMessage(prompt, isEng)]
+    : [...systemMessages, userMessage(prompt, isEng)];
 
   const openAi = new OpenAIApi(configuration);
   const handleSubmit = async () => {

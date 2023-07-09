@@ -26,11 +26,13 @@ class MyDocument extends Document {
           <meta name="msapplication-TileColor" content="#da532c" />
           <meta name="theme-color" content="#ffffff" />
 
-          <meta property="og:url" content="https://diary.unronritaro.net" />
+          <meta property="og:url" content="https://kakikuke-koichi.com/home" />
+          <meta property="og:site_name" content="かきくけこういち.COM" />
           <meta property="og:type" content="website" />
-          <meta property="og:description" content="sugimoto shinji's photo" />
-          <meta property="og:site_name" content="SUGIMOTO SHINJI" />
-          <meta name="description" content="sugimoto shinji's photo" />
+          <meta property="og:description" content="kakikuke koichi's photo" />
+          <meta property="og:site_name" content="KAKIKUKE KOICHI" />
+          <meta name="description" content="kakikuke koichi's photo" />
+          <meta property="og:image" content="/pageImg.jpg" />
         </Head>
         <body>
           <Main />

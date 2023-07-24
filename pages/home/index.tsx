@@ -1,4 +1,9 @@
-import { GetServerSideProps, InferGetServerSidePropsType } from "next";
+import {
+  GetServerSideProps,
+  GetStaticProps,
+  InferGetServerSidePropsType,
+  InferGetStaticPropsType,
+} from "next";
 import { Post, getPageDatas } from "@/notionApi/notion";
 import React, { useEffect, useState } from "react";
 import {
@@ -27,23 +32,57 @@ import { Analytics } from "@vercel/analytics/react";
 import useAi from "../../openAiApi/logic";
 import ModalText from "@/component/home/ModalText";
 
-export const getServerSideProps: GetServerSideProps<{
+type Cache = {
+  timestamp: number;
   posts: Post[];
-}> = async (context) => {
-  const posts = await getPageDatas();
-  return {
-    props: {
-      posts: posts || [],
-    },
-  };
 };
 
-const Home = ({
-  posts,
-}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+type Caches = {
+  [key in string]: Cache;
+};
+
+const cache: Caches = {};
+
+export const getStaticProps: GetStaticProps<{
+  posts: Post[];
+}> = async (context) => {
+  const cacheKey = "datakey";
+  const cacheDuration = 60 * 5;
+  if (
+    cache[cacheKey] &&
+    cache[cacheKey].timestamp + cacheDuration > Date.now()
+  ) {
+    return {
+      props: {
+        posts: cache[cacheKey].posts,
+      },
+    };
+  }
+  try {
+    const posts = await getPageDatas();
+    cache[cacheKey] = {
+      timestamp: Date.now(),
+      posts,
+    };
+    return {
+      props: {
+        posts: posts,
+      },
+    };
+  } catch (e) {
+    return {
+      props: {
+        posts: cache[cacheKey].posts,
+      },
+    };
+  }
+};
+
+const Home = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
   const [selectedPhoto, setSelectedPhoto] = useState<Post | null>(null);
   const [viewEng, setViewEng] = useState<boolean>(false);
-  const { handleSubmit, setResponse, response, setPrompt, loading, prompt } = useAi(viewEng);
+  const { handleSubmit, setResponse, response, setPrompt, loading, prompt } =
+    useAi(viewEng);
   return (
     <>
       <Header as="h2" icon textAlign="center">
@@ -108,7 +147,7 @@ const Home = ({
                   disabled={loading}
                 />
                 <Button type="submit" disabled={loading || !prompt}>
-                {viewEng ? 'search' : '聞く'}
+                  {viewEng ? "search" : "聞く"}
                 </Button>
               </div>
               {/* {response && (

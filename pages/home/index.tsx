@@ -43,7 +43,7 @@ import ModalText from "@/component/home/ModalText";
 
 // const cache: Cache = {};
 
-export const getStaticProps: GetStaticProps<{
+export const getServerSideProps: GetServerSideProps<{
   posts: Post[];
 }> = async (context) => {
   // const cacheKey = "datakey";
@@ -82,7 +82,7 @@ export const getStaticProps: GetStaticProps<{
   }
 };
 
-const Home = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
+const Home = ({ posts }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const [selectedPhoto, setSelectedPhoto] = useState<Post | null>(null);
   const [viewEng, setViewEng] = useState<boolean>(false);
   const {

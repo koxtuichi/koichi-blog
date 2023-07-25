@@ -32,16 +32,16 @@ import { Analytics } from "@vercel/analytics/react";
 import useAi from "../../openAiApi/logic";
 import ModalText from "@/component/home/ModalText";
 
-type Cache = {
+type CacheItem<T> = {
   timestamp: number;
-  posts: Post[];
+  posts: T;
 };
 
-type Caches = {
-  [key in string]: Cache;
+type Cache = {
+  [key: string]: CacheItem<Post[]>;
 };
 
-const cache: Caches = {};
+const cache: Cache = {};
 
 export const getStaticProps: GetStaticProps<{
   posts: Post[];
@@ -49,12 +49,13 @@ export const getStaticProps: GetStaticProps<{
   const cacheKey = "datakey";
   const cacheDuration = 10;
   if (
+    cache &&
     cache[cacheKey] &&
     cache[cacheKey].timestamp + cacheDuration > Date.now()
   ) {
     return {
       props: {
-        posts: cache[cacheKey]?.posts || [],
+        posts: cache[cacheKey].posts,
       },
     };
   }
@@ -72,7 +73,7 @@ export const getStaticProps: GetStaticProps<{
   } catch (e) {
     return {
       props: {
-        posts: [],
+        posts: cache[cacheKey].posts,
       },
     };
   }

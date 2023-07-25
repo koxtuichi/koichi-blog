@@ -36,7 +36,6 @@ export const getPageDatas = async () => {
       continue;
     }
     const published: any = page.properties.published;
-    console.dir(published.checkbox)
     if (!published.checkbox) continue;
     const properties: any = page.properties;
     const image: any = page.properties.url;
@@ -71,12 +70,6 @@ export const getPageDatas = async () => {
       explanationEng: properties.explanationEng.rich_text[0]
         ? properties.explanationEng.rich_text[0].plain_text
         : "",
-      // person: properties.person.rich_text[0]
-      //   ? properties.person.rich_text[0].plain_text
-      //   : "",
-      // personEng: properties.personEng.rich_text[0]
-      //   ? properties.personEng.rich_text[0].plain_text
-      //   : "",
     });
   }
 

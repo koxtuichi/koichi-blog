@@ -2,7 +2,11 @@ import { Post } from "@/notionApi/notion";
 import React from "react";
 import { Card, Icon } from "semantic-ui-react";
 import SpeakButton from "./SpeakButton";
-import { GridImageComponent, ImageComponent, TagLabel } from "./styledComponents";
+import {
+  GridImageComponent,
+  ImageComponent,
+  TagLabel,
+} from "./styledComponents";
 
 type SecondPostProps = {
   posts: Post[];
@@ -30,8 +34,9 @@ const SecondPost: React.FC<SecondPostProps> = ({
             <GridImageComponent key={index}>
               <ImageComponent
                 src={post.url}
+                size="huge"
                 wrapped
-                ui={false}
+                ui={true}
                 onClick={() => setSelectedPhoto(post)}
               />
               <Card.Content>

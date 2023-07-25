@@ -32,8 +32,8 @@ const MainPost: React.FC<MainPostProps> = ({
               <GridImageComponent key={index}>
                 <ImageComponent
                   src={post.url}
-                  wrapped
-                  ui={false}
+                  size="huge"
+                  ui={true}
                   onClick={() => setSelectedPhoto(post)}
                 />
                 <Card.Content>

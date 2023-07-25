@@ -1,11 +1,7 @@
-import {
-  GetServerSideProps,
-  GetStaticProps,
-  InferGetServerSidePropsType,
-  InferGetStaticPropsType,
-} from "next";
-import { Post, getPageDatas } from "@/notionApi/notion";
-import React, { useEffect, useState } from "react";
+"use client";
+
+import { Post } from "@/notionApi/notion";
+import React, { useState } from "react";
 import {
   Button,
   Container,
@@ -19,72 +15,26 @@ import {
 } from "semantic-ui-react";
 // semantic-uiはスタイルを含まないので以下のimportが必要
 import "semantic-ui-css/semantic.min.css";
-import {
-  ContainerCenter,
-  ContainerSelfIntroductionComponent,
-} from "../../component/home/styledComponents";
+
 import { TranslateButtonGroup } from "@/component/TranslateButtonGroup";
 import Profile from "@/component/home/profile";
 import MainPost from "@/component/home/MainPost";
 import SecondPost from "@/component/home/SecondPost";
-import ModalImage from "@/component/home/ModalImage";
 import { Analytics } from "@vercel/analytics/react";
-import useAi from "../../openAiApi/logic";
 import ModalText from "@/component/home/ModalText";
+import useAi from "@/openAiApi/logic";
+import {
+  ContainerCenter,
+  ContainerSelfIntroductionComponent,
+} from "@/component/home/styledComponents";
 
-// type CacheItem<T> = {
-//   timestamp: number;
-//   posts: T;
-// };
-
-// type Cache = {
-//   [key: string]: CacheItem<Post[]>;
-// };
-
-// const cache: Cache = {};
-
-export const getServerSideProps: GetServerSideProps<{
+type HomeComponentProps = {
   posts: Post[];
-}> = async (context) => {
-  // const cacheKey = "datakey";
-  // const cacheDuration = 10;
-  // console.dir(cache[cacheKey] && cache[cacheKey].timestamp)
-  // console.dir(cache[cacheKey] && cache[cacheKey].timestamp + cacheDuration > Date.now())
-  // if (
-  //   cache &&
-  //   cache[cacheKey] &&
-  //   cache[cacheKey].timestamp + cacheDuration > Date.now()
-  // ) {
-  //   return {
-  //     props: {
-  //       posts: cache[cacheKey].posts,
-  //     },
-  //   };
-  // }
-  try {
-    const posts = await getPageDatas();
-    // cache[cacheKey] = {
-    //   timestamp: Date.now(),
-    //   posts,
-    // };
-    return {
-      props: {
-        posts: posts,
-      },
-    };
-  } catch (e) {
-    return {
-      props: {
-        // posts: cache[cacheKey].posts,
-        posts: [],
-      },
-    };
-  }
 };
-
-const Home = ({ posts }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+const HomeComponent: React.FC<HomeComponentProps> = ({ posts }) => {
   const [selectedPhoto, setSelectedPhoto] = useState<Post | null>(null);
   const [viewEng, setViewEng] = useState<boolean>(false);
+
   const {
     handleSubmit,
     setResponse,
@@ -159,7 +109,9 @@ const Home = ({ posts }: InferGetServerSidePropsType<typeof getServerSideProps>)
                       gap: "4px",
                     }}
                   >
-                    <div style={{ width: '100px', textAlign: 'right' }}>好きな数字</div>
+                    <div style={{ width: "100px", textAlign: "right" }}>
+                      好きな数字
+                    </div>
                     <Input
                       type="number"
                       name="searchWord"
@@ -177,7 +129,9 @@ const Home = ({ posts }: InferGetServerSidePropsType<typeof getServerSideProps>)
                       gap: "4px",
                     }}
                   >
-                    <div style={{ width: '100px', textAlign: 'right' }}>悩み</div>
+                    <div style={{ width: "100px", textAlign: "right" }}>
+                      悩み
+                    </div>
                     <Input
                       type="input"
                       name="problem"
@@ -233,4 +187,4 @@ const Home = ({ posts }: InferGetServerSidePropsType<typeof getServerSideProps>)
   );
 };
 
-export default Home;
+export default HomeComponent;

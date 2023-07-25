@@ -79,7 +79,6 @@ const useAi = (isEng: boolean = false) => {
       const functionCall = message1?.function_call;
       if (!!functionCall) {
         const args = JSON.parse(functionCall.arguments || "{}");
-        console.dir(args)
         const funcResponse = isEng
           ? searchRecommendedPhotoSpotsForEng(args["number"])
           : searchRecommendedPhotoSpots(args["number"], args["problem"]);

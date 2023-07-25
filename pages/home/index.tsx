@@ -126,7 +126,7 @@ const Home = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
         <Form onSubmit={handleSubmit}>
           <Grid centered>
             <ContainerCenter>
-              <p style={{ marginBottom: "8p" }}>
+              {/* <p style={{ marginBottom: "8p" }}>
                 {viewEng
                   ? "Please Enter any number you like."
                   : "あなたが好きな数字を入力してください。"}
@@ -138,7 +138,8 @@ const Home = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
                 {viewEng
                   ? "A slightly annoying AI will search for photo spots that will bring you luck if you go there today."
                   : "今日いけば運気が上がる撮影スポットを少しウザいAIが探してくれます。"}
-              </p>
+              </p> */}
+              <p>AIの励まし 開発中</p>
               <div
                 style={{
                   display: "flex",

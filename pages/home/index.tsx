@@ -47,14 +47,14 @@ export const getStaticProps: GetStaticProps<{
   posts: Post[];
 }> = async (context) => {
   const cacheKey = "datakey";
-  const cacheDuration = 60 * 5;
+  const cacheDuration = 10;
   if (
     cache[cacheKey] &&
     cache[cacheKey].timestamp + cacheDuration > Date.now()
   ) {
     return {
       props: {
-        posts: cache[cacheKey].posts,
+        posts: cache[cacheKey]?.posts || [],
       },
     };
   }
@@ -72,7 +72,7 @@ export const getStaticProps: GetStaticProps<{
   } catch (e) {
     return {
       props: {
-        posts: cache[cacheKey].posts,
+        posts: [],
       },
     };
   }
@@ -81,8 +81,17 @@ export const getStaticProps: GetStaticProps<{
 const Home = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
   const [selectedPhoto, setSelectedPhoto] = useState<Post | null>(null);
   const [viewEng, setViewEng] = useState<boolean>(false);
-  const { handleSubmit, setResponse, response, setPrompt, loading, prompt } =
-    useAi(viewEng);
+  const {
+    handleSubmit,
+    setResponse,
+    response,
+    setPrompt,
+    problem,
+    setProblem,
+    loading,
+    prompt,
+  } = useAi(viewEng);
+
   return (
     <>
       <Header as="h2" icon textAlign="center">
@@ -134,33 +143,50 @@ const Home = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
                 style={{
                   display: "flex",
                   justifyContent: "center",
-                  maxHeight: "36px",
+                  // maxHeight: "36px",
                 }}
               >
-                <Input
-                  type="number"
-                  name="searchWord"
-                  onChange={(e) => setPrompt(e.target.value)}
-                  value={prompt}
-                  loading={loading}
-                  maxLength={15}
-                  disabled={loading}
-                />
+                <div>
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "4px",
+                    }}
+                  >
+                    <div style={{ width: '100px', textAlign: 'right' }}>好きな数字</div>
+                    <Input
+                      type="number"
+                      name="searchWord"
+                      onChange={(e) => setPrompt(e.target.value)}
+                      value={prompt}
+                      loading={loading}
+                      maxLength={15}
+                      disabled={loading}
+                    />
+                  </div>
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "4px",
+                    }}
+                  >
+                    <div style={{ width: '100px', textAlign: 'right' }}>悩み</div>
+                    <Input
+                      type="input"
+                      name="problem"
+                      onChange={(e) => setProblem(e.target.value)}
+                      value={problem}
+                      loading={loading}
+                      disabled={loading}
+                    />
+                  </div>
+                </div>
                 <Button type="submit" disabled={loading || !prompt}>
                   {viewEng ? "search" : "聞く"}
                 </Button>
               </div>
-              {/* {response && (
-                <p
-                  style={{
-                    marginTop: "8px",
-                    whiteSpace: "pre-line",
-                    maxWidth: "400px",
-                  }}
-                >
-                  {response}
-                </p>
-              )} */}
             </ContainerCenter>
           </Grid>
         </Form>
@@ -191,12 +217,13 @@ const Home = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
         open={!!response}
         setResponse={setResponse}
         response={response}
+        posts={posts}
       />
-      <ModalImage
+      {/* <ModalImage
         selectedPhoto={selectedPhoto}
         setSelectedPhoto={setSelectedPhoto}
         viewEng={viewEng}
-      />
+      /> */}
     </>
   );
 };

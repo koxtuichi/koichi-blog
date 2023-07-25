@@ -81,8 +81,8 @@ const colors = [
   },
 ];
 
-export const searchRecommendedPhotoSpots = (number: string | undefined) => {
-  if (!number) return "";
+export const searchRecommendedPhotoSpots = (number?: string, problem?: string) => {
+  if (!number || !problem) return "";
   let luckyNumber: number = 0;
   if (number !== "11" && number !== "22" && number !== "33") {
     const todayNumList = dayjs(new Date())
@@ -111,18 +111,12 @@ export const searchRecommendedPhotoSpots = (number: string | undefined) => {
   if (!color) return;
 
   return `以下の内容を七原浩平になりきって答えてください。\
+  * 悩みは${problem}です。\
   ※ 今日のラッキーナンバーは${luckyNumber}です。\
   ※ ラッキーナンバーに関連する象徴的な言葉は${color.word}です。\
-  ※ この言葉に関連する被写体を１つ提案してください。\
-  ※ 1つしか提案してはダメです。\
-  ※ 改行してください。\
-  ※ 300文字以上は書いて欲しいです。\
-  ※ 今の日時は${dayjs(new Date()).format("YYYY年MM月DD日A:hh時")}です。\
-  ※ 今から撮影できるものをおすすめしてください。\
-  ※ 今の季節に撮影できるものを提案してください。\
   ※ ラッキーナンバー:${luckyNumber}と言葉:${
     color.word
-  }を最初に提示してください。`;
+  }と悩み${problem}を最初に提示してください。`;
 };
 
 export const searchRecommendedPhotoSpotsForEng = (

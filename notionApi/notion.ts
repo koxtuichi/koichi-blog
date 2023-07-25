@@ -5,6 +5,7 @@ export type Post = {
   id: string;
   title: string;
   description: string;
+  num: number;
   url: any;
   updatedAt: any;
   shootingDate: any;
@@ -35,6 +36,7 @@ export const getPageDatas = async () => {
       continue;
     }
     const published: any = page.properties.published;
+    console.dir(published.checkbox)
     if (!published.checkbox) continue;
     const properties: any = page.properties;
     const image: any = page.properties.url;
@@ -46,6 +48,7 @@ export const getPageDatas = async () => {
       description: properties.description.rich_text[0]
         ? properties.description.rich_text[0].plain_text
         : "",
+      num: properties.num.number,
       url: image.files[0]?.file?.url || "",
       updatedAt: properties.updatedAt.date.start,
       shootingDate: properties.shootingDate.date.start,

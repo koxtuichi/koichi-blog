@@ -1,6 +1,8 @@
+import { Post } from "@/notionApi/notion";
 import styled from "@emotion/styled";
 import React from "react";
 import { Modal } from "semantic-ui-react";
+import { ImageComponent } from "./styledComponents";
 
 const ModalComponent = styled(Modal)({
   background: "rgba(50, 50, 50, 0.5) !important",
@@ -32,12 +34,18 @@ type ModalTextProps = {
   open: boolean;
   setResponse: React.Dispatch<React.SetStateAction<string>>;
   response: string;
+  posts: Post[];
 };
 const ModalText: React.FC<ModalTextProps> = ({
   open,
   setResponse,
   response,
+  posts,
 }) => {
+  const getRandomPost = (posts: Post[]): Post => {
+    const randomIndex = Math.floor(Math.random() * posts.length);
+    return posts[randomIndex];
+  }
   return (
     <ModalComponent
       open={open}
@@ -52,6 +60,12 @@ const ModalText: React.FC<ModalTextProps> = ({
             {response}
           </ModalDescription>
         </ModalContentColumn>
+      </ModalContent>
+      <ModalContent image>
+        <ImageComponent
+          src={getRandomPost(posts).url}
+          size='huge'
+        />
       </ModalContent>
     </ModalComponent>
   );

@@ -32,39 +32,41 @@ import { Analytics } from "@vercel/analytics/react";
 import useAi from "../../openAiApi/logic";
 import ModalText from "@/component/home/ModalText";
 
-type CacheItem<T> = {
-  timestamp: number;
-  posts: T;
-};
+// type CacheItem<T> = {
+//   timestamp: number;
+//   posts: T;
+// };
 
-type Cache = {
-  [key: string]: CacheItem<Post[]>;
-};
+// type Cache = {
+//   [key: string]: CacheItem<Post[]>;
+// };
 
-const cache: Cache = {};
+// const cache: Cache = {};
 
 export const getStaticProps: GetStaticProps<{
   posts: Post[];
 }> = async (context) => {
-  const cacheKey = "datakey";
-  const cacheDuration = 10;
-  if (
-    cache &&
-    cache[cacheKey] &&
-    cache[cacheKey].timestamp + cacheDuration > Date.now()
-  ) {
-    return {
-      props: {
-        posts: cache[cacheKey].posts,
-      },
-    };
-  }
+  // const cacheKey = "datakey";
+  // const cacheDuration = 10;
+  // console.dir(cache[cacheKey] && cache[cacheKey].timestamp)
+  // console.dir(cache[cacheKey] && cache[cacheKey].timestamp + cacheDuration > Date.now())
+  // if (
+  //   cache &&
+  //   cache[cacheKey] &&
+  //   cache[cacheKey].timestamp + cacheDuration > Date.now()
+  // ) {
+  //   return {
+  //     props: {
+  //       posts: cache[cacheKey].posts,
+  //     },
+  //   };
+  // }
   try {
     const posts = await getPageDatas();
-    cache[cacheKey] = {
-      timestamp: Date.now(),
-      posts,
-    };
+    // cache[cacheKey] = {
+    //   timestamp: Date.now(),
+    //   posts,
+    // };
     return {
       props: {
         posts: posts,
@@ -73,7 +75,8 @@ export const getStaticProps: GetStaticProps<{
   } catch (e) {
     return {
       props: {
-        posts: cache[cacheKey].posts,
+        // posts: cache[cacheKey].posts,
+        posts: [],
       },
     };
   }

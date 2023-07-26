@@ -4,7 +4,7 @@ export const metadata = {
   description: '写真とAIのサイト',
 }
 
-export const revalidate = 60 * 5;
+export const revalidate = 2;
 
 export default function RootLayout({
   children,

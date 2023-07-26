@@ -1,5 +1,6 @@
 import { Client } from "@notionhq/client";
 import { isFullPage } from "@jitl/notion-api";
+import { GetPageResponse } from "@notionhq/client/build/src/api-endpoints";
 
 export type Post = {
   id: string;
@@ -16,8 +17,6 @@ export type Post = {
   explanation?: any;
   keywordsEng?: any;
   explanationEng?: any;
-  // person?: any;
-  // personEng?: any;
 };
 
 const notion = new Client({
@@ -32,15 +31,16 @@ export const getPageDatas = async () => {
   const posts: Post[] = [];
 
   for (const page of fullOrPartialPages.results) {
-    if (!isFullPage(page)) {
+    if (!isFullPage(page as GetPageResponse)) {
       continue;
     }
-    const published: any = page.properties.published;
+    const content = page as any;
+    const published: any = content.properties.published;
     if (!published.checkbox) continue;
-    const properties: any = page.properties;
-    const image: any = page.properties.url;
+    const properties: any = content.properties;
+    const image: any = content.properties.url;
     posts.push({
-      id: page.id,
+      id: content.id,
       title: properties.title.title[0]
         ? properties.title.title[0].plain_text
         : "",

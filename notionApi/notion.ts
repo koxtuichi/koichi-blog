@@ -31,16 +31,15 @@ export const getPageDatas = async () => {
   const posts: Post[] = [];
 
   for (const page of fullOrPartialPages.results) {
-    if (!isFullPage(page as GetPageResponse)) {
+    if (!isFullPage(page)) {
       continue;
     }
-    const content = page as any;
-    const published: any = content.properties.published;
+    const published: any = page.properties.published;
     if (!published.checkbox) continue;
-    const properties: any = content.properties;
-    const image: any = content.properties.url;
+    const properties: any = page.properties;
+    const image: any = page.properties.url;
     posts.push({
-      id: content.id,
+      id: page.id,
       title: properties.title.title[0]
         ? properties.title.title[0].plain_text
         : "",

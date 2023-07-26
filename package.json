@@ -32,15 +32,16 @@
   "dependencies": {
     "@emotion/react": "^11.11.0",
     "@emotion/styled": "^11.11.0",
+    "@jitl/notion-api": "^0.2.2",
     "@notionhq/client": "^1.0.4",
     "@vercel/analytics": "^1.0.1",
     "axios": "^1.4.0",
     "dayjs": "^1.11.8",
     "debug": "^4.3.4",
-    "emoji-datasource-apple": "^15.0.1",
     "notion-client": "6.15.6",
     "openai": "^3.3.0",
     "semantic-ui-css": "^2.5.0",
-    "semantic-ui-react": "^2.1.4"
+    "semantic-ui-react": "^2.1.4",
+    "tslib": "^2.6.1"
   }
 }

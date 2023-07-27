@@ -38,3 +38,5 @@ jobs:
           vercel-org-id: ${{ secrets.ORG_ID}}  #Required
           vercel-project-id: ${{ secrets.PROJECT_ID}} #Required
           working-directory: ./
+          max_attempts: 3
+          retry_interval: 10

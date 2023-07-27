@@ -27,6 +27,7 @@ import {
   ContainerCenter,
   ContainerSelfIntroductionComponent,
 } from "@/component/home/styledComponents";
+import ModalImage from "@/component/home/ModalImage";
 
 type HomeComponentProps = {
   posts: Post[];
@@ -178,11 +179,11 @@ const HomeComponent: React.FC<HomeComponentProps> = ({ posts }) => {
         response={response}
         posts={posts}
       />
-      {/* <ModalImage
+      <ModalImage
         selectedPhoto={selectedPhoto}
         setSelectedPhoto={setSelectedPhoto}
         viewEng={viewEng}
-      /> */}
+      />
     </>
   );
 };

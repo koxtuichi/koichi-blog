@@ -66,13 +66,9 @@ const ModalImage: React.FC<ModalImageProps> = ({
         <ImageComponent
           src={selectedPhoto && selectedPhoto.url}
           onClick={() => setSelectedPhoto(null)}
-          size={
-            selectedPhoto?.keywords && selectedPhoto?.explanation
-              ? "large"
-              : "huge"
-          }
+          size="massive"
         />
-        <ModalContentColumn>
+        {/* <ModalContentColumn>
           {selectedPhoto?.keywords && (
             <ModalDescription onClick={() => setSelectedPhoto(null)}>
               <p>{viewEng ? "KEYWORDS" : "キーワード"}</p>
@@ -93,17 +89,7 @@ const ModalImage: React.FC<ModalImageProps> = ({
               </p>
             </ModalDescription>
           )}
-          {/* {selectedPhoto?.person && (
-            <ModalDescription onClick={() => setSelectedPhoto(null)}>
-              <p>{viewEng ? "RELATED PERSON" : "関連する人物"}</p>
-              <p style={{ paddingLeft: "10px" }}>
-                {viewEng
-                  ? getExplanation(selectedPhoto?.personEng)
-                  : getExplanation(selectedPhoto?.person)}
-              </p>
-            </ModalDescription>
-          )} */}
-        </ModalContentColumn>
+        </ModalContentColumn> */}
       </ModalContent>
     </ModalComponent>
   );

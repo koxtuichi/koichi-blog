@@ -22,14 +22,10 @@ jobs:
         with:
           node-version: '18.x'
 
-      - name: Install dependencies
-        run: npm install
-
       - name: Build
-        with:
-          command: npm run build
-          max_attempts: 3
-          retry_interval: 10
+        run: |
+          npm install
+          npm run build
 
       - name: Deploy
         uses: amondnet/vercel-action@v20

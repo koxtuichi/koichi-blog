@@ -25,13 +25,9 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Build
-        run: npm run build
-        max_attempts: 3
-        retry_interval: 10
-
       - name: Deploy
         uses: amondnet/vercel-action@v20
+        run: npm run build
         with:
           # GitHub Actions の Secrets で作成した値を参照する形で
           # Vercel デプロイ時に必要となる各種パラメタを設定する

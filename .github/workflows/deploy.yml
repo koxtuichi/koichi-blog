@@ -27,6 +27,8 @@ jobs:
 
       - name: Build
         run: npm run build
+        max_attempts: 3
+        retry_interval: 10
 
       - name: Deploy
         uses: amondnet/vercel-action@v20

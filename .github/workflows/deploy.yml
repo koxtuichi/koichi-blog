@@ -22,10 +22,22 @@ jobs:
         with:
           node-version: '18.x'
 
+      - name: Install dependencies
+        run: npm install
+
       - name: Build
         run: |
-          npm install
-          npm run build
+          # ビルドを最大3回までリトライするカスタムスクリプト
+          retries=0
+          until [ $retries -ge 3 ]
+          do
+            npm run build
+            if [ $? -eq 0 ]; then
+              break
+            fi
+            retries=$((retries+1))
+            sleep 10
+          done
 
       - name: Deploy
         uses: amondnet/vercel-action@v20

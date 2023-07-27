@@ -3,7 +3,7 @@ name: Daily Deploy
 on:
   push:
     branches:
-      - master
+      - main
   schedule:
     - cron: '*/30 * * * *'
 
@@ -26,17 +26,7 @@ jobs:
         run: npm install
 
       - name: Build
-        run: |
-          retries=0
-          until [ $retries -ge 3 ]
-          do
-            npm run build
-            if [ $? -eq 0 ]; then
-              break
-            fi
-            retries=$((retries+1))
-            sleep 10
-          done
+        run: npm run build
 
       - name: Deploy
         uses: amondnet/vercel-action@v20

@@ -19,7 +19,7 @@ const useAi = (isEng: boolean = false) => {
   const [loading, setLoading] = useState<boolean>(false);
 
   const configuration = new Configuration({
-    apiKey: API_KEY,
+    apiKey: process.env.NOTION_SECRET || API_KEY,
   });
   const chatMessage: ChatCompletionRequestMessage[] = isEng
     ? [userMessage(prompt, problem, isEng)]

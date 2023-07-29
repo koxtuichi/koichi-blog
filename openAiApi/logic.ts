@@ -11,7 +11,7 @@ import {
   searchRecommendedPhotoSpotsForEng,
 } from "./searchRecommendedPhotoSpots";
 
-const API_KEY = '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';
+const API_KEY = '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';
 const useAi = (isEng: boolean = false) => {
   const [prompt, setPrompt] = useState<string>("");
   const [problem, setProblem] = useState<string>("");
@@ -30,7 +30,7 @@ const useAi = (isEng: boolean = false) => {
     setLoading(true);
     try {
       const response1 = await openAi.createChatCompletion({
-        model: "gpt-3.5-turbo-0613",
+        model: "gpt-3.5-turbo",
         messages: chatMessage,
         function_call: "auto",
         functions: [

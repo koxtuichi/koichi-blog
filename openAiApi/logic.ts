@@ -11,7 +11,7 @@ import {
   searchRecommendedPhotoSpotsForEng,
 } from "./searchRecommendedPhotoSpots";
 
-const API_KEY = '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';
+const API_KEY = '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';
 const useAi = (isEng: boolean = false) => {
   const [prompt, setPrompt] = useState<string>("");
   const [problem, setProblem] = useState<string>("");

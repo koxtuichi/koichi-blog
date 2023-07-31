@@ -3,23 +3,23 @@ import HomeComponent from "./_page";
 
 import fs from 'fs'
 
-export const path = 'public/blogImages';
 
 const Home = async () => {
   const posts = await getPageDatas();
+  const imagePath = 'public/blogImages';
 
-  if (!fs.existsSync(path)) {
-    fs.mkdirSync(path)
+  if (!fs.existsSync(imagePath)) {
+    fs.mkdirSync(imagePath)
   }
 
   posts.map(async (post) => {
     const id = post.id;
     const url = post.url;
-    if (fs.existsSync(path + '/' + id + '.png')) {
+    if (fs.existsSync(imagePath + '/' + id + '.png')) {
       return;
     }
     const blob = await fetch(url).then((r) => r.blob());
-    const imagesPath = path + '/' + id;
+    const imagesPath = imagePath + '/' + id;
     const binary = (await blob.arrayBuffer()) as Uint8Array;
     const buffer = Buffer.from(binary);
     fs.writeFile(imagesPath + '.png', buffer, (error) => {

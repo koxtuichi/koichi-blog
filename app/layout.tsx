@@ -4,7 +4,7 @@ export const metadata = {
   description: '写真とAIのサイト',
 }
 
-export const revalidate = 2;
+export const revalidate = 30;
 
 export default function RootLayout({
   children,
@@ -12,7 +12,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang="ja">
       <body>{children}</body>
     </html>
   )

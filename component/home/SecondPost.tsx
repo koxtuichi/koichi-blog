@@ -33,7 +33,7 @@ const SecondPost: React.FC<SecondPostProps> = ({
           return (
             <GridImageComponent key={index}>
               <ImageComponent
-                src={post.url}
+                src={`blogImages/${post.id}.png`}
                 size="huge"
                 wrapped
                 ui={true}

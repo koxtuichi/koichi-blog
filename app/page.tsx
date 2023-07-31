@@ -8,9 +8,9 @@ const Home = async () => {
   const posts = await getPageDatas();
   const imagePath = 'public/blogImages';
 
-  // if (!fs.existsSync(imagePath)) {
-  //   fs.mkdirSync(imagePath)
-  // }
+  if (!fs.existsSync(imagePath)) {
+    fs.mkdirSync(imagePath)
+  }
 
   posts.map(async (post) => {
     const id = post.id;

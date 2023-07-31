@@ -15,14 +15,14 @@ const Home = async () => {
   posts.map(async (post) => {
     const id = post.id;
     const url = post.url;
-    if (fs.existsSync(imagePath + '/' + id + '.png')) {
+    const savePath = imagePath + '/' + id + '.png';
+    if (fs.existsSync(savePath)) {
       return;
     }
     const blob = await fetch(url).then((r) => r.blob());
-    const imagesPath = imagePath + '/' + id;
     const binary = (await blob.arrayBuffer()) as Uint8Array;
     const buffer = Buffer.from(binary);
-    fs.writeFile(imagesPath + '.png', buffer, (error) => {
+    fs.writeFile(savePath, buffer, (error) => {
       if (error) {
         throw error;
       }

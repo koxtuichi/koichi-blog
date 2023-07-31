@@ -7,6 +7,11 @@ import {
   ImageComponent,
   TagLabel,
 } from "./styledComponents";
+import styled from "@emotion/styled";
+
+const ContainerContent = styled(Card.Content)({
+  maxWidth: '960px'
+})
 
 type MainPostProps = {
   posts: Post[];
@@ -32,11 +37,11 @@ const MainPost: React.FC<MainPostProps> = ({
               <GridImageComponent key={index}>
                 <ImageComponent
                   src={`blogImages/${post.id}.png`}
-                  size="huge"
+                  size="massive"
                   ui={true}
                   onClick={() => setSelectedPhoto(post)}
                 />
-                <Card.Content>
+                <ContainerContent>
                   <Card.Header>
                     {!viewEng ? post.title : post.titleEng}
                     {post.link && (
@@ -65,7 +70,7 @@ const MainPost: React.FC<MainPostProps> = ({
                     />
                     {!viewEng ? post.description : post.eng}
                   </Card.Description>
-                </Card.Content>
+                </ContainerContent>
               </GridImageComponent>
             );
           }

@@ -33,9 +33,9 @@ const SecondPost: React.FC<SecondPostProps> = ({
           return (
             <GridImageComponent key={index}>
               <ImageComponent
-                // src={`blogImages/${post.id}.png`}
-                  src={post.url}
-                  size="huge"
+                src={`blogImages/${post.id}.png`}
+                  // src={post.url}
+                size="huge"
                 wrapped
                 ui={true}
                 onClick={() => setSelectedPhoto(post)}

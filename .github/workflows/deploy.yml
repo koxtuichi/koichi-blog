@@ -1,50 +1,50 @@
-# name: Daily Deploy
+name: Daily Deploy
 
-# on:
-#   push:
-#     branches:
-#       - master
-#   schedule:
-#     - cron: '*/30 * * * *'
+on:
+  push:
+    branches:
+      - master
+  schedule:
+    - cron: '*/30 * * * *'
 
-# jobs:
-#   deploy:
-#     runs-on: ubuntu-latest
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
 
-#     steps:
-#       - name: Checkout code
-#         uses: actions/checkout@v3
-#         with:
-#           ref: ${{ github.event.inputs.ref }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.inputs.ref }}
 
-#       - name: Use Node.js 18.x
-#         uses: actions/setup-node@v3
-#         with:
-#           node-version: '18.x'
+      - name: Use Node.js 18.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18.x'
 
-#       - uses: actions/cache@v3
-#         id: node_modules_cache_id
-#         env:
-#           cache-name: cache-node-modules
-#         with:
-#           path: '**/node_modules'
-#           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
-#       - run: echo '${{ toJSON(steps.node_modules_cache_id.outputs) }}'
-#       - if: ${{ steps.node_modules_cache_id.outputs.cache-hit != 'true' }}
-#         run: npm install
+      - uses: actions/cache@v3
+        id: node_modules_cache_id
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+      - run: echo '${{ toJSON(steps.node_modules_cache_id.outputs) }}'
+      - if: ${{ steps.node_modules_cache_id.outputs.cache-hit != 'true' }}
+        run: npm install
 
-#       - name: Build
-#         run: npm run build
+      - name: Build
+        run: npm run build
 
-#       - name: Deploy
-#         uses: amondnet/vercel-action@v20
-#         with:
-#           # GitHub Actions の Secrets で作成した値を参照する形で
-#           # Vercel デプロイ時に必要となる各種パラメタを設定する
-#           vercel-token: ${{ secrets.VERCEL_TOKEN }} # Required
-#           vercel-args: '--prod' # Optional
-#           vercel-org-id: ${{ secrets.ORG_ID}}  #Required
-#           vercel-project-id: ${{ secrets.PROJECT_ID}} #Required
-#           working-directory: ./
-#           max_attempts: 3
-#           retry_interval: 10
+      - name: Deploy
+        uses: amondnet/vercel-action@v20
+        with:
+          # GitHub Actions の Secrets で作成した値を参照する形で
+          # Vercel デプロイ時に必要となる各種パラメタを設定する
+          vercel-token: ${{ secrets.VERCEL_TOKEN }} # Required
+          vercel-args: '--prod' # Optional
+          vercel-org-id: ${{ secrets.ORG_ID}}  #Required
+          vercel-project-id: ${{ secrets.PROJECT_ID}} #Required
+          working-directory: ./
+          max_attempts: 3
+          retry_interval: 10

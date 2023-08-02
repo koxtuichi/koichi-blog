@@ -64,7 +64,7 @@ const ModalImage: React.FC<ModalImageProps> = ({
     >
       <ModalContent image onClick={() => setSelectedPhoto(null)}>
         <ImageComponent
-          src={selectedPhoto && selectedPhoto.url}
+          src={`blogImages/${selectedPhoto?.id}.png`}
           onClick={() => setSelectedPhoto(null)}
           size="massive"
         />

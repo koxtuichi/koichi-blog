@@ -63,7 +63,7 @@ const ModalText: React.FC<ModalTextProps> = ({
       </ModalContent>
       <ModalContent image>
         <ImageComponent
-          src={getRandomPost(posts).url}
+          src={`blogImages/${getRandomPost(posts).id}.png`}
           size='huge'
         />
       </ModalContent>

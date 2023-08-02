@@ -6,6 +6,21 @@ import fs from 'fs'
 export const dynamic = 'error';
 
 const Home = async () => {
+  const checkUrl = async (url: string) => {
+    try {
+      const response = await fetch(url, {
+        method: 'HEAD', // 'HEAD'リクエストはリソースを取得せずにヘッダー情報だけを取得します
+      });
+
+      // 200 OKのレスポンスが返ってきたら、URLは有効です
+      if (response.ok) {
+        return true;
+      }
+      return false;
+    } catch (error) {
+      return false;
+    }
+  }
   const posts = await getPageDatas();
   const imagePath = 'public/blogImages';
 
@@ -16,6 +31,7 @@ const Home = async () => {
   posts.map(async (post) => {
     const id = post.id;
     const url = post.url;
+    if (!checkUrl(url)) return;
     const savePath = imagePath + '/' + id + '.png';
     if (fs.existsSync(savePath)) {
       return;

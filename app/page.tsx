@@ -3,8 +3,8 @@ import HomeComponent from "./_page";
 
 import fs from 'fs'
 
-export const dynamic = 'error';
-export const revalidate = 1;
+// export const dynamic = 'error';
+// export const revalidate = 1;
 
 const Home = async () => {
   // const checkUrl = async (url: string) => {

@@ -3,7 +3,7 @@ import HomeComponent from "./_page";
 
 import fs from 'fs'
 
-export const dynamic = 'force-static';
+export const dynamic = 'error';
 export const revalidate = 1;
 
 const Home = async () => {

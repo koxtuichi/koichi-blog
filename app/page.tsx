@@ -49,7 +49,8 @@ const Home = async () => {
     return (
       <HomeComponent posts={posts} />
     );
-  } catch {
+  } catch(e) {
+    window.alert(e)
     return (
       <HomeComponent posts={posts} />
     )

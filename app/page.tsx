@@ -22,9 +22,9 @@ const Home = async () => {
   //     return false;
   //   }
   // }
-  const posts = await getPageDatas();
   try {
-    const imagePath = 'public/blogImages';
+  const posts = await getPageDatas();
+  const imagePath = 'public/blogImages';
 
     if (!fs.existsSync(imagePath)) {
       fs.mkdirSync(imagePath)
@@ -50,9 +50,10 @@ const Home = async () => {
       <HomeComponent posts={posts} />
     );
   } catch(e) {
+    console.dir(e)
     window.alert(e)
     return (
-      <HomeComponent posts={posts} />
+      {e}
     )
   }
 };

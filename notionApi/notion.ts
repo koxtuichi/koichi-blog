@@ -40,10 +40,10 @@ export const getPageDatas = async () => {
     const image: any = page.properties.url;
 
     const url = image.files[0]?.file?.url || "";
-    // const imagePath = 'public/blogImages';
-    // // if (!fs.existsSync(imagePath)) {
-    // //   fs.mkdirSync(imagePath)
-    // // }
+    const imagePath = 'public/blogImages';
+    if (!fs.existsSync(imagePath)) {
+      fs.mkdirSync(imagePath)
+    }
     // const savePath = 'public/' + page.id + '.png';
     // if (!fs.existsSync(savePath)) {
     //   const blob = await fetch(url).then((r) => r.blob());

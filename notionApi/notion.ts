@@ -41,8 +41,7 @@ export const getPageDatas = async () => {
 
     const url = image.files[0]?.file?.url || "";
     const imagePath = 'public/blogImages';
-    fs.mkdirSync(imagePath, { recursive: true });
-    const savePath = imagePath + page.id + '.png';
+    const savePath = 'public/' + page.id + '.png';
     if (!fs.existsSync(savePath)) {
       const blob = await fetch(url).then((r) => r.blob());
       const binary = (await blob.arrayBuffer()) as Uint8Array;

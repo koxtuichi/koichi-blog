@@ -44,17 +44,17 @@ export const getPageDatas = async () => {
     if (!fs.existsSync(imagePath)) {
       fs.mkdirSync(imagePath, { recursive: true })
     }
-    // const savePath = 'public/' + page.id + '.png';
-    // if (!fs.existsSync(savePath)) {
-    //   const blob = await fetch(url).then((r) => r.blob());
-    //   const binary = (await blob.arrayBuffer()) as Uint8Array;
-    //   const buffer = Buffer.from(binary);
-    //   fs.writeFile(savePath, buffer, (error) => {
-    //     if (error) {
-    //       throw error;
-    //     }
-    //   })
-    // }
+    const savePath = 'public/' + page.id + '.png';
+    if (!fs.existsSync(savePath)) {
+      const blob = await fetch(url).then((r) => r.blob());
+      const binary = (await blob.arrayBuffer()) as Uint8Array;
+      const buffer = Buffer.from(binary);
+      fs.writeFile(savePath, buffer, (error) => {
+        if (error) {
+          throw error;
+        }
+      })
+    }
 
     posts.push({
       id: page.id,

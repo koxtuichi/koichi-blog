@@ -42,7 +42,7 @@ export const getPageDatas = async () => {
     const url = image.files[0]?.file?.url || "";
     const imagePath = 'public/blogImages';
     if (!fs.existsSync(imagePath)) {
-      fs.mkdirSync(imagePath)
+      fs.mkdirSync(imagePath, { recursive: true })
     }
     // const savePath = 'public/' + page.id + '.png';
     // if (!fs.existsSync(savePath)) {

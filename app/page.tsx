@@ -2,7 +2,7 @@ import { getPageDatas } from "@/notionApi/notion";
 import HomeComponent from "./_page";
 
 
-// export const dynamic = 'error';
+export const dynamic = 'error';
 // export const revalidate = 1;
 
 const Home = async () => {

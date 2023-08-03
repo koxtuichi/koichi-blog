@@ -1,6 +1,6 @@
 import { Client } from "@notionhq/client";
 import { isFullPage } from "@jitl/notion-api";
-import { GetPageResponse } from "@notionhq/client/build/src/api-endpoints";
+import fs from 'fs'
 
 export type Post = {
   id: string;
@@ -38,6 +38,24 @@ export const getPageDatas = async () => {
     if (!published.checkbox) continue;
     const properties: any = page.properties;
     const image: any = page.properties.url;
+
+    const url = image.files[0]?.file?.url || "";
+    const imagePath = 'public/blogImages';
+    if (!fs.existsSync(imagePath)) {
+      fs.mkdirSync(imagePath)
+    }
+    const savePath = imagePath + '/' + page.id + '.png';
+    if (!fs.existsSync(savePath)) {
+      const blob = await fetch(url).then((r) => r.blob());
+      const binary = (await blob.arrayBuffer()) as Uint8Array;
+      const buffer = Buffer.from(binary);
+      fs.writeFile(savePath, buffer, (error) => {
+        if (error) {
+          throw error;
+        }
+      })
+    }
+
     posts.push({
       id: page.id,
       title: properties.title.title[0]
@@ -47,7 +65,7 @@ export const getPageDatas = async () => {
         ? properties.description.rich_text[0].plain_text
         : "",
       num: properties.num.number,
-      url: image.files[0]?.file?.url || "",
+      url: url,
       updatedAt: properties.updatedAt.date.start,
       shootingDate: properties.shootingDate.date.start,
       titleEng: properties.titleEng.rich_text[0].plain_text,

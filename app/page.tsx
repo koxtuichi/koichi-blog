@@ -4,7 +4,7 @@ import HomeComponent from "./_page";
 import fs from 'fs'
 
 // export const dynamic = 'error';
-export const revalidate = 10;
+// export const revalidate = 1;
 
 const Home = async () => {
   // const checkUrl = async (url: string) => {
@@ -22,40 +22,33 @@ const Home = async () => {
   //     return false;
   //   }
   // }
-  try {
   const posts = await getPageDatas();
-  const imagePath = 'public/blogImages';
+  // const imagePath = 'public/blogImages';
 
-    if (!fs.existsSync(imagePath)) {
-      fs.mkdirSync(imagePath)
-    }
+  // if (!fs.existsSync(imagePath)) {
+  //   fs.mkdirSync(imagePath)
+  // }
 
-    posts.map(async (post) => {
-      const id = post.id;
-      const url = post.url;
-      const savePath = imagePath + '/' + id + '.png';
-      if (fs.existsSync(savePath)) {
-        return;
-      }
-      const blob = await fetch(url).then((r) => r.blob());
-      const binary = (await blob.arrayBuffer()) as Uint8Array;
-      const buffer = Buffer.from(binary);
-      fs.writeFile(savePath, buffer, (error) => {
-        if (error) {
-          throw error;
-        }
-      })
-    })
-    return (
-      <HomeComponent posts={posts} />
-    );
-  } catch(e) {
-    console.dir(e)
-    window.alert(e)
-    return (
-      {e}
-    )
-  }
+  // posts.map(async (post) => {
+  //   const id = post.id;
+  //   const url = post.url;
+  //   const savePath = imagePath + '/' + id + '.png';
+  //   if (fs.existsSync(savePath)) {
+  //     return;
+  //   }
+  //   const blob = await fetch(url).then((r) => r.blob());
+  //   const binary = (await blob.arrayBuffer()) as Uint8Array;
+  //   const buffer = Buffer.from(binary);
+  //   fs.writeFile(savePath, buffer, (error) => {
+  //     if (error) {
+  //       throw error;
+  //     }
+  //   })
+  // })
+
+  return (
+    <HomeComponent posts={posts} />
+  );
 };
 
 export default Home;

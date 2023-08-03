@@ -36,9 +36,9 @@ const MainPost: React.FC<MainPostProps> = ({
             return (
               <GridImageComponent key={index}>
                 <ImageComponent
-                  src={`/${post.id}.png`}
+                  // src={`/${post.id}.png`}
                   // src={post?.url || `blogImages/${post?.id}.png`}
-                  // src={post.url}
+                  src={post.url}
                   size="massive"
                   ui={true}
                   onClick={() => setSelectedPhoto(post)}

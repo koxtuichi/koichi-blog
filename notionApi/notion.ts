@@ -40,12 +40,12 @@ export const getPageDatas = async () => {
     const image: any = page.properties.url;
 
     const url = image.files[0]?.file?.url || "";
-    const imagePath = 'public/blogImages';
-    const savePath = 'public/' + page.id + '.png';
-    const blob = await fetch(url).then((r) => r.blob());
-    const binary = (await blob.arrayBuffer()) as Uint8Array;
-    const buffer = Buffer.from(binary);
-    fs.writeFileSync(savePath, buffer, {  })
+    // const imagePath = 'public/blogImages';
+    // const savePath = 'public/' + page.id + '.png';
+    // const blob = await fetch(url).then((r) => r.blob());
+    // const binary = (await blob.arrayBuffer()) as Uint8Array;
+    // const buffer = Buffer.from(binary);
+    // fs.writeFileSync(savePath, buffer, {  })
 
     posts.push({
       id: page.id,

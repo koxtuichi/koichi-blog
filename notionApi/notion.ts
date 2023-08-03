@@ -40,21 +40,21 @@ export const getPageDatas = async () => {
     const image: any = page.properties.url;
 
     const url = image.files[0]?.file?.url || "";
-    const imagePath = 'public/blogImages';
-    // if (!fs.existsSync(imagePath)) {
-    //   fs.mkdirSync(imagePath)
+    // const imagePath = 'public/blogImages';
+    // // if (!fs.existsSync(imagePath)) {
+    // //   fs.mkdirSync(imagePath)
+    // // }
+    // const savePath = 'public/' + page.id + '.png';
+    // if (!fs.existsSync(savePath)) {
+    //   const blob = await fetch(url).then((r) => r.blob());
+    //   const binary = (await blob.arrayBuffer()) as Uint8Array;
+    //   const buffer = Buffer.from(binary);
+    //   fs.writeFile(savePath, buffer, (error) => {
+    //     if (error) {
+    //       throw error;
+    //     }
+    //   })
     // }
-    const savePath = 'public/' + page.id + '.png';
-    if (!fs.existsSync(savePath)) {
-      const blob = await fetch(url).then((r) => r.blob());
-      const binary = (await blob.arrayBuffer()) as Uint8Array;
-      const buffer = Buffer.from(binary);
-      fs.writeFile(savePath, buffer, (error) => {
-        if (error) {
-          throw error;
-        }
-      })
-    }
 
     posts.push({
       id: page.id,

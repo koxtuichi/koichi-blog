@@ -26,7 +26,7 @@ const notion = new Client({
 export const getPageDatas = async () => {
   const fullOrPartialPages = await notion.databases.query({
     database_id: process.env.NOTION_DATABASE_ID || "",
-    page_size: 10,
+    page_size: 11,
   });
 
   const posts: Post[] = [];

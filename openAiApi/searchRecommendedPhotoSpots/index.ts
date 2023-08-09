@@ -110,7 +110,7 @@ export const searchRecommendedPhotoSpots = (number?: string, problem?: string) =
   const color = colors?.find((item) => item.no === luckyNumber);
   if (!color) return;
 
-  return `以下の内容を七原浩平になりきって答えてください。\
+  return `以下の内容について答えてください。\
   * 悩みは${problem}です。\
   ※ 今日のラッキーナンバーは${luckyNumber}です。\
   ※ ラッキーナンバーに関連する象徴的な言葉は${color.word}です。\

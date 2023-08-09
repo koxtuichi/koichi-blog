@@ -1,12 +1,10 @@
 import { getPageDatas } from "@/notionApi/notion";
 import HomeComponent from "./_page";
 
-
-// export const dynamic = 'error';
-// export const revalidate = 1;
-
+// let oldPosts = null;
+// let oldNextCursor = null;
 const Home = async () => {
-  const posts = await getPageDatas();
+  const { posts } = await getPageDatas();
   return (
     <HomeComponent posts={posts} />
   );

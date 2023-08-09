@@ -26,8 +26,8 @@ const notion = new Client({
 export const getPageDatas = async (cursor?: string | null) => {
   const fullOrPartialPages = await notion.databases.query({
     database_id: process.env.NOTION_DATABASE_ID || "",
-    page_size: 21,
-    start_cursor: cursor || undefined,
+    // page_size: 21,
+    // start_cursor: cursor || undefined,
   });
 
   // fullOrPartialPages.next_cursor;

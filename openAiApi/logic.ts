@@ -30,7 +30,7 @@ const useAi = (isEng: boolean = false) => {
     setLoading(true);
     try {
       const response1 = await openAi.createChatCompletion({
-        model: "gpt-3.5-turbo",
+        model: "gpt-4-0613",
         messages: chatMessage,
         function_call: "auto",
         functions: [

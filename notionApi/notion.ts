@@ -23,11 +23,14 @@ const notion = new Client({
   auth: process.env.NOTION_SECRET,
 });
 
-export const getPageDatas = async () => {
+export const getPageDatas = async (cursor?: string | null) => {
   const fullOrPartialPages = await notion.databases.query({
     database_id: process.env.NOTION_DATABASE_ID || "",
-    page_size: 11,
+    page_size: 21,
+    start_cursor: cursor || undefined,
   });
+
+  // fullOrPartialPages.next_cursor;
 
   const posts: Post[] = [];
 
@@ -82,5 +85,8 @@ export const getPageDatas = async () => {
     });
   }
 
-  return posts;
+  return {
+    posts: posts,
+    nextCursor: fullOrPartialPages.next_cursor,
+  };
 };

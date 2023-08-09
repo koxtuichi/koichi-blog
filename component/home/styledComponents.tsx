@@ -17,6 +17,14 @@ export const GridImageComponent = styled(Grid.Column)({
   paddingBottom: "20px",
 });
 
+export const ContainerFotune = styled(Container)({
+  width: "fit-content !important",
+  minWidth: "100px",
+  height: 'fit-content',
+  minHeight: '40px',
+  margin: "20px auto",
+});
+
 export const ContainerCenter = styled(Container)({
   width: "fit-content !important",
   margin: "20px auto",

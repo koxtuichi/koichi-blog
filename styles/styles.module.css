@@ -1,0 +1,127 @@
+.container {
+  left: 50%;
+  margin: auto -50px;
+  position: absolute;
+  top: 12%;
+  z-index: 1000;
+  width: 100%;
+}
+
+.swing {
+  clear: left;
+  padding-top: 1.5em;
+}
+
+.swingDiv {
+  border-radius: 50%;
+  float: left;
+  height: 1em;
+  width: 1em;
+}
+
+.swingDivNth1 {
+  background: linear-gradient(to right, #385c78 0%, #325774 100%);
+}
+
+.swingDivNth2 {
+  background: linear-gradient(to right, #325774 0%, #47536a 100%);
+}
+
+.swingDivNth3 {
+  background: linear-gradient(to right, #4a5369 0%, #6b4d59 100%);
+}
+
+.swingDivNth4 {
+  background: linear-gradient(to right, #744c55 0%, #954646 100%);
+}
+
+.swingDivNth5 {
+  background: linear-gradient(to right, #9c4543 0%, #bb4034 100%);
+}
+
+.swingDivNth6 {
+  background: linear-gradient(to right, #c33f31 0%, #d83b27 100%);
+}
+
+.swingDivNth7 {
+  background: linear-gradient(to right, #da3b26 0%, #db412c 100%);
+}
+
+.shadow {
+  clear: left;
+  padding-top: 1.5em;
+}
+
+.shadowDiv {
+  filter: blur(1px);
+  float: left;
+  width: 1em;
+  height: .25em;
+  border-radius: 50%;
+  background: #e3dbd2;
+}
+
+.shadowL {
+  background: #d5d8d6;
+}
+
+.shadowR {
+  background: #eed3ca;
+}
+
+/* アニメーション */
+@keyframes ballL {
+  0%, 50% {
+    transform: rotate(0) translateX(0);
+  }
+  100% {
+    transform: rotate(50deg) translateX(-2.5em);
+  }
+}
+
+@keyframes ballR {
+  0% {
+    transform: rotate(-50deg) translateX(2.5em);
+  }
+  50%, 100% {
+    transform: rotate(0) translateX(0);
+  }
+}
+
+@keyframes shadowLN {
+  0%, 50% {
+    opacity: .5;
+    transform: translateX(0);
+  }
+  100% {
+    opacity: .125;
+    transform: translateX(-1.75em);
+  }
+}
+
+@keyframes shadowRN {
+  0% {
+    opacity: .125;
+    transform: translateX(1.75em);
+  }
+  50%, 100% {
+    opacity: .5;
+    transform: translateX(0);
+  }
+}
+
+.swingLAnimation {
+  animation: ballL .425s ease-in-out infinite alternate;
+}
+
+.swingRAnimation {
+  animation: ballR .425s ease-in-out infinite alternate;
+}
+
+.shadowLAnimation {
+  animation: shadowLN .425s ease-in-out infinite alternate;
+}
+
+.shadowRAnimation {
+  animation: shadowRN .425s ease-in-out infinite alternate;
+}

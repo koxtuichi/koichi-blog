@@ -25,9 +25,11 @@ import ModalText from "@/component/home/ModalText";
 import useAi from "@/openAiApi/logic";
 import {
   ContainerCenter,
+  ContainerFotune,
   ContainerSelfIntroductionComponent,
 } from "@/component/home/styledComponents";
 import ModalImage from "@/component/home/ModalImage";
+import TodaysFortune from "./_todaysFortune";
 
 type HomeComponentProps = {
   posts: Post[];
@@ -80,7 +82,8 @@ const HomeComponent: React.FC<HomeComponentProps> = ({ posts }) => {
       <Container>
         <Form onSubmit={handleSubmit}>
           <Grid centered>
-            <ContainerCenter>
+            <ContainerFotune>
+              <TodaysFortune />
               {/* <p style={{ marginBottom: "8p" }}>
                 {viewEng
                   ? "Please Enter any number you like."
@@ -94,12 +97,11 @@ const HomeComponent: React.FC<HomeComponentProps> = ({ posts }) => {
                   ? "A slightly annoying AI will search for photo spots that will bring you luck if you go there today."
                   : "今日いけば運気が上がる撮影スポットを少しウザいAIが探してくれます。"}
               </p> */}
-              <p>AIの励まし 開発中</p>
+              {/* <p>AIの励まし 開発中</p>
               <div
                 style={{
                   display: "flex",
                   justifyContent: "center",
-                  // maxHeight: "36px",
                 }}
               >
                 <div>
@@ -146,8 +148,8 @@ const HomeComponent: React.FC<HomeComponentProps> = ({ posts }) => {
                 <Button type="submit" disabled={loading || !prompt}>
                   {viewEng ? "search" : "聞く"}
                 </Button>
-              </div>
-            </ContainerCenter>
+              </div> */}
+            </ContainerFotune>
           </Grid>
         </Form>
       </Container>

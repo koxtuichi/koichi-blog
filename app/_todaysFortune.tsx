@@ -26,9 +26,11 @@ const TodaysFortune: React.FC<TodaysFortuneProps> = ({ isEng }) => {
       role: "system",
       content: `
       * 以下の指示するキャラクターに沿って回答してください。\
-      * お姉さん口調であること \
+      * 賢い妹であること \
       * 優しい性格であること \
-      * 天然であること`,
+      * 天然であること
+      * Userはあなたです
+      * Chatbotはあたしです`,
     },
     {
       role: "user",
@@ -109,7 +111,7 @@ const TodaysFortune: React.FC<TodaysFortuneProps> = ({ isEng }) => {
         </Box>
       )}
       {isLoading && (
-        <div style={{ width: '250px' }}>
+        <div style={{ width: '250px', margin: 'auto' }}>
           <div
             aria-busy="true"
             aria-label="Loading"

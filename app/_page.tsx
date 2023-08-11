@@ -27,6 +27,7 @@ import {
   ContainerCenter,
   ContainerFotune,
   ContainerSelfIntroductionComponent,
+  GridCentered,
 } from "@/component/home/styledComponents";
 import ModalImage from "@/component/home/ModalImage";
 import TodaysFortune from "./_todaysFortune";
@@ -81,9 +82,9 @@ const HomeComponent: React.FC<HomeComponentProps> = ({ posts }) => {
       <Divider />
       <Container>
         <Form onSubmit={handleSubmit}>
-          <Grid centered>
+          <GridCentered centered>
             <ContainerFotune>
-              <TodaysFortune />
+              <TodaysFortune isEng={viewEng} />
               {/* <p style={{ marginBottom: "8p" }}>
                 {viewEng
                   ? "Please Enter any number you like."
@@ -150,7 +151,7 @@ const HomeComponent: React.FC<HomeComponentProps> = ({ posts }) => {
                 </Button>
               </div> */}
             </ContainerFotune>
-          </Grid>
+          </GridCentered>
         </Form>
       </Container>
       <Divider />
@@ -175,12 +176,12 @@ const HomeComponent: React.FC<HomeComponentProps> = ({ posts }) => {
         </Grid>
       </Container>
       <Divider />
-      <ModalText
+      {/* <ModalText
         open={!!response}
         setResponse={setResponse}
         response={response}
         posts={posts}
-      />
+      /> */}
       <ModalImage
         selectedPhoto={selectedPhoto}
         setSelectedPhoto={setSelectedPhoto}

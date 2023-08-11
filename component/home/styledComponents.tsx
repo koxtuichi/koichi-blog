@@ -17,8 +17,13 @@ export const GridImageComponent = styled(Grid.Column)({
   paddingBottom: "20px",
 });
 
+export const GridCentered = styled(Grid)({
+  maxWidth: '700px',
+  width: 'fit-content',
+  margin: '0 auto !important',
+});
+
 export const ContainerFotune = styled(Container)({
-  width: "fit-content !important",
   minWidth: "100px",
   height: 'fit-content',
   minHeight: '40px',

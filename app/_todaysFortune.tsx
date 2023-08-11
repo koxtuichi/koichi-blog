@@ -100,8 +100,8 @@ const TodaysFortune: React.FC<TodaysFortuneProps> = ({ isEng }) => {
           <Text>{moreMessage?.content}</Text>
         </Box>
       )}
-      {isLoading && (
-        <>
+      {!isLoading && (
+        <div style={{ width: '250px' }}>
           <div
             aria-busy="true"
             aria-label="Loading"
@@ -145,7 +145,7 @@ const TodaysFortune: React.FC<TodaysFortuneProps> = ({ isEng }) => {
               ></div>
             </div>
           </div>
-        </>
+        </div>
       )}
     </>
   );

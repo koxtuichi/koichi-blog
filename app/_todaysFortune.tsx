@@ -23,6 +23,14 @@ type TodaysFortuneProps = {
 const TodaysFortune: React.FC<TodaysFortuneProps> = ({ isEng }) => {
   const chatMessage: ChatCompletionRequestMessage[] = [
     {
+      role: "system",
+      content: `
+      * 以下の指示するキャラクターに沿って回答してください。\
+      * お姉さん口調であること \
+      * 優しい性格であること \
+      * 天然であること`,
+    },
+    {
       role: "user",
       content: `
       * 今日の哲学を教えてほしい \
@@ -100,7 +108,7 @@ const TodaysFortune: React.FC<TodaysFortuneProps> = ({ isEng }) => {
           <Text>{moreMessage?.content}</Text>
         </Box>
       )}
-      {!isLoading && (
+      {isLoading && (
         <div style={{ width: '250px' }}>
           <div
             aria-busy="true"

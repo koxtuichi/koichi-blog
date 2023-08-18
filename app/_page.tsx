@@ -3,15 +3,12 @@
 import { Post } from "@/notionApi/notion";
 import React, { useState } from "react";
 import {
-  Button,
   Container,
   Divider,
-  Form,
   Grid,
   Header,
   Icon,
   Image,
-  Input,
 } from "semantic-ui-react";
 // semantic-uiはスタイルを含まないので以下のimportが必要
 import "semantic-ui-css/semantic.min.css";
@@ -21,7 +18,6 @@ import Profile from "@/component/home/profile";
 import MainPost from "@/component/home/MainPost";
 import SecondPost from "@/component/home/SecondPost";
 import { Analytics } from "@vercel/analytics/react";
-import ModalText from "@/component/home/ModalText";
 import useAi from "@/openAiApi/logic";
 import {
   ContainerCenter,
@@ -31,6 +27,7 @@ import {
 } from "@/component/home/styledComponents";
 import ModalImage from "@/component/home/ModalImage";
 import TodaysFortune from "./_todaysFortune";
+import SlideImages from "./_slideImages";
 
 type HomeComponentProps = {
   posts: Post[];
@@ -38,17 +35,6 @@ type HomeComponentProps = {
 const HomeComponent: React.FC<HomeComponentProps> = ({ posts }) => {
   const [selectedPhoto, setSelectedPhoto] = useState<Post | null>(null);
   const [viewEng, setViewEng] = useState<boolean>(false);
-
-  const {
-    handleSubmit,
-    setResponse,
-    response,
-    setPrompt,
-    problem,
-    setProblem,
-    loading,
-    prompt,
-  } = useAi(viewEng);
 
   return (
     <>
@@ -81,86 +67,25 @@ const HomeComponent: React.FC<HomeComponentProps> = ({ posts }) => {
       </ContainerSelfIntroductionComponent>
       <Divider />
       <Container>
-        <Form onSubmit={handleSubmit}>
-          <GridCentered centered>
-            <ContainerFotune>
-              <TodaysFortune isEng={viewEng} />
-              {/* <p style={{ marginBottom: "8p" }}>
-                {viewEng
-                  ? "Please Enter any number you like."
-                  : "あなたが好きな数字を入力してください。"}
-                <br />
-                {viewEng
-                  ? "For example, phone number, date of birth, etc."
-                  : "たとえば電話番号や、生年月日など。"}
-                <br />
-                {viewEng
-                  ? "A slightly annoying AI will search for photo spots that will bring you luck if you go there today."
-                  : "今日いけば運気が上がる撮影スポットを少しウザいAIが探してくれます。"}
-              </p> */}
-              {/* <p>AIの励まし 開発中</p>
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "center",
-                }}
-              >
-                <div>
-                  <div
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      gap: "4px",
-                    }}
-                  >
-                    <div style={{ width: "100px", textAlign: "right" }}>
-                      好きな数字
-                    </div>
-                    <Input
-                      type="number"
-                      name="searchWord"
-                      onChange={(e) => setPrompt(e.target.value)}
-                      value={prompt}
-                      loading={loading}
-                      maxLength={15}
-                      disabled={loading}
-                    />
-                  </div>
-                  <div
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      gap: "4px",
-                    }}
-                  >
-                    <div style={{ width: "100px", textAlign: "right" }}>
-                      悩み
-                    </div>
-                    <Input
-                      type="input"
-                      name="problem"
-                      onChange={(e) => setProblem(e.target.value)}
-                      value={problem}
-                      loading={loading}
-                      disabled={loading}
-                    />
-                  </div>
-                </div>
-                <Button type="submit" disabled={loading || !prompt}>
-                  {viewEng ? "search" : "聞く"}
-                </Button>
-              </div> */}
-            </ContainerFotune>
-          </GridCentered>
-        </Form>
+        <GridCentered centered>
+          <ContainerFotune>
+            <TodaysFortune isEng={viewEng} />
+          </ContainerFotune>
+        </GridCentered>
       </Container>
+      <Divider />
+      <SlideImages
+        post={posts.find((post) => !!post.url2 && !!post.url3 && !!post.url4)}
+      />
       <Divider />
       <Container>
         <Grid>
           <ContainerCenter>
             <Grid.Row columns={1}>
               <MainPost
-                posts={posts}
+                posts={posts.filter(
+                  (post) => !post.url2 && !post.url3 && !post.url4
+                )}
                 viewEng={viewEng}
                 setSelectedPhoto={setSelectedPhoto}
               />
@@ -168,7 +93,9 @@ const HomeComponent: React.FC<HomeComponentProps> = ({ posts }) => {
           </ContainerCenter>
           <Grid.Row columns={2}>
             <SecondPost
-              posts={posts}
+              posts={posts.filter(
+                (post) => !post.url2 && !post.url3 && !post.url4
+              )}
               viewEng={viewEng}
               setSelectedPhoto={setSelectedPhoto}
             />
@@ -176,12 +103,6 @@ const HomeComponent: React.FC<HomeComponentProps> = ({ posts }) => {
         </Grid>
       </Container>
       <Divider />
-      {/* <ModalText
-        open={!!response}
-        setResponse={setResponse}
-        response={response}
-        posts={posts}
-      /> */}
       <ModalImage
         selectedPhoto={selectedPhoto}
         setSelectedPhoto={setSelectedPhoto}

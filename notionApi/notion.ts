@@ -6,17 +6,15 @@ export type Post = {
   id: string;
   title: string;
   description: string;
-  num: number;
   url: any;
+  url2: any;
+  url3: any;
+  url4: any;
   updatedAt: any;
   shootingDate: any;
   titleEng: any;
   eng: any;
   link?: any;
-  keywords?: any;
-  explanation?: any;
-  keywordsEng?: any;
-  explanationEng?: any;
 };
 
 const notion = new Client({
@@ -26,11 +24,7 @@ const notion = new Client({
 export const getPageDatas = async (cursor?: string | null) => {
   const fullOrPartialPages = await notion.databases.query({
     database_id: process.env.NOTION_DATABASE_ID || "",
-    // page_size: 21,
-    // start_cursor: cursor || undefined,
   });
-
-  // fullOrPartialPages.next_cursor;
 
   const posts: Post[] = [];
 
@@ -42,14 +36,14 @@ export const getPageDatas = async (cursor?: string | null) => {
     if (!published.checkbox) continue;
     const properties: any = page.properties;
     const image: any = page.properties.url;
+    const image2: any = page.properties.url2;
+    const image3: any = page.properties.url3;
+    const image4: any = page.properties.url4;
 
     const url = image.files[0]?.file?.url || "";
-    // const imagePath = 'public/blogImages';
-    // const savePath = 'public/' + page.id + '.png';
-    // const blob = await fetch(url).then((r) => r.blob());
-    // const binary = (await blob.arrayBuffer()) as Uint8Array;
-    // const buffer = Buffer.from(binary);
-    // fs.writeFileSync(savePath, buffer, {  })
+    const url2 = image2.files[0]?.file?.url || null;
+    const url3 = image3.files[0]?.file?.url || null;
+    const url4 = image4.files[0]?.file?.url || null;
 
     posts.push({
       id: page.id,
@@ -59,8 +53,10 @@ export const getPageDatas = async (cursor?: string | null) => {
       description: properties.description.rich_text[0]
         ? properties.description.rich_text[0].plain_text
         : "",
-      num: properties.num.number,
       url: url,
+      url2: url2,
+      url3: url3,
+      url4: url4,
       updatedAt: properties.updatedAt.date.start,
       shootingDate: properties.shootingDate.date.start,
       titleEng: properties.titleEng.rich_text[0].plain_text,
@@ -69,18 +65,6 @@ export const getPageDatas = async (cursor?: string | null) => {
         : "",
       link: properties.link.rich_text[0]
         ? properties.link.rich_text[0].plain_text
-        : "",
-      keywords: properties.keywords.rich_text[0]
-        ? properties.keywords.rich_text[0].plain_text
-        : "",
-      explanation: properties.explanation.rich_text[0]
-        ? properties.explanation.rich_text[0].plain_text
-        : "",
-      keywordsEng: properties.keywordsEng.rich_text[0]
-        ? properties.keywordsEng.rich_text[0].plain_text
-        : "",
-      explanationEng: properties.explanationEng.rich_text[0]
-        ? properties.explanationEng.rich_text[0].plain_text
         : "",
     });
   }

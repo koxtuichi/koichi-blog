@@ -32,7 +32,12 @@ export const ContainerFotune = styled(Container)({
 
 export const ContainerCenter = styled(Container)({
   width: "fit-content !important",
-  margin: "20px auto",
+  margin: '20px auto !important'
+});
+
+export const ContainerButtonCenter = styled(Container)({
+  width: "100% !important",
+  textAlign: 'center',
 });
 
 export const TagLabel = styled(Label)({

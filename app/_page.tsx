@@ -20,6 +20,7 @@ import MainPost from "@/component/home/MainPost";
 import SecondPost from "@/component/home/SecondPost";
 import { Analytics } from "@vercel/analytics/react";
 import {
+  ContainerButtonCenter,
   ContainerCenter,
   ContainerFotune,
   ContainerSelfIntroductionComponent,
@@ -89,7 +90,7 @@ const HomeComponent: React.FC<HomeComponentProps> = ({ posts }) => {
           <SlideImages key={index} post={post} />
         ))}
       {!(slidePosts.length < viewSlidePosts + 1) && (
-        <ContainerCenter>
+        <ContainerButtonCenter>
           <Button
             size="mini"
             basic
@@ -97,7 +98,7 @@ const HomeComponent: React.FC<HomeComponentProps> = ({ posts }) => {
           >
             もっとみる
           </Button>
-        </ContainerCenter>
+        </ContainerButtonCenter>
       )}
       <Divider />
       <Container>
@@ -123,19 +124,19 @@ const HomeComponent: React.FC<HomeComponentProps> = ({ posts }) => {
               viewEng={viewEng}
               setSelectedPhoto={setSelectedPhoto}
             />
-            {!(posts.length < viewPosts + 1) && (
-              <ContainerCenter>
-                <Button
-                  size="mini"
-                  basic
-                  onClick={() => setViewPosts((prev) => prev + 6)}
-                >
-                  もっとみる
-                </Button>
-              </ContainerCenter>
-            )}
           </Grid.Row>
         </Grid>
+        {!(posts.length < viewPosts + 1) && (
+          <ContainerButtonCenter>
+            <Button
+              size="mini"
+              basic
+              onClick={() => setViewPosts((prev) => prev + 6)}
+            >
+              もっとみる
+            </Button>
+          </ContainerButtonCenter>
+        )}
       </Container>
       <Divider />
       <ModalImage

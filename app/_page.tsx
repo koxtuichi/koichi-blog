@@ -19,7 +19,6 @@ import Profile from "@/component/home/profile";
 import MainPost from "@/component/home/MainPost";
 import SecondPost from "@/component/home/SecondPost";
 import { Analytics } from "@vercel/analytics/react";
-import useAi from "@/openAiApi/logic";
 import {
   ContainerCenter,
   ContainerFotune,
@@ -91,7 +90,11 @@ const HomeComponent: React.FC<HomeComponentProps> = ({ posts }) => {
         ))}
       {!(slidePosts.length < viewSlidePosts + 1) && (
         <ContainerCenter>
-          <Button onClick={() => setViewSlidePosts((prev) => prev + 3)}>
+          <Button
+            size="mini"
+            basic
+            onClick={() => setViewSlidePosts((prev) => prev + 3)}
+          >
             もっとみる
           </Button>
         </ContainerCenter>
@@ -122,7 +125,11 @@ const HomeComponent: React.FC<HomeComponentProps> = ({ posts }) => {
             />
             {!(posts.length < viewPosts + 1) && (
               <ContainerCenter>
-                <Button onClick={() => setViewPosts((prev) => prev + 6)}>
+                <Button
+                  size="mini"
+                  basic
+                  onClick={() => setViewPosts((prev) => prev + 6)}
+                >
                   もっとみる
                 </Button>
               </ContainerCenter>

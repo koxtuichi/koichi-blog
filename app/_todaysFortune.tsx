@@ -3,7 +3,6 @@ import {
   ChatCompletionRequestMessage,
   ChatCompletionResponseMessage,
   Configuration,
-  CreateChatCompletionResponseChoicesInner,
   OpenAIApi,
 } from "openai";
 import { useEffect, useMemo, useState } from "react";

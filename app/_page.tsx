@@ -1,8 +1,9 @@
 "use client";
 
 import { Post } from "@/notionApi/notion";
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import {
+  Button,
   Container,
   Divider,
   Grid,
@@ -35,6 +36,15 @@ type HomeComponentProps = {
 const HomeComponent: React.FC<HomeComponentProps> = ({ posts }) => {
   const [selectedPhoto, setSelectedPhoto] = useState<Post | null>(null);
   const [viewEng, setViewEng] = useState<boolean>(false);
+  const [viewPosts, setViewPosts] = useState<number>(8);
+  const [viewSlidePosts, setViewSlidePosts] = useState<number>(3);
+
+  const slidePosts = useMemo(() => {
+    const filtered = posts.filter(
+      (post) => post.url2 && post.url3 && post.url4
+    );
+    return filtered;
+  }, [posts]);
 
   return (
     <>
@@ -74,9 +84,18 @@ const HomeComponent: React.FC<HomeComponentProps> = ({ posts }) => {
         </GridCentered>
       </Container>
       <Divider />
-      <SlideImages
-        post={posts.find((post) => !!post.url2 && !!post.url3 && !!post.url4)}
-      />
+      {slidePosts
+        .filter((_, index) => index < viewSlidePosts)
+        .map((post, index) => (
+          <SlideImages key={index} post={post} />
+        ))}
+      {!(slidePosts.length < viewSlidePosts + 1) && (
+        <ContainerCenter>
+          <Button onClick={() => setViewSlidePosts((prev) => prev + 3)}>
+            もっとみる
+          </Button>
+        </ContainerCenter>
+      )}
       <Divider />
       <Container>
         <Grid>
@@ -93,12 +112,21 @@ const HomeComponent: React.FC<HomeComponentProps> = ({ posts }) => {
           </ContainerCenter>
           <Grid.Row columns={2}>
             <SecondPost
-              posts={posts.filter(
-                (post) => !post.url2 && !post.url3 && !post.url4
-              )}
+              posts={posts.filter((post, index) => {
+                const isPost = !post.url2 && !post.url3 && !post.url4;
+                const isViewPost = index < viewPosts;
+                return isPost && isViewPost;
+              })}
               viewEng={viewEng}
               setSelectedPhoto={setSelectedPhoto}
             />
+            {!(posts.length < viewPosts + 1) && (
+              <ContainerCenter>
+                <Button onClick={() => setViewPosts((prev) => prev + 6)}>
+                  もっとみる
+                </Button>
+              </ContainerCenter>
+            )}
           </Grid.Row>
         </Grid>
       </Container>

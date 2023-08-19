@@ -55,7 +55,7 @@ const TodaysFortune: React.FC<TodaysFortuneProps> = ({ isEng }) => {
         return null;
       }
     })();
-  }, []);
+  }, [chatMessage, message]);
 
   const [isMore, setIsMore] = useState<boolean>(false);
   const [moreMessage, setMoreMessage] = useState<
@@ -84,7 +84,7 @@ const TodaysFortune: React.FC<TodaysFortuneProps> = ({ isEng }) => {
         return null;
       }
     })();
-  }, [isMore]);
+  }, [isMore, chatMessage, message]);
 
   const isLoading = useMemo(() => {
     const firstLoading = !message && !isMore;

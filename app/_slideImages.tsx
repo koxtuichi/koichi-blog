@@ -1,13 +1,11 @@
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
-// import './styles.css';
-
 // import required modules
 import { FreeMode, Navigation, Thumbs, Autoplay } from "swiper/modules";
 import { Post } from "@/notionApi/notion";
 import styled from "@emotion/styled";
-import { Image } from "semantic-ui-react";
+import { Container, Image } from "semantic-ui-react";
 
 // Import Swiper styles
 import "swiper/css";
@@ -56,11 +54,11 @@ const SlideImages: React.FC<SlideImages> = ({ post }) => {
     </>
   );
   return (
-    <div style={{ padding: "0 10vw" }}>
+    <Container>
       <Swiper
         loop={true}
         spaceBetween={10}
-        navigation={false}
+        navigation={true}
         thumbs={{ swiper: thumbsSwiper }}
         modules={[Autoplay, FreeMode, Navigation, Thumbs]}
         className="mySwiper2"
@@ -79,7 +77,7 @@ const SlideImages: React.FC<SlideImages> = ({ post }) => {
       >
         {postComponent}
       </Swiper>
-    </div>
+      </Container>
   );
 };
 

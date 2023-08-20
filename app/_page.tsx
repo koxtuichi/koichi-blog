@@ -46,7 +46,13 @@ const HomeComponent: React.FC<HomeComponentProps> = ({ posts }) => {
     );
     return filtered;
   }, [posts]);
-  console.dir(posts);
+
+  const notSlidePosts = useMemo(() => {
+    const filtered = posts.filter(
+      (post) => !post.url2 && !post.url3 && !post.url4
+    );
+    return filtered;
+  }, [posts]);
 
   return (
     <>
@@ -110,9 +116,7 @@ const HomeComponent: React.FC<HomeComponentProps> = ({ posts }) => {
           <ContainerCenter>
             <Grid.Row columns={1}>
               <MainPost
-                posts={posts.filter(
-                  (post) => !post.url2 && !post.url3 && !post.url4
-                )}
+                posts={notSlidePosts}
                 viewEng={viewEng}
                 setSelectedPhoto={setSelectedPhoto}
               />
@@ -120,11 +124,7 @@ const HomeComponent: React.FC<HomeComponentProps> = ({ posts }) => {
           </ContainerCenter>
           <Grid.Row columns={2}>
             <SecondPost
-              posts={posts.filter((post, index) => {
-                const isPost = !post.url2 && !post.url3 && !post.url4;
-                const isViewPost = index < viewPosts;
-                return isPost && isViewPost;
-              })}
+              posts={notSlidePosts.filter((post, index) => index <= viewPosts)}
               viewEng={viewEng}
               setSelectedPhoto={setSelectedPhoto}
             />
@@ -139,7 +139,7 @@ const HomeComponent: React.FC<HomeComponentProps> = ({ posts }) => {
             >
               もっとみる
             </Button>
-            <div style={{ height: '20px' }} />
+            <div style={{ height: "20px" }} />
           </ContainerButtonCenter>
         )}
       </Container>

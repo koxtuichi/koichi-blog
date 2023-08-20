@@ -4,10 +4,11 @@ import { Card, Icon } from "semantic-ui-react";
 import SpeakButton from "./SpeakButton";
 import {
   GridImageComponent,
-  ImageComponent,
   TagLabel,
 } from "./styledComponents";
 import styled from "@emotion/styled";
+
+import { Image } from '@chakra-ui/react'
 
 const ContainerContent = styled(Card.Content)({
   maxWidth: '960px'
@@ -35,13 +36,11 @@ const MainPost: React.FC<MainPostProps> = ({
           if (index === 0) {
             return (
               <GridImageComponent key={index}>
-                <ImageComponent
-                  // src={`/${post.id}.png`}
-                  // src={post?.url || `blogImages/${post?.id}.png`}
+                <Image
                   src={post.url}
-                  size="massive"
-                  ui={true}
                   onClick={() => setSelectedPhoto(post)}
+                  w='100%'
+                  borderRadius={4}
                 />
                 <ContainerContent>
                   <Card.Header>

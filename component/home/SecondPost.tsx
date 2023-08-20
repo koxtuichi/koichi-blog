@@ -4,9 +4,10 @@ import { Card, Icon } from "semantic-ui-react";
 import SpeakButton from "./SpeakButton";
 import {
   GridImageComponent,
-  ImageComponent,
   TagLabel,
 } from "./styledComponents";
+
+import { Image } from '@chakra-ui/react'
 
 type SecondPostProps = {
   posts: Post[];
@@ -32,14 +33,10 @@ const SecondPost: React.FC<SecondPostProps> = ({
           }
           return (
             <GridImageComponent key={index}>
-              <ImageComponent
-                // src={`/${post.id}.png`}
-                // src={post?.url || `blogImages/${post?.id}.png`}
+              <Image
                 src={post.url}
-                size="huge"
-                wrapped
-                ui={true}
                 onClick={() => setSelectedPhoto(post)}
+                borderRadius={4}
               />
               <Card.Content>
                 <Card.Header>

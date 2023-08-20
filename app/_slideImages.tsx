@@ -16,7 +16,7 @@ import "swiper/css/thumbs";
 import "./styles.css";
 import { useState } from "react";
 
-import { Image } from '@chakra-ui/react'
+import { Image } from "@chakra-ui/react";
 
 const ImageComponent = styled(Image)({
   "> *": {
@@ -49,7 +49,7 @@ const SlideImages: React.FC<SlideImages> = ({ post }) => {
             key={index}
             style={{ display: "flex", justifyContent: "center" }}
           >
-            <Image src={url} />
+            <Image src={url} borderRadius={4} />
           </SwiperSlide>
         );
       })}
@@ -79,7 +79,7 @@ const SlideImages: React.FC<SlideImages> = ({ post }) => {
       >
         {postComponent}
       </Swiper>
-      </Container>
+    </Container>
   );
 };
 

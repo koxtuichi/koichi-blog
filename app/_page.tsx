@@ -29,6 +29,7 @@ import {
 import ModalImage from "@/component/home/ModalImage";
 import TodaysFortune from "./_todaysFortune";
 import SlideImages from "./_slideImages";
+import { Flex } from "@chakra-ui/react";
 
 type HomeComponentProps = {
   posts: Post[];
@@ -45,6 +46,7 @@ const HomeComponent: React.FC<HomeComponentProps> = ({ posts }) => {
     );
     return filtered;
   }, [posts]);
+  console.dir(posts);
 
   return (
     <>
@@ -84,11 +86,13 @@ const HomeComponent: React.FC<HomeComponentProps> = ({ posts }) => {
         </GridCentered>
       </Container>
       <Divider />
-      {slidePosts
-        .filter((_, index) => index < viewSlidePosts)
-        .map((post, index) => (
-          <SlideImages key={index} post={post} />
-        ))}
+      <Flex flexDirection="column" gap="20px">
+        {slidePosts
+          .filter((_, index) => index < viewSlidePosts)
+          .map((post, index) => (
+            <SlideImages key={index} post={post} />
+          ))}
+      </Flex>
       {!(slidePosts.length < viewSlidePosts + 1) && (
         <ContainerButtonCenter>
           <Button
@@ -135,6 +139,7 @@ const HomeComponent: React.FC<HomeComponentProps> = ({ posts }) => {
             >
               もっとみる
             </Button>
+            <div style={{ height: '20px' }} />
           </ContainerButtonCenter>
         )}
       </Container>

@@ -59,7 +59,7 @@ export const getPageDatas = async (cursor?: string | null) => {
       url4: url4,
       updatedAt: properties.updatedAt.date.start,
       shootingDate: properties.shootingDate.date.start,
-      titleEng: properties.titleEng.rich_text[0].plain_text,
+      titleEng: properties.titleEng.rich_text[0]?.plain_text || '',
       eng: properties.eng.rich_text[0]
         ? properties.eng.rich_text[0].plain_text
         : "",

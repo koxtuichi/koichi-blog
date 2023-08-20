@@ -5,7 +5,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode, Navigation, Thumbs, Autoplay } from "swiper/modules";
 import { Post } from "@/notionApi/notion";
 import styled from "@emotion/styled";
-import { Container, Image } from "semantic-ui-react";
+import { Container } from "semantic-ui-react";
 
 // Import Swiper styles
 import "swiper/css";
@@ -15,6 +15,8 @@ import "swiper/css/thumbs";
 
 import "./styles.css";
 import { useState } from "react";
+
+import { Image } from '@chakra-ui/react'
 
 const ImageComponent = styled(Image)({
   "> *": {
@@ -47,7 +49,7 @@ const SlideImages: React.FC<SlideImages> = ({ post }) => {
             key={index}
             style={{ display: "flex", justifyContent: "center" }}
           >
-            <ImageComponent src={url} />
+            <Image src={url} />
           </SwiperSlide>
         );
       })}

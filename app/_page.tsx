@@ -58,7 +58,7 @@ const HomeComponent: React.FC<HomeComponentProps> = ({ posts }) => {
     <>
       <Header as="h2" icon textAlign="center">
         <Analytics />
-        <Image src="/profileImg.png" alt="profileImg" avatar />
+        <Image src="/profileImg.jpg" alt="profileImg" avatar />
         <Header.Content>
           <p>KAKIKUKE KOICHI</p>
         </Header.Content>

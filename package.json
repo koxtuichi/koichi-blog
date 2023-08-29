@@ -31,9 +31,10 @@
   },
   "dependencies": {
     "@chakra-ui/react": "^2.8.0",
-    "@emotion/react": "^11.11.0",
+    "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@jitl/notion-api": "^0.2.2",
+    "@mui/material": "^5.14.7",
     "@notionhq/client": "^1.0.4",
     "@vercel/analytics": "^1.0.1",
     "axios": "^1.4.0",

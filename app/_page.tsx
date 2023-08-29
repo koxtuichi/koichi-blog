@@ -5,11 +5,9 @@ import React, { useMemo, useState } from "react";
 import {
   Button,
   Container,
-  Divider,
   Grid,
   Header,
-  Icon,
-  Image,
+  Image as SemanticImage,
 } from "semantic-ui-react";
 // semantic-uiはスタイルを含まないので以下のimportが必要
 import "semantic-ui-css/semantic.min.css";
@@ -30,7 +28,8 @@ import {
 import ModalImage from "@/component/home/ModalImage";
 import TodaysFortune from "./_todaysFortune";
 import SlideImages from "./_slideImages";
-import { Flex } from "@chakra-ui/react";
+import { Flex, Text } from "@chakra-ui/react";
+import SnsIcons from "./_snsIcons";
 
 type HomeComponentProps = {
   posts: Post[];
@@ -66,33 +65,25 @@ const HomeComponent: React.FC<HomeComponentProps> = ({ posts }) => {
   return (
     <>
       <Header as="h2" icon textAlign="center">
+        {/* vercelアナリティクス */}
         <Analytics />
-        <Image src="/profileImg.jpg" alt="profileImg" avatar />
+        {/* プロフ画像 */}
+        <SemanticImage src="/profileImg.jpg" alt="profileImg" avatar />
+        {/* タイトル */}
         <Header.Content>
           <p>KAKIKUKE KOICHI</p>
         </Header.Content>
       </Header>
       <ContainerSelfIntroductionComponent text textAlign="center">
+        {/* 日英切り替えボタン */}
         <TranslateButtonGroup setViewEng={setViewEng} viewEng={viewEng} />
+        {/* プロフィール */}
         <Profile viewEng={viewEng} />
-        <Grid centered>
-          <Grid.Row>
-            <Icon
-              name="instagram"
-              size="big"
-              link
-              onClick={() =>
-                window.open(
-                  "https://www.instagram.com/kakikuke_koichi/",
-                  "_blank"
-                )
-              }
-            />
-            <p style={{ lineHeight: 2 }}>since 2023/2</p>
-          </Grid.Row>
-        </Grid>
+        {/* SNSアイコン */}
+        <SnsIcons />
       </ContainerSelfIntroductionComponent>
       <DividerMargin />
+      {/* 今日の格言 */}
       <Container>
         <GridCentered centered>
           <ContainerFotune>
@@ -101,13 +92,21 @@ const HomeComponent: React.FC<HomeComponentProps> = ({ posts }) => {
         </GridCentered>
       </Container>
       <DividerMargin />
-      <Flex flexDirection="column" gap="20px" mb="20px">
-        {slidePosts
-          .filter((_, index) => index < viewSlidePosts)
-          .map((post, index) => (
-            <SlideImages key={index} post={post} />
-          ))}
-      </Flex>
+      {/* 写真４枚 */}
+      <Container>
+        <ContainerCenter>
+          <Text fontSize="20px" width="100%" textAlign="center">
+            「４枚で伝えたいこと」
+          </Text>
+          <Flex flexDirection="column" gap="20px" mb="20px">
+            {slidePosts
+              .filter((_, index) => index < viewSlidePosts)
+              .map((post, index) => (
+                <SlideImages key={index} post={post} />
+              ))}
+          </Flex>
+        </ContainerCenter>
+      </Container>
       {!(slidePosts.length < viewSlidePosts + 1) && (
         <ContainerButtonCenter>
           <Button
@@ -120,12 +119,22 @@ const HomeComponent: React.FC<HomeComponentProps> = ({ posts }) => {
         </ContainerButtonCenter>
       )}
       <DividerMargin />
+      {/* SIGMAの写真 */}
       <Container>
         <ContainerCenter>
+          <Text fontSize="20px" width="100%" textAlign="center">
+            「これがFOVEON」
+          </Text>
           {sigmaPosts
             .filter((_, index) => index < 2)
-            .map((item) => {
-              return <Image src={item.url} />;
+            .map((item, index) => {
+              return (
+                <SemanticImage
+                  key={index}
+                  src={item.url}
+                  alt="dp1 merrill sigma foveon"
+                />
+              );
             })}
         </ContainerCenter>
         {!(sigmaPosts.length < viewSigmaPosts + 1) && (
@@ -141,9 +150,13 @@ const HomeComponent: React.FC<HomeComponentProps> = ({ posts }) => {
         )}
       </Container>
       <DividerMargin />
+      {/* 写真日記 */}
       <Container>
         <Grid>
           <ContainerCenter>
+            <Text fontSize="20px" width="100%" textAlign="center">
+              「写真日和」
+            </Text>
             <Grid.Row columns={1}>
               <MainPost
                 posts={notSlidePosts}

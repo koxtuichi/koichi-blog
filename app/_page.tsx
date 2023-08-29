@@ -93,20 +93,17 @@ const HomeComponent: React.FC<HomeComponentProps> = ({ posts }) => {
       </Container>
       <DividerMargin />
       {/* 写真４枚 */}
-      <Container>
-        <ContainerCenter>
-          <Text fontSize="20px" width="100%" textAlign="center">
-            「４枚で伝えたいこと」
-          </Text>
-          <Flex flexDirection="column" gap="20px" mb="20px">
-            {slidePosts
-              .filter((_, index) => index < viewSlidePosts)
-              .map((post, index) => (
-                <SlideImages key={index} post={post} />
-              ))}
-          </Flex>
-        </ContainerCenter>
-      </Container>
+
+      <Flex flexDirection="column" gap="20px" mb="20px">
+        <Text fontSize="20px" width="100%" textAlign="center" mb='0px'>
+          「４枚で伝えたいこと」
+        </Text>
+        {slidePosts
+          .filter((_, index) => index < viewSlidePosts)
+          .map((post, index) => (
+            <SlideImages key={index} post={post} />
+          ))}
+      </Flex>
       {!(slidePosts.length < viewSlidePosts + 1) && (
         <ContainerButtonCenter>
           <Button
@@ -125,8 +122,9 @@ const HomeComponent: React.FC<HomeComponentProps> = ({ posts }) => {
           <Text fontSize="20px" width="100%" textAlign="center">
             「これがFOVEON」
           </Text>
+          <Flex flexDirection='column' gap='20px'>
           {sigmaPosts
-            .filter((_, index) => index < 2)
+            .filter((_, index) => index < viewSigmaPosts)
             .map((item, index) => {
               return (
                 <SemanticImage
@@ -136,6 +134,7 @@ const HomeComponent: React.FC<HomeComponentProps> = ({ posts }) => {
                 />
               );
             })}
+          </Flex>
         </ContainerCenter>
         {!(sigmaPosts.length < viewSigmaPosts + 1) && (
           <ContainerButtonCenter>

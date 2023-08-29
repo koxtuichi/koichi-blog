@@ -1,20 +1,20 @@
 import { Client } from "@notionhq/client";
 import { isFullPage } from "@jitl/notion-api";
-import fs from 'fs'
 
 export type Post = {
   id: string;
   title: string;
+  titleEng: string;
   description: string;
+  eng: string;
   url: any;
   url2: any;
   url3: any;
   url4: any;
   updatedAt: any;
   shootingDate: any;
-  titleEng: any;
-  eng: any;
   link?: any;
+  camera?: any;
 };
 
 const notion = new Client({
@@ -59,13 +59,14 @@ export const getPageDatas = async (cursor?: string | null) => {
       url4: url4,
       updatedAt: properties.updatedAt.date.start,
       shootingDate: properties.shootingDate.date.start,
-      titleEng: properties.titleEng.rich_text[0]?.plain_text || '',
+      titleEng: properties.titleEng.rich_text[0]?.plain_text || "",
       eng: properties.eng.rich_text[0]
         ? properties.eng.rich_text[0].plain_text
         : "",
       link: properties.link.rich_text[0]
         ? properties.link.rich_text[0].plain_text
         : "",
+      camera: properties?.camera?.select?.name || "",
     });
   }
 

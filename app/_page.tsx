@@ -24,6 +24,7 @@ import {
   ContainerCenter,
   ContainerFotune,
   ContainerSelfIntroductionComponent,
+  DividerMargin,
   GridCentered,
 } from "@/component/home/styledComponents";
 import ModalImage from "@/component/home/ModalImage";
@@ -34,11 +35,13 @@ import { Flex } from "@chakra-ui/react";
 type HomeComponentProps = {
   posts: Post[];
 };
+const SIGMA_SELECT = "sigma";
 const HomeComponent: React.FC<HomeComponentProps> = ({ posts }) => {
   const [selectedPhoto, setSelectedPhoto] = useState<Post | null>(null);
   const [viewEng, setViewEng] = useState<boolean>(false);
-  const [viewPosts, setViewPosts] = useState<number>(8);
-  const [viewSlidePosts, setViewSlidePosts] = useState<number>(3);
+  const [viewPosts, setViewPosts] = useState<number>(4);
+  const [viewSlidePosts, setViewSlidePosts] = useState<number>(2);
+  const [viewSigmaPosts, setViewSigmaPosts] = useState<number>(1);
 
   const slidePosts = useMemo(() => {
     const filtered = posts.filter(
@@ -49,8 +52,14 @@ const HomeComponent: React.FC<HomeComponentProps> = ({ posts }) => {
 
   const notSlidePosts = useMemo(() => {
     const filtered = posts.filter(
-      (post) => !post.url2 && !post.url3 && !post.url4
+      (post) =>
+        !post.url2 && !post.url3 && !post.url4 && post.camera !== SIGMA_SELECT
     );
+    return filtered;
+  }, [posts]);
+
+  const sigmaPosts = useMemo(() => {
+    const filtered = posts.filter((post) => post.camera === SIGMA_SELECT);
     return filtered;
   }, [posts]);
 
@@ -83,7 +92,7 @@ const HomeComponent: React.FC<HomeComponentProps> = ({ posts }) => {
           </Grid.Row>
         </Grid>
       </ContainerSelfIntroductionComponent>
-      <Divider />
+      <DividerMargin />
       <Container>
         <GridCentered centered>
           <ContainerFotune>
@@ -91,8 +100,8 @@ const HomeComponent: React.FC<HomeComponentProps> = ({ posts }) => {
           </ContainerFotune>
         </GridCentered>
       </Container>
-      <Divider />
-      <Flex flexDirection="column" gap="20px">
+      <DividerMargin />
+      <Flex flexDirection="column" gap="20px" mb="20px">
         {slidePosts
           .filter((_, index) => index < viewSlidePosts)
           .map((post, index) => (
@@ -110,7 +119,28 @@ const HomeComponent: React.FC<HomeComponentProps> = ({ posts }) => {
           </Button>
         </ContainerButtonCenter>
       )}
-      <Divider />
+      <DividerMargin />
+      <Container>
+        <ContainerCenter>
+          {sigmaPosts
+            .filter((_, index) => index < 2)
+            .map((item) => {
+              return <Image src={item.url} />;
+            })}
+        </ContainerCenter>
+        {!(sigmaPosts.length < viewSigmaPosts + 1) && (
+          <ContainerButtonCenter>
+            <Button
+              size="mini"
+              basic
+              onClick={() => setViewSigmaPosts((prev) => prev + 1)}
+            >
+              もっとみる
+            </Button>
+          </ContainerButtonCenter>
+        )}
+      </Container>
+      <DividerMargin />
       <Container>
         <Grid>
           <ContainerCenter>
@@ -143,7 +173,7 @@ const HomeComponent: React.FC<HomeComponentProps> = ({ posts }) => {
           </ContainerButtonCenter>
         )}
       </Container>
-      <Divider />
+      <DividerMargin />
       <ModalImage
         selectedPhoto={selectedPhoto}
         setSelectedPhoto={setSelectedPhoto}

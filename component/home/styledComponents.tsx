@@ -18,26 +18,26 @@ export const GridImageComponent = styled(Grid.Column)({
 });
 
 export const GridCentered = styled(Grid)({
-  maxWidth: '700px',
-  width: 'fit-content',
-  margin: '0 auto !important',
+  maxWidth: "700px",
+  width: "fit-content",
+  margin: "0 auto !important",
 });
 
 export const ContainerFotune = styled(Container)({
   minWidth: "100px",
-  height: 'fit-content',
-  minHeight: '40px',
+  height: "fit-content",
+  minHeight: "40px",
   margin: "20px auto",
 });
 
 export const ContainerCenter = styled(Container)({
   width: "fit-content !important",
-  margin: '20px auto !important'
+  margin: "20px auto !important",
 });
 
 export const ContainerButtonCenter = styled(Container)({
   width: "100% !important",
-  textAlign: 'center',
+  textAlign: "center",
 });
 
 export const TagLabel = styled(Label)({
@@ -46,4 +46,8 @@ export const TagLabel = styled(Label)({
 
 export const DividerNoneMarginBottom = styled(Divider)({
   marginBottom: "0px !important",
+});
+
+export const DividerMargin = styled(Divider)({
+  margin: "40px 0 40px 0 !important",
 });

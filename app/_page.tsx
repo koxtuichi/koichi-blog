@@ -84,14 +84,14 @@ const HomeComponent: React.FC<HomeComponentProps> = ({ posts }) => {
       </ContainerSelfIntroductionComponent>
       <DividerMargin />
       {/* 今日の格言 */}
-      <Container>
+      {/* <Container>
         <GridCentered centered>
           <ContainerFotune>
             <TodaysFortune isEng={viewEng} />
           </ContainerFotune>
         </GridCentered>
       </Container>
-      <DividerMargin />
+      <DividerMargin /> */}
       {/* 写真４枚 */}
 
       <Flex flexDirection="column" gap="20px" mb="20px">

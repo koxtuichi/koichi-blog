@@ -109,7 +109,7 @@ const HomeComponent: React.FC<HomeComponentProps> = ({ posts }) => {
           <Button
             size="mini"
             basic
-            onClick={() => setViewSlidePosts((prev) => prev + 3)}
+            onClick={() => setViewSlidePosts((prev) => prev + 1)}
           >
             もっとみる
           </Button>
@@ -177,7 +177,7 @@ const HomeComponent: React.FC<HomeComponentProps> = ({ posts }) => {
             <Button
               size="mini"
               basic
-              onClick={() => setViewPosts((prev) => prev + 6)}
+              onClick={() => setViewPosts((prev) => prev + 4)}
             >
               もっとみる
             </Button>

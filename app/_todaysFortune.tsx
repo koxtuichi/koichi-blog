@@ -11,7 +11,7 @@ import { Button } from "semantic-ui-react";
 const configuration = new Configuration({
   apiKey:
     process.env.OPEN_AI_ID ||
-    "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",
+    "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",
 });
 
 const openAi = new OpenAIApi(configuration);
@@ -66,7 +66,7 @@ const TodaysFortune: React.FC<TodaysFortuneProps> = ({ isEng }) => {
     (async () => {
       try {
         const response = await openAi.createChatCompletion({
-          model: "gpt-4-0613",
+          model: "gpt-4",
           messages: [
             ...chatMessage,
             message,

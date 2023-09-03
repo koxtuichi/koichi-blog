@@ -38,8 +38,8 @@ const SIGMA_SELECT = "sigma";
 const HomeComponent: React.FC<HomeComponentProps> = ({ posts }) => {
   const [selectedPhoto, setSelectedPhoto] = useState<Post | null>(null);
   const [viewEng, setViewEng] = useState<boolean>(false);
-  const [viewPosts, setViewPosts] = useState<number>(4);
-  const [viewSlidePosts, setViewSlidePosts] = useState<number>(2);
+  const [viewPosts, setViewPosts] = useState<number>(2);
+  const [viewSlidePosts, setViewSlidePosts] = useState<number>(1);
   const [viewSigmaPosts, setViewSigmaPosts] = useState<number>(1);
 
   const slidePosts = useMemo(() => {
@@ -84,14 +84,14 @@ const HomeComponent: React.FC<HomeComponentProps> = ({ posts }) => {
       </ContainerSelfIntroductionComponent>
       <DividerMargin />
       {/* 今日の格言 */}
-      {/* <Container>
+      <Container>
         <GridCentered centered>
           <ContainerFotune>
             <TodaysFortune isEng={viewEng} />
           </ContainerFotune>
         </GridCentered>
       </Container>
-      <DividerMargin /> */}
+      <DividerMargin />
       {/* 写真４枚 */}
 
       <Flex flexDirection="column" gap="20px" mb="20px">

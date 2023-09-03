@@ -11,7 +11,7 @@ import { Button } from "semantic-ui-react";
 const configuration = new Configuration({
   apiKey:
     process.env.OPEN_AI_ID ||
-    "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",
+    "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",
 });
 
 const openAi = new OpenAIApi(configuration);

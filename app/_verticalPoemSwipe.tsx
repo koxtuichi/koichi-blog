@@ -27,8 +27,8 @@ const VerticalPoemSwipe: React.FC<VerticalPoemSwipeProps> = ({ poems }) => {
       modules={[Mousewheel, Pagination, Scrollbar, Autoplay]}
       className="poemSwiper"
       >
-      {poems.map((item) => (
-        <SwiperSlide>
+      {poems.map((item, index) => (
+        <SwiperSlide key={index}>
           <Text
             fontFamily="initial"
             fontStyle="oblique"

@@ -20,22 +20,22 @@ import { Analytics } from "@vercel/analytics/react";
 import {
   ContainerButtonCenter,
   ContainerCenter,
-  ContainerFotune,
   ContainerSelfIntroductionComponent,
   DividerMargin,
-  GridCentered,
 } from "@/component/home/styledComponents";
 import ModalImage from "@/component/home/ModalImage";
-import TodaysFortune from "./_todaysFortune";
 import SlideImages from "./_slideImages";
 import { Flex, Text } from "@chakra-ui/react";
 import SnsIcons from "./_snsIcons";
+import { PoemPost } from "@/notionApi/poemNotion";
+import VerticalPoemSwipe from "./_verticalPoemSwipe";
 
 type HomeComponentProps = {
   posts: Post[];
+  poemPosts: PoemPost[];
 };
 const SIGMA_SELECT = "sigma";
-const HomeComponent: React.FC<HomeComponentProps> = ({ posts }) => {
+const HomeComponent: React.FC<HomeComponentProps> = ({ posts, poemPosts }) => {
   const [selectedPhoto, setSelectedPhoto] = useState<Post | null>(null);
   const [viewEng, setViewEng] = useState<boolean>(false);
   const [viewPosts, setViewPosts] = useState<number>(2);
@@ -84,18 +84,12 @@ const HomeComponent: React.FC<HomeComponentProps> = ({ posts }) => {
       </ContainerSelfIntroductionComponent>
       <DividerMargin />
       {/* 今日の格言 */}
-      <Container>
-        <GridCentered centered>
-          <ContainerFotune>
-            <TodaysFortune isEng={viewEng} />
-          </ContainerFotune>
-        </GridCentered>
-      </Container>
+      <VerticalPoemSwipe poems={poemPosts} />
       <DividerMargin />
       {/* 写真４枚 */}
 
       <Flex flexDirection="column" gap="20px" mb="20px">
-        <Text fontSize="20px" width="100%" textAlign="center" mb='0px'>
+        <Text fontSize="20px" width="100%" textAlign="center" mb="0px">
           「４枚で伝えたいこと」
         </Text>
         {slidePosts
@@ -122,18 +116,18 @@ const HomeComponent: React.FC<HomeComponentProps> = ({ posts }) => {
           <Text fontSize="20px" width="100%" textAlign="center">
             「これがFOVEON」
           </Text>
-          <Flex flexDirection='column' gap='20px'>
-          {sigmaPosts
-            .filter((_, index) => index < viewSigmaPosts)
-            .map((item, index) => {
-              return (
-                <SemanticImage
-                  key={index}
-                  src={item.url}
-                  alt="dp1 merrill sigma foveon"
-                />
-              );
-            })}
+          <Flex flexDirection="column" gap="20px">
+            {sigmaPosts
+              .filter((_, index) => index < viewSigmaPosts)
+              .map((item, index) => {
+                return (
+                  <SemanticImage
+                    key={index}
+                    src={item.url}
+                    alt="dp1 merrill sigma foveon"
+                  />
+                );
+              })}
           </Flex>
         </ContainerCenter>
         {!(sigmaPosts.length < viewSigmaPosts + 1) && (

@@ -24,10 +24,10 @@ const VerticalPoemSwipe: React.FC<VerticalPoemSwipeProps> = ({
       spaceBetween={30}
       mousewheel={true}
       loop={true}
-      // autoplay={{
-      //   delay: 5000,
-      //   disableOnInteraction: false,
-      // }}
+      autoplay={{
+        delay: 5000,
+        disableOnInteraction: false,
+      }}
       modules={[Mousewheel, Pagination, Scrollbar, Autoplay]}
       className="poemSwiper"
     >
@@ -40,7 +40,7 @@ const VerticalPoemSwipe: React.FC<VerticalPoemSwipeProps> = ({
             color="#4D4D4D"
             whiteSpace="pre-wrap"
           >
-            {`${viewEng ? item.eng : item.content}`}
+            {viewEng ? item.eng : item.content}
           </Text>
         </SwiperSlide>
       ))}

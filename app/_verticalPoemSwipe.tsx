@@ -3,31 +3,34 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Mousewheel, Pagination, Scrollbar, Autoplay } from "swiper/modules";
 import { Text } from "@chakra-ui/react";
 
-import 'swiper/css';
-import 'swiper/css/pagination';
-import 'swiper/css/scrollbar';
-import './styles.css';
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/scrollbar";
+import "./styles.css";
 
 type VerticalPoemSwipeProps = {
   poems: PoemPost[];
   viewEng: boolean;
 };
-const VerticalPoemSwipe: React.FC<VerticalPoemSwipeProps> = ({ poems, viewEng }) => {
+const VerticalPoemSwipe: React.FC<VerticalPoemSwipeProps> = ({
+  poems,
+  viewEng,
+}) => {
   return (
     <Swiper
-      direction='vertical'
+      direction="vertical"
       scrollbar={true}
       slidesPerView={1}
       spaceBetween={30}
       mousewheel={true}
       loop={true}
-      autoplay={{
-        delay: 3000,
-        disableOnInteraction: false,
-      }}
+      // autoplay={{
+      //   delay: 5000,
+      //   disableOnInteraction: false,
+      // }}
       modules={[Mousewheel, Pagination, Scrollbar, Autoplay]}
       className="poemSwiper"
-      >
+    >
       {poems.map((item, index) => (
         <SwiperSlide key={index}>
           <Text
@@ -37,7 +40,7 @@ const VerticalPoemSwipe: React.FC<VerticalPoemSwipeProps> = ({ poems, viewEng })
             color="#4D4D4D"
             whiteSpace="pre-wrap"
           >
-            {viewEng ? item.eng : item.content}
+            {`${viewEng ? item.eng : item.content}`}
           </Text>
         </SwiperSlide>
       ))}

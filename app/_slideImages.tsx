@@ -4,7 +4,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 // import required modules
 import { FreeMode, Navigation, Thumbs, Autoplay } from "swiper/modules";
 import { Post } from "@/notionApi/notion";
-import styled from "@emotion/styled";
 import { Container } from "semantic-ui-react";
 
 // Import Swiper styles
@@ -17,14 +16,6 @@ import "./styles.css";
 import { useState } from "react";
 
 import { Image } from "@chakra-ui/react";
-
-const ImageComponent = styled(Image)({
-  "> *": {
-    borderRadius: "2px",
-    margin: "0 auto 4px auto",
-  },
-  width: "60vw",
-});
 
 type SlideImages = {
   post?: Post;

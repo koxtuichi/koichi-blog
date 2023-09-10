@@ -68,7 +68,7 @@ const HomeComponent: React.FC<HomeComponentProps> = ({ posts, poemPosts }) => {
 
   const fourPictureTitle = useMemo(() => {
     return viewEng
-      ? '"What we want to convey in 4 pieces."'
+      ? '"What Four Photographs Say."'
       : "「４枚で伝えたいこと」";
   }, [viewEng]);
 

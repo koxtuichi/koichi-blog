@@ -10,8 +10,9 @@ import './styles.css';
 
 type VerticalPoemSwipeProps = {
   poems: PoemPost[];
+  viewEng: boolean;
 };
-const VerticalPoemSwipe: React.FC<VerticalPoemSwipeProps> = ({ poems }) => {
+const VerticalPoemSwipe: React.FC<VerticalPoemSwipeProps> = ({ poems, viewEng }) => {
   return (
     <Swiper
       direction='vertical'
@@ -36,7 +37,7 @@ const VerticalPoemSwipe: React.FC<VerticalPoemSwipeProps> = ({ poems }) => {
             color="#4D4D4D"
             whiteSpace="pre-wrap"
           >
-            {item.content}
+            {viewEng ? item.eng : item.content}
           </Text>
         </SwiperSlide>
       ))}

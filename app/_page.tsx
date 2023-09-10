@@ -62,6 +62,24 @@ const HomeComponent: React.FC<HomeComponentProps> = ({ posts, poemPosts }) => {
     return filtered;
   }, [posts]);
 
+  const moreText = useMemo(() => {
+    return viewEng ? "More" : "もっとみる";
+  }, [viewEng]);
+
+  const fourPictureTitle = useMemo(() => {
+    return viewEng
+      ? '"What we want to convey in 4 pieces."'
+      : "「４枚で伝えたいこと」";
+  }, [viewEng]);
+
+  const foveonTitle = useMemo(() => {
+    return viewEng ? '"This is FOVEON."' : "「これがFOVEON」";
+  }, [viewEng]);
+
+  const perfectDayTitle = useMemo(() => {
+    return viewEng ? '"Perfect day for photographs."' : "「写真日和」";
+  }, [viewEng]);
+
   return (
     <>
       <Header as="h2" icon textAlign="center">
@@ -83,14 +101,13 @@ const HomeComponent: React.FC<HomeComponentProps> = ({ posts, poemPosts }) => {
         <SnsIcons />
       </ContainerSelfIntroductionComponent>
       <DividerMargin />
-      {/* 今日の格言 */}
-      <VerticalPoemSwipe poems={poemPosts} />
+      {/* ポエム */}
+      <VerticalPoemSwipe poems={poemPosts} viewEng={viewEng} />
       <DividerMargin />
       {/* 写真４枚 */}
-
       <Flex flexDirection="column" gap="20px" mb="20px">
         <Text fontSize="20px" width="100%" textAlign="center" mb="0px">
-          「４枚で伝えたいこと」
+          {fourPictureTitle}
         </Text>
         {slidePosts
           .filter((_, index) => index < viewSlidePosts)
@@ -105,7 +122,7 @@ const HomeComponent: React.FC<HomeComponentProps> = ({ posts, poemPosts }) => {
             basic
             onClick={() => setViewSlidePosts((prev) => prev + 1)}
           >
-            もっとみる
+            {moreText}
           </Button>
         </ContainerButtonCenter>
       )}
@@ -114,7 +131,7 @@ const HomeComponent: React.FC<HomeComponentProps> = ({ posts, poemPosts }) => {
       <Container>
         <ContainerCenter>
           <Text fontSize="20px" width="100%" textAlign="center">
-            「これがFOVEON」
+            {foveonTitle}
           </Text>
           <Flex flexDirection="column" gap="20px">
             {sigmaPosts
@@ -137,7 +154,7 @@ const HomeComponent: React.FC<HomeComponentProps> = ({ posts, poemPosts }) => {
               basic
               onClick={() => setViewSigmaPosts((prev) => prev + 1)}
             >
-              もっとみる
+              {moreText}
             </Button>
           </ContainerButtonCenter>
         )}
@@ -148,7 +165,7 @@ const HomeComponent: React.FC<HomeComponentProps> = ({ posts, poemPosts }) => {
         <Grid>
           <ContainerCenter>
             <Text fontSize="20px" width="100%" textAlign="center">
-              「写真日和」
+              {perfectDayTitle}
             </Text>
             <Grid.Row columns={1}>
               <MainPost
@@ -173,7 +190,7 @@ const HomeComponent: React.FC<HomeComponentProps> = ({ posts, poemPosts }) => {
               basic
               onClick={() => setViewPosts((prev) => prev + 4)}
             >
-              もっとみる
+              {moreText}
             </Button>
             <div style={{ height: "20px" }} />
           </ContainerButtonCenter>

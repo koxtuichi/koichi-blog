@@ -8,6 +8,13 @@ type SellPhotoProps = {
   viewEng: boolean;
   presentPhotoPost: PresentPhotoPost;
 };
+type SubmitObjType = {
+  name: string;
+  zipCode: string;
+  address: string;
+  email: string;
+};
+
 const ZERO = 0;
 const FIRST = 1;
 const SECOND = 2;
@@ -32,12 +39,6 @@ const TextComponent: React.FC = ({ children }) => {
       {children}
     </Text>
   );
-};
-type SubmitObjType = {
-  name: string;
-  zipCode: string;
-  address: string;
-  email: string;
 };
 const SellPhoto: React.FC<SellPhotoProps> = ({ viewEng, presentPhotoPost }) => {
   const [step, setStep] = useState<number>(ZERO);
@@ -90,20 +91,22 @@ const SellPhoto: React.FC<SellPhotoProps> = ({ viewEng, presentPhotoPost }) => {
     return viewEng ? "Privacy Policy" : "プライバシーポリシー";
   }, [viewEng]);
 
-  const [submitObj, setSubmitObj] = useState<SubmitObjType>({
-    name: "",
-    zipCode: "",
-    address: "",
-    email: "",
-  });
+  const [name, setName] = useState<string>("");
+  const [zipCode, setZipCode] = useState<string>("");
+  const [address, setAddress] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (Object.values(submitObj).some((item) => !item)) return;
-
     setStep(THIRD);
     try {
+      const submitObj: SubmitObjType = {
+        name: name,
+        zipCode: zipCode,
+        address: address,
+        email: email,
+      };
       const response = await fetch("/api", {
         method: "POST",
         headers: {
@@ -122,11 +125,8 @@ const SellPhoto: React.FC<SellPhotoProps> = ({ viewEng, presentPhotoPost }) => {
     }
   };
 
-  const [submitButtonDisabled, setSubmitButtonDisabled] =
-    useState<boolean>(true);
   return (
     <Box mt="40px" m="0 auto" w="fit-content">
-      {console.dir(submitObj)}
       {step === ZERO && (
         <FlexComponent>
           <TextComponent>{zeroDescription}</TextComponent>
@@ -180,75 +180,43 @@ const SellPhoto: React.FC<SellPhotoProps> = ({ viewEng, presentPhotoPost }) => {
             <Flex mb="10px" w="300px" flexDirection="column" m="0 auto">
               <Input
                 icon="male"
-                iconPosition="left"
                 label={{ tag: true, content: viewEng ? "Name" : "お名前" }}
-                labelPosition="right"
                 size="mini"
                 onChange={(e) => {
-                  setSubmitObj((prev) => {
-                    prev.name = e.target.value;
-                    return prev;
-                  });
-                  setSubmitButtonDisabled(
-                    !Object.values(submitObj).every((item) => Boolean(item))
-                  );
+                  setName(e.target.value);
                 }}
               />
               <Input
                 icon="zip"
-                iconPosition="left"
                 label={{
                   tag: true,
                   content: viewEng ? "Zip code" : "郵便番号",
                 }}
-                labelPosition="right"
                 size="mini"
                 onChange={(e) => {
-                  setSubmitObj((prev) => {
-                    prev.zipCode = e.target.value;
-                    return prev;
-                  });
-                  setSubmitButtonDisabled(
-                    !Object.values(submitObj).every((item) => Boolean(item))
-                  );
+                  setZipCode(e.target.value);
                 }}
               />
               <Input
                 icon="address book"
-                iconPosition="left"
                 label={{
                   tag: true,
                   content: viewEng ? "Address" : "住所",
                 }}
-                labelPosition="right"
                 size="mini"
                 onChange={(e) => {
-                  setSubmitObj((prev) => {
-                    prev.address = e.target.value;
-                    return prev;
-                  });
-                  setSubmitButtonDisabled(
-                    !Object.values(submitObj).every((item) => Boolean(item))
-                  );
+                  setAddress(e.target.value);
                 }}
               />
               <Input
                 icon="mail"
-                iconPosition="left"
                 label={{
                   tag: true,
                   content: viewEng ? "Email" : "連絡先",
                 }}
-                labelPosition="right"
                 size="mini"
                 onChange={(e) => {
-                  setSubmitObj((prev) => {
-                    prev.email = e.target.value;
-                    return prev;
-                  });
-                  setSubmitButtonDisabled(
-                    !Object.values(submitObj).every((item) => Boolean(item))
-                  );
+                  setEmail(e.target.value);
                 }}
               />
             </Flex>
@@ -256,10 +224,7 @@ const SellPhoto: React.FC<SellPhotoProps> = ({ viewEng, presentPhotoPost }) => {
               <Button
                 basic
                 type="submit"
-                disabled={
-                  submitButtonDisabled ||
-                  !Object.values(submitObj).every((item) => Boolean(item))
-                }
+                disabled={!name || !zipCode || !address || !email}
               >
                 {applyExecuteButtonText}
               </Button>

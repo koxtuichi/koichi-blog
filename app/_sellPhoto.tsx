@@ -187,7 +187,7 @@ const SellPhoto: React.FC<SellPhotoProps> = ({ viewEng, presentPhotoPost }) => {
                     return prev;
                   });
                   setSubmitButtonDisabled(
-                    Object.values(submitObj).some((item) => !item)
+                    !Object.values(submitObj).every((item) => Boolean(item))
                   );
                 }}
               />
@@ -200,7 +200,7 @@ const SellPhoto: React.FC<SellPhotoProps> = ({ viewEng, presentPhotoPost }) => {
                     return prev;
                   });
                   setSubmitButtonDisabled(
-                    Object.values(submitObj).some((item) => !item)
+                    !Object.values(submitObj).every((item) => Boolean(item))
                   );
                 }}
               />
@@ -213,7 +213,7 @@ const SellPhoto: React.FC<SellPhotoProps> = ({ viewEng, presentPhotoPost }) => {
                     return prev;
                   });
                   setSubmitButtonDisabled(
-                    Object.values(submitObj).some((item) => !item)
+                    !Object.values(submitObj).every((item) => Boolean(item))
                   );
                 }}
               />
@@ -230,7 +230,7 @@ const SellPhoto: React.FC<SellPhotoProps> = ({ viewEng, presentPhotoPost }) => {
                     return prev;
                   });
                   setSubmitButtonDisabled(
-                    Object.values(submitObj).some((item) => !item)
+                    !Object.values(submitObj).every((item) => Boolean(item))
                   );
                 }}
               />

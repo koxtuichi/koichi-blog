@@ -29,13 +29,20 @@ import { Flex, Text } from "@chakra-ui/react";
 import SnsIcons from "./_snsIcons";
 import { PoemPost } from "@/notionApi/poemNotion";
 import VerticalPoemSwipe from "./_verticalPoemSwipe";
+import SellPhoto from "./_sellPhoto";
+import { PresentPhotoPost } from "@/notionApi/presentPhoto";
 
 type HomeComponentProps = {
   posts: Post[];
   poemPosts: PoemPost[];
+  presentPhotoPosts: PresentPhotoPost[];
 };
 const SIGMA_SELECT = "sigma";
-const HomeComponent: React.FC<HomeComponentProps> = ({ posts, poemPosts }) => {
+const HomeComponent: React.FC<HomeComponentProps> = ({
+  posts,
+  poemPosts,
+  presentPhotoPosts,
+}) => {
   const [selectedPhoto, setSelectedPhoto] = useState<Post | null>(null);
   const [viewEng, setViewEng] = useState<boolean>(false);
   const [viewPosts, setViewPosts] = useState<number>(2);
@@ -67,9 +74,7 @@ const HomeComponent: React.FC<HomeComponentProps> = ({ posts, poemPosts }) => {
   }, [viewEng]);
 
   const fourPictureTitle = useMemo(() => {
-    return viewEng
-      ? '"What Four Photographs Say."'
-      : "「４枚で伝えたいこと」";
+    return viewEng ? '"What Four Photographs Say."' : "「４枚で伝えたいこと」";
   }, [viewEng]);
 
   const foveonTitle = useMemo(() => {
@@ -100,6 +105,11 @@ const HomeComponent: React.FC<HomeComponentProps> = ({ posts, poemPosts }) => {
         {/* SNSアイコン */}
         <SnsIcons />
       </ContainerSelfIntroductionComponent>
+      <DividerMargin />
+      <SellPhoto
+        viewEng={viewEng}
+        presentPhotoPost={presentPhotoPosts[0]}
+      />
       <DividerMargin />
       {/* ポエム */}
       <VerticalPoemSwipe poems={poemPosts} viewEng={viewEng} />

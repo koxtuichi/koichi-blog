@@ -1,5 +1,4 @@
-import { Client } from "@notionhq/client";
-import { isFullPage } from "@jitl/notion-api";
+import { Client, isFullPageOrDatabase,  } from "@notionhq/client";
 
 export type Post = {
   id: string;
@@ -29,7 +28,7 @@ export const getPageDatas = async (cursor?: string | null) => {
   const posts: Post[] = [];
 
   for (const page of fullOrPartialPages.results) {
-    if (!isFullPage(page)) {
+    if (!isFullPageOrDatabase(page)) {
       continue;
     }
     const published: any = page.properties.published;

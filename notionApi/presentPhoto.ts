@@ -1,23 +1,21 @@
 import { Client, isFullPageOrDatabase } from "@notionhq/client";
 
-export type PoemPost = {
+export type PresentPhotoPost = {
   id: string;
   title: string;
-  content: string;
-  eng: string;
-  updatedAt: any;
+  photo: string;
 };
 
 const notion = new Client({
   auth: process.env.NOTION_SECRET,
 });
 
-export const getPagePoemPost = async (cursor?: string | null) => {
+export const getPagePresentPhotoPost = async (cursor?: string | null) => {
   const fullOrPartialPages = await notion.databases.query({
-    database_id: process.env.NOTION_POEM_DATABASE_ID || "",
+    database_id: process.env.NOTION_PRESENT_PHOTO_ID || "",
   });
 
-  const posts: PoemPost[] = [];
+  const posts: PresentPhotoPost[] = [];
 
   for (const page of fullOrPartialPages.results) {
     if (!isFullPageOrDatabase(page)) {
@@ -26,23 +24,19 @@ export const getPagePoemPost = async (cursor?: string | null) => {
     const published: any = page.properties.published;
     if (!published.checkbox) continue;
     const properties: any = page.properties;
+    const image = properties.url;
+    const url = image.files[0]?.file?.url || "";
     posts.push({
       id: page.id,
       title: properties.title.title[0]
         ? properties.title.title[0].plain_text
         : "",
-      content: properties.content.rich_text[0]
-      ? properties.content.rich_text[0].plain_text
-      : "",
-      eng: properties.eng.rich_text[0]
-      ? properties.eng.rich_text[0].plain_text
-      : "",
-      updatedAt: properties.updatedAt.created_time,
+      photo: url,
     });
   }
 
   return {
-    poemPosts: posts,
+    presentPhotoPosts: posts,
     nextCursor: fullOrPartialPages.next_cursor,
   };
 };

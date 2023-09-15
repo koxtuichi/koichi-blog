@@ -180,7 +180,9 @@ const SellPhoto: React.FC<SellPhotoProps> = ({ viewEng, presentPhotoPost }) => {
             <Flex mb="10px" w="300px" flexDirection="column" m="0 auto">
               <Input
                 icon="male"
+                iconPosition="left"
                 label={{ tag: true, content: viewEng ? "Name" : "お名前" }}
+                labelPosition="right"
                 size="mini"
                 onChange={(e) => {
                   setName(e.target.value);
@@ -188,10 +190,12 @@ const SellPhoto: React.FC<SellPhotoProps> = ({ viewEng, presentPhotoPost }) => {
               />
               <Input
                 icon="zip"
+                iconPosition="left"
                 label={{
                   tag: true,
                   content: viewEng ? "Zip code" : "郵便番号",
                 }}
+                labelPosition="right"
                 size="mini"
                 onChange={(e) => {
                   setZipCode(e.target.value);
@@ -199,10 +203,12 @@ const SellPhoto: React.FC<SellPhotoProps> = ({ viewEng, presentPhotoPost }) => {
               />
               <Input
                 icon="address book"
+                iconPosition="left"
                 label={{
                   tag: true,
                   content: viewEng ? "Address" : "住所",
                 }}
+                labelPosition="right"
                 size="mini"
                 onChange={(e) => {
                   setAddress(e.target.value);
@@ -210,10 +216,12 @@ const SellPhoto: React.FC<SellPhotoProps> = ({ viewEng, presentPhotoPost }) => {
               />
               <Input
                 icon="mail"
+                iconPosition="left"
                 label={{
                   tag: true,
                   content: viewEng ? "Email" : "連絡先",
                 }}
+                labelPosition="right"
                 size="mini"
                 onChange={(e) => {
                   setEmail(e.target.value);

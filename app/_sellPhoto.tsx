@@ -224,7 +224,7 @@ const SellPhoto: React.FC<SellPhotoProps> = ({ viewEng, presentPhotoPost }) => {
               <Button
                 basic
                 type="submit"
-                disabled={!name || !zipCode || !address || !email}
+                disabled={!name || !zipCode || !address}
               >
                 {applyExecuteButtonText}
               </Button>

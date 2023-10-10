@@ -44,7 +44,7 @@ const HomeComponent: React.FC<HomeComponentProps> = ({
   presentPhotoPosts,
 }) => {
   const [selectedPhoto, setSelectedPhoto] = useState<Post | null>(null);
-  const [viewEng, setViewEng] = useState<boolean>(false);
+  const [viewEng, setViewEng] = useState<boolean>(true);
   const [viewPosts, setViewPosts] = useState<number>(2);
   const [viewSlidePosts, setViewSlidePosts] = useState<number>(1);
   const [viewSigmaPosts, setViewSigmaPosts] = useState<number>(1);
@@ -105,11 +105,14 @@ const HomeComponent: React.FC<HomeComponentProps> = ({
         {/* SNSアイコン */}
         <SnsIcons />
       </ContainerSelfIntroductionComponent>
-      <DividerMargin />
-      <SellPhoto
+
+      {/* 写真送付サービス TODO: 一旦なし */}
+      {/* <DividerMargin /> */}
+      {/* <SellPhoto
         viewEng={viewEng}
         presentPhotoPost={presentPhotoPosts[0]}
-      />
+      /> */}
+
       <DividerMargin />
       {/* ポエム */}
       <VerticalPoemSwipe poems={poemPosts} viewEng={viewEng} />

@@ -2,17 +2,14 @@ import { Post } from "@/notionApi/notion";
 import React from "react";
 import { Card, Icon } from "semantic-ui-react";
 import SpeakButton from "./SpeakButton";
-import {
-  GridImageComponent,
-  TagLabel,
-} from "./styledComponents";
+import { GridImageComponent, TagLabel } from "./styledComponents";
 import styled from "@emotion/styled";
 
-import { Image } from '@chakra-ui/react'
+import { Image } from "@chakra-ui/react";
 
 const ContainerContent = styled(Card.Content)({
-  maxWidth: '960px'
-})
+  maxWidth: "960px",
+});
 
 type MainPostProps = {
   posts: Post[];
@@ -39,8 +36,9 @@ const MainPost: React.FC<MainPostProps> = ({
                 <Image
                   src={post.url}
                   onClick={() => setSelectedPhoto(post)}
-                  w='100%'
+                  w="100%"
                   borderRadius={4}
+                  alt="main post image"
                 />
                 <ContainerContent>
                   <Card.Header>
@@ -68,6 +66,11 @@ const MainPost: React.FC<MainPostProps> = ({
                     <SpeakButton
                       text={viewEng ? post.eng : post.description}
                       viewEng={viewEng}
+                      speechFile={
+                        viewEng
+                          ? post.speechDescriptionEng
+                          : post.speechDescriptionJpn
+                      }
                     />
                     {!viewEng ? post.description : post.eng}
                   </Card.Description>

@@ -2,12 +2,9 @@ import { Post } from "@/notionApi/notion";
 import React from "react";
 import { Card, Icon } from "semantic-ui-react";
 import SpeakButton from "./SpeakButton";
-import {
-  GridImageComponent,
-  TagLabel,
-} from "./styledComponents";
+import { GridImageComponent, TagLabel } from "./styledComponents";
 
-import { Image } from '@chakra-ui/react'
+import { Image } from "@chakra-ui/react";
 
 type SecondPostProps = {
   posts: Post[];
@@ -37,6 +34,7 @@ const SecondPost: React.FC<SecondPostProps> = ({
                 src={post.url}
                 onClick={() => setSelectedPhoto(post)}
                 borderRadius={4}
+                alt="second post image"
               />
               <Card.Content>
                 <Card.Header>
@@ -64,6 +62,11 @@ const SecondPost: React.FC<SecondPostProps> = ({
                   <SpeakButton
                     text={viewEng ? post.eng : post.description}
                     viewEng={viewEng}
+                    speechFile={
+                      viewEng
+                        ? post.speechDescriptionEng
+                        : post.speechDescriptionJpn
+                    }
                   />
                   {!viewEng ? post.description : post.eng}
                 </Card.Description>

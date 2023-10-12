@@ -1,4 +1,4 @@
-import { Client, isFullPageOrDatabase,  } from "@notionhq/client";
+import { Client, isFullPageOrDatabase } from "@notionhq/client";
 
 export type Post = {
   id: string;
@@ -14,6 +14,8 @@ export type Post = {
   shootingDate: any;
   link?: any;
   camera?: any;
+  speechDescriptionJpn?: string;
+  speechDescriptionEng?: string;
 };
 
 const notion = new Client({
@@ -44,6 +46,9 @@ export const getPageDatas = async (cursor?: string | null) => {
     const url3 = image3.files[0]?.file?.url || null;
     const url4 = image4.files[0]?.file?.url || null;
 
+    const speechJpnFile = properties.speechDescriptionJpn.files[0]?.file?.url;
+    const speechEngFile = properties.speechDescriptionEng.files[0]?.file?.url;
+
     posts.push({
       id: page.id,
       title: properties.title.title[0]
@@ -66,6 +71,8 @@ export const getPageDatas = async (cursor?: string | null) => {
         ? properties.link.rich_text[0].plain_text
         : "",
       camera: properties?.camera?.select?.name || "",
+      speechDescriptionJpn: speechJpnFile,
+      speechDescriptionEng: speechEngFile,
     });
   }
 

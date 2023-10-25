@@ -4,6 +4,9 @@
         "next/core-web-vitals"
     ],
     "rules": {
-        "@next/next/no-img-element": "off"
+        "semi": ["error", "always"],
+        "quotes": ["error", "single"],
+        "indent": ["error", "tab"],
+        "no-unused-vars": ["error"]
     }
 }

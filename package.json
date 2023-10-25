@@ -30,12 +30,14 @@
     "typescript": "^5.1.6"
   },
   "dependencies": {
+    "@belivvr/aframe-react": "^0.4.2",
     "@chakra-ui/react": "^2.8.0",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@mui/material": "^5.14.7",
     "@notionhq/client": "^2.2.13",
     "@vercel/analytics": "^1.0.1",
+    "aframe-react": "^4.4.0",
     "axios": "^1.4.0",
     "dayjs": "^1.11.8",
     "debug": "^4.3.4",

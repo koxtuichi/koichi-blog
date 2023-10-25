@@ -1,37 +1,37 @@
-import { Post } from "@/notionApi/notion";
-import styled from "@emotion/styled";
-import React from "react";
-import { Image, Modal } from "semantic-ui-react";
+import { Post } from '@/notionApi/notion';
+import styled from '@emotion/styled';
+import React from 'react';
+import { Image, Modal } from 'semantic-ui-react';
 
 const ModalComponent = styled(Modal)({
-  background: "rgba(50, 50, 50, 0.5) !important",
-  borderRadius: "2px",
-  width: "100% !important",
-  transform: "translateY(-28px)",
-  padding: "20px 0 20px 0",
+	background: 'rgba(50, 50, 50, 0.5) !important',
+	borderRadius: '2px',
+	width: '100% !important',
+	transform: 'translateY(-28px)',
+	padding: '20px 0 20px 0',
 });
 
 const ModalContent = styled(Modal.Content)({
-  width: "100% !important",
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
+	width: '100% !important',
+	display: 'flex',
+	justifyContent: 'center',
+	alignItems: 'center',
 });
 
-const ModalContentColumn = styled(Modal.Content)({
-  display: "flex",
-  flexDirection: "column",
-});
+// const ModalContentColumn = styled(Modal.Content)({
+// 	display: 'flex',
+// 	flexDirection: 'column',
+// });
 
-const ModalDescription = styled(Modal.Description)({
-  whiteSpace: "pre-wrap",
-  padding: "10px",
-  maxWidth: "500px",
-});
+// const ModalDescription = styled(Modal.Description)({
+// 	whiteSpace: 'pre-wrap',
+// 	padding: '10px',
+// 	maxWidth: '500px',
+// });
 
 const ImageComponent = styled(Image)({
-  objectFit: "contain",
-  marginRight: "10px",
+	objectFit: 'contain',
+	marginRight: '10px',
 });
 
 type ModalImageProps = {
@@ -40,37 +40,36 @@ type ModalImageProps = {
   viewEng: boolean;
 };
 const ModalImage: React.FC<ModalImageProps> = ({
-  selectedPhoto,
-  setSelectedPhoto,
-  viewEng,
+	selectedPhoto,
+	setSelectedPhoto,
 }) => {
-  const getKeyWords = (keywords: string) => {
-    const results = keywords
-      .split("\n") // 改行で文字列を分割
-      .map((line) => `「${line.trim()}」`) // 各行の前後の空白を削除し、「」かっこを付ける
-      .join("");
-    return results;
-  };
-  const getExplanation = (explanation: string) => {
-    return explanation.split("\n").map((item) => <p>{item}</p>);
-  };
+	// const getKeyWords = (keywords: string) => {
+	// 	const results = keywords
+	// 		.split('\n') // 改行で文字列を分割
+	// 		.map((line) => `「${line.trim()}」`) // 各行の前後の空白を削除し、「」かっこを付ける
+	// 		.join('');
+	// 	return results;
+	// };
+	// const getExplanation = (explanation: string) => {
+	// 	return explanation.split('\n').map((item) => <p>{item}</p>);
+	// };
 
-  return (
-    <ModalComponent
-      open={!!selectedPhoto}
-      onClose={() => setSelectedPhoto(null)}
-      size="large"
-      basic
-    >
-      <ModalContent image onClick={() => setSelectedPhoto(null)}>
-        <ImageComponent
-          // src={`/${selectedPhoto?.id}.png`}
-          // src={selectedPhoto?.url || `blogImages/${selectedPhoto?.id}.png`}
-          src={selectedPhoto?.url}
-          onClick={() => setSelectedPhoto(null)}
-          size="massive"
-        />
-        {/* <ModalContentColumn>
+	return (
+		<ModalComponent
+			open={!!selectedPhoto}
+			onClose={() => setSelectedPhoto(null)}
+			size="large"
+			basic
+		>
+			<ModalContent image onClick={() => setSelectedPhoto(null)}>
+				<ImageComponent
+					// src={`/${selectedPhoto?.id}.png`}
+					// src={selectedPhoto?.url || `blogImages/${selectedPhoto?.id}.png`}
+					src={selectedPhoto?.url}
+					onClick={() => setSelectedPhoto(null)}
+					size="massive"
+				/>
+				{/* <ModalContentColumn>
           {selectedPhoto?.keywords && (
             <ModalDescription onClick={() => setSelectedPhoto(null)}>
               <p>{viewEng ? "KEYWORDS" : "キーワード"}</p>
@@ -92,9 +91,9 @@ const ModalImage: React.FC<ModalImageProps> = ({
             </ModalDescription>
           )}
         </ModalContentColumn> */}
-      </ModalContent>
-    </ModalComponent>
-  );
+			</ModalContent>
+		</ModalComponent>
+	);
 };
 
 export default ModalImage;

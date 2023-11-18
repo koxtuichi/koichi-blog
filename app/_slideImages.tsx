@@ -25,22 +25,12 @@ const SlideImages: React.FC<SlideImages> = ({ post }) => {
 	const postComponent = post && (
 		<>
 			{Array.from({ length: 4 }).map((_, index) => {
-				let url = null;
-				if (index === 0) {
-					url = post.url;
-				} else if (index === 1) {
-					url = post.url2;
-				} else if (index === 2) {
-					url = post.url3;
-				} else {
-					url = post.url4;
-				}
 				return (
 					<SwiperSlide
 						key={index}
 						style={{ display: 'flex', justifyContent: 'center' }}
 					>
-						<Image src={url} borderRadius={4} />
+						<Image src={`blogImages/${index+1}-${post.id}.png`} borderRadius={4} alt='slideImage' />
 					</SwiperSlide>
 				);
 			})}

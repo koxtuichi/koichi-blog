@@ -149,7 +149,7 @@ const HomeComponent: React.FC<HomeComponentProps> = ({
 								return (
 									<SemanticImage
 										key={index}
-										src={item.url}
+										src={`blogImages/1-${item.id}.png`}
 										alt="dp1 merrill sigma foveon"
 									/>
 								);

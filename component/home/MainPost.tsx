@@ -34,7 +34,7 @@ const MainPost: React.FC<MainPostProps> = ({
 						return (
 							<GridImageComponent key={index}>
 								<Image
-									src={post.url}
+									src={`blogImages/1-${post.id}.png`}
 									onClick={() => setSelectedPhoto(post)}
 									w="100%"
 									borderRadius={4}

@@ -2,18 +2,14 @@
 // import { getPagePoemPost } from '@/notionApi/poemNotion';
 // import { getPagePresentPhotoPost } from '@/notionApi/presentPhoto';
 
-import { Scene } from '@belivvr/aframe-react';
+import { Scene } from "@belivvr/aframe-react";
 
 const Home = async () => {
-	// const { posts } = await getPageDatas();
-	// const { poemPosts } = await getPagePoemPost();
-	// const { presentPhotoPosts } = await getPagePresentPhotoPost();
+  // const { posts } = await getPageDatas();
+  // const { poemPosts } = await getPagePoemPost();
+  // const { presentPhotoPosts } = await getPagePresentPhotoPost();
 
-	return (
-		<Scene>
-
-		</Scene>
-	);
+  return <Scene></Scene>;
 };
 
 export default Home;

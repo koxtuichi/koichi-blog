@@ -20,6 +20,7 @@ type TodaysFortuneProps = {
   isEng: boolean;
 };
 const TodaysFortune: React.FC<TodaysFortuneProps> = ({ isEng }) => {
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const chatMessage: ChatCompletionRequestMessage[] = [
     {
       role: "system",

@@ -98,14 +98,6 @@ const HomeComponent: React.FC<HomeComponentProps> = ({ posts, poemPosts }) => {
         {/* SNSアイコン */}
         <SnsIcons />
       </ContainerSelfIntroductionComponent>
-
-      {/* 写真送付サービス TODO: 一旦なし */}
-      {/* <DividerMargin /> */}
-      {/* <SellPhoto
-        viewEng={viewEng}
-        presentPhotoPost={presentPhotoPosts[0]}
-      /> */}
-
       <DividerMargin />
       {/* ポエム */}
       <VerticalPoemSwipe poems={poemPosts} viewEng={viewEng} />

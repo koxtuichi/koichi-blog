@@ -42,7 +42,6 @@ const MainPost: React.FC<MainPostProps> = ({
                 />
                 <ContainerContent>
                   <Card.Header>
-                    {!viewEng ? post.title : post.titleEng}
                     {post.link && (
                       <TagLabel
                         as="a"
@@ -64,15 +63,15 @@ const MainPost: React.FC<MainPostProps> = ({
                   </Card.Meta>
                   <Card.Description>
                     <SpeakButton
-                      text={viewEng ? post.eng : post.description}
+                      text={viewEng ? post.engDescription : post.description}
                       viewEng={viewEng}
                       speechFile={
                         viewEng
-                          ? post.speechDescriptionEng
-                          : post.speechDescriptionJpn
+                          ? post.engSpeechDescription
+                          : post.jpnSpeechDescription
                       }
                     />
-                    {!viewEng ? post.description : post.eng}
+                    {!viewEng ? post.description : post.engDescription}
                   </Card.Description>
                 </ContainerContent>
               </GridImageComponent>

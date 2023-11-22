@@ -2,10 +2,8 @@ import { Client, isFullPageOrDatabase } from "@notionhq/client";
 
 export type Post = {
   id: string;
-  title: string;
-  titleEng: string;
   description: string;
-  eng: string;
+  engDescription: string;
   url: any;
   url2: any;
   url3: any;
@@ -14,15 +12,15 @@ export type Post = {
   shootingDate: any;
   link?: any;
   camera?: any;
-  speechDescriptionJpn?: string;
-  speechDescriptionEng?: string;
+  jpnSpeechDescription?: string;
+  engSpeechDescription?: string;
 };
 
 const notion = new Client({
   auth: process.env.NOTION_SECRET,
 });
 
-export const getPageDatas = async (cursor?: string | null) => {
+export const getPageDatas = async () => {
   const fullOrPartialPages = await notion.databases.query({
     database_id: process.env.NOTION_DATABASE_ID || "",
   });
@@ -46,16 +44,13 @@ export const getPageDatas = async (cursor?: string | null) => {
     const url3 = image3.files[0]?.file?.url || null;
     const url4 = image4.files[0]?.file?.url || null;
 
-    const speechJpnFile = properties.speechDescriptionJpn.files[0]?.file?.url;
-    const speechEngFile = properties.speechDescriptionEng.files[0]?.file?.url;
+    const speechJpnFile = properties.jpnSpeechDescription.files[0]?.file?.url;
+    const speechEngFile = properties.engSpeechDescription.files[0]?.file?.url;
 
     posts.push({
       id: page.id,
-      title: properties.title.title[0]
-        ? properties.title.title[0].plain_text
-        : "",
-      description: properties.description.rich_text[0]
-        ? properties.description.rich_text[0].plain_text
+      description: properties.description.title[0]
+        ? properties.description.title[0].plain_text
         : "",
       url: url,
       url2: url2,
@@ -63,16 +58,15 @@ export const getPageDatas = async (cursor?: string | null) => {
       url4: url4,
       updatedAt: properties.updatedAt.date.start,
       shootingDate: properties.shootingDate.date.start,
-      titleEng: properties.titleEng.rich_text[0]?.plain_text || "",
-      eng: properties.eng.rich_text[0]
-        ? properties.eng.rich_text[0].plain_text
+      engDescription: properties.engDescription.rich_text[0]
+        ? properties.engDescription.rich_text[0].plain_text
         : "",
       link: properties.link.rich_text[0]
         ? properties.link.rich_text[0].plain_text
         : "",
       camera: properties?.camera?.select?.name || "",
-      speechDescriptionJpn: speechJpnFile,
-      speechDescriptionEng: speechEngFile,
+      jpnSpeechDescription: speechJpnFile,
+      engSpeechDescription: speechEngFile,
     });
   }
 

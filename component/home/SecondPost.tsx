@@ -1,7 +1,6 @@
 import { Post } from "@/notionApi/notion";
 import React from "react";
-import { Card, Icon } from "semantic-ui-react";
-import SpeakButton from "./SpeakButton";
+import { Card } from "semantic-ui-react";
 import { GridImageComponent, TagLabel } from "./styledComponents";
 
 import { Image } from "@chakra-ui/react";
@@ -53,12 +52,12 @@ const SecondPost: React.FC<SecondPostProps> = ({
                     </TagLabel>
                   )}
                 </Card.Header>
-                <Card.Meta>
+                {/* <Card.Meta>
                   <Icon name="camera retro" />
                   <span>{post.shootingDate}</span>
-                </Card.Meta>
+                </Card.Meta> */}
                 <Card.Description>
-                  <SpeakButton
+                  {/* <SpeakButton
                     text={viewEng ? post.engDescription : post.description}
                     viewEng={viewEng}
                     speechFile={
@@ -66,7 +65,7 @@ const SecondPost: React.FC<SecondPostProps> = ({
                         ? post.engSpeechDescription
                         : post.jpnSpeechDescription
                     }
-                  />
+                  /> */}
                   {!viewEng ? post.description : post.engDescription}
                 </Card.Description>
               </Card.Content>

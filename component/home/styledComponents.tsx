@@ -37,8 +37,7 @@ export const ContainerCenter = styled(Container)({
 
 export const ContainerButtonCenter = styled(Container)({
   width: "100% !important",
-  textAlign: "right",
-  marginTop: "20px !important",
+  textAlign: "center",
 });
 
 export const TagLabel = styled(Label)({

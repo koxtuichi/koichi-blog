@@ -22,6 +22,7 @@ import {
   ContainerCenter,
   ContainerSelfIntroductionComponent,
   DividerMargin,
+  SecondPostsGridRow,
 } from "@/component/home/styledComponents";
 import ModalImage from "@/component/home/ModalImage";
 import SlideImages from "./_slideImages";
@@ -173,13 +174,13 @@ const HomeComponent: React.FC<HomeComponentProps> = ({ posts, poemPosts }) => {
               />
             </Grid.Row>
           </ContainerCenter>
-          <Grid.Row columns={2}>
+          <SecondPostsGridRow columns={2}>
             <SecondPost
               posts={notSlidePosts.filter((post, index) => index <= viewPosts)}
               viewEng={viewEng}
               setSelectedPhoto={setSelectedPhoto}
             />
-          </Grid.Row>
+          </SecondPostsGridRow>
         </Grid>
         {!(posts.length < viewPosts + 1) && (
           <ContainerButtonCenter>

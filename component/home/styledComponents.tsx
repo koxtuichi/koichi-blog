@@ -37,7 +37,8 @@ export const ContainerCenter = styled(Container)({
 
 export const ContainerButtonCenter = styled(Container)({
   width: "100% !important",
-  textAlign: "center",
+  textAlign: "right",
+  marginTop: "20px !important",
 });
 
 export const TagLabel = styled(Label)({
@@ -50,4 +51,8 @@ export const DividerNoneMarginBottom = styled(Divider)({
 
 export const DividerMargin = styled(Divider)({
   margin: "40px 0 40px 0 !important",
+});
+
+export const SecondPostsGridRow = styled(Grid.Row)({
+  paddingBottom: "0px !important",
 });

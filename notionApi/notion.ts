@@ -56,8 +56,8 @@ export const getPageDatas = async () => {
       url2: url2,
       url3: url3,
       url4: url4,
-      updatedAt: properties.updatedAt.date.start,
-      shootingDate: properties.shootingDate.date.start,
+      updatedAt: properties.updatedAt.date?.start,
+      shootingDate: properties.shootingDate.date?.start,
       engDescription: properties.engDescription.rich_text[0]
         ? properties.engDescription.rich_text[0].plain_text
         : "",

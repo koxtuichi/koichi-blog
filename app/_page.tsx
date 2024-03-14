@@ -87,7 +87,7 @@ const HomeComponent: React.FC<HomeComponentProps> = ({ posts, poemPosts }) => {
       const maxScroll = document.documentElement.scrollHeight;
 
       if (currentScroll >= maxScroll && !(posts.length < viewPosts + 1)) {
-        setViewPosts((prev) => prev + 4);
+        setViewPosts((prev) => prev + 10);
       }
     };
 

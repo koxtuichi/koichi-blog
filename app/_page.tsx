@@ -1,7 +1,7 @@
 "use client";
 
 import { Post } from "@/notionApi/notion";
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import {
   Button,
   Container,
@@ -78,6 +78,22 @@ const HomeComponent: React.FC<HomeComponentProps> = ({ posts, poemPosts }) => {
   const perfectDayTitle = useMemo(() => {
     return viewEng ? "Perfect day for photographs." : "「写真日和」";
   }, [viewEng]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // ウィンドウのスクロール位置 + ビューポートの高さ
+      const currentScroll = window.scrollY + window.innerHeight;
+      // ドキュメントの全体の高さ
+      const maxScroll = document.documentElement.scrollHeight;
+
+      if (currentScroll >= maxScroll && !(posts.length < viewPosts + 1)) {
+        setViewPosts((prev) => prev + 4);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [posts.length, viewPosts]);
 
   return (
     <>
@@ -182,18 +198,6 @@ const HomeComponent: React.FC<HomeComponentProps> = ({ posts, poemPosts }) => {
             />
           </SecondPostsGridRow>
         </Grid>
-        {!(posts.length < viewPosts + 1) && (
-          <ContainerButtonCenter>
-            <Button
-              size="mini"
-              basic
-              onClick={() => setViewPosts((prev) => prev + 4)}
-            >
-              {moreText}
-            </Button>
-            <div style={{ height: "20px" }} />
-          </ContainerButtonCenter>
-        )}
       </Container>
       <DividerMargin />
       <ModalImage

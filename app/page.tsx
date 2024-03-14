@@ -5,7 +5,7 @@ import { getPagePoemPost } from "@/notionApi/poemNotion";
 import fs from "fs";
 
 const Home = async () => {
-  const { posts } = await getPageDatas();
+  const posts = await getPageDatas();
   const { poemPosts } = await getPagePoemPost();
 
   const imagePath = "public/blogImages";

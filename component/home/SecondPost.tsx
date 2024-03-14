@@ -1,7 +1,7 @@
 import { Post } from "@/notionApi/notion";
 import React from "react";
 import { Card } from "semantic-ui-react";
-import { GridImageComponent, TagLabel } from "./styledComponents";
+import { GridImageComponent } from "./styledComponents";
 
 import { Image } from "@chakra-ui/react";
 
@@ -36,7 +36,7 @@ const SecondPost: React.FC<SecondPostProps> = ({
                 alt="second post image"
               />
               <Card.Content>
-                <Card.Header>
+                {/* <Card.Header>
                   {post.link && (
                     <TagLabel
                       as="a"
@@ -47,11 +47,10 @@ const SecondPost: React.FC<SecondPostProps> = ({
                       rel="noopener noreferrer"
                       href={post.link}
                     >
-                      {/* <Icon name="shop" size="mini" /> */}
                       SHOP
                     </TagLabel>
                   )}
-                </Card.Header>
+                </Card.Header> */}
                 {/* <Card.Meta>
                   <Icon name="camera retro" />
                   <span>{post.shootingDate}</span>

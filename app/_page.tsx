@@ -86,7 +86,7 @@ const HomeComponent: React.FC<HomeComponentProps> = ({ posts, poemPosts }) => {
       // ドキュメントの全体の高さ
       const maxScroll = document.documentElement.scrollHeight;
 
-      if (currentScroll >= maxScroll && !(posts.length < viewPosts + 1)) {
+      if (currentScroll + 300 >= maxScroll && !(posts.length < viewPosts + 1)) {
         setViewPosts((prev) => prev + 20);
       }
     };

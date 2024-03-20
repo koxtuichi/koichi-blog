@@ -39,7 +39,7 @@ const SIGMA_SELECT = "sigma";
 const HomeComponent: React.FC<HomeComponentProps> = ({ posts, poemPosts }) => {
   const [selectedPhoto, setSelectedPhoto] = useState<Post | null>(null);
   const [viewEng, setViewEng] = useState<boolean>(true);
-  const [viewPosts, setViewPosts] = useState<number>(2);
+  const [viewPosts, setViewPosts] = useState<number>(10);
   const [viewSlidePosts, setViewSlidePosts] = useState<number>(1);
   const [viewSigmaPosts, setViewSigmaPosts] = useState<number>(1);
 

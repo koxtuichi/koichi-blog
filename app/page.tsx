@@ -14,7 +14,9 @@ const Home = async () => {
     fs.mkdirSync(imagePath);
   } else {
     fs.rm(imagePath, () => {
-      fs.mkdirSync(imagePath);
+      if (!fs.existsSync(imagePath)) {
+        fs.mkdirSync(imagePath);
+      }
     });
   }
 

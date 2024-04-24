@@ -10,9 +10,8 @@ const Home = async () => {
 
   const imagePath = "public/blogImages";
 
-  fs.rm(imagePath, { recursive: true }, () => {
-    fs.mkdirSync(imagePath);
-  });
+  await fs.rm(imagePath, { recursive: true }, () => {});
+  await fs.mkdirSync(imagePath);
 
   posts.map(async (post) => {
     const id = post.id;

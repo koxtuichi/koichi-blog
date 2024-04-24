@@ -10,12 +10,9 @@ const Home = async () => {
 
   const imagePath = "public/blogImages";
 
+  fs.rmdir(imagePath, () => {});
   if (!fs.existsSync(imagePath)) {
     fs.mkdirSync(imagePath);
-  } else {
-    fs.rmdir(imagePath, () => {
-      fs.mkdirSync(imagePath);
-    });
   }
 
   posts.map(async (post) => {

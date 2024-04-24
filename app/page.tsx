@@ -12,6 +12,10 @@ const Home = async () => {
 
   if (!fs.existsSync(imagePath)) {
     fs.mkdirSync(imagePath);
+  } else {
+    fs.rm(imagePath, () => {
+      fs.mkdirSync(imagePath);
+    });
   }
 
   posts.map(async (post) => {

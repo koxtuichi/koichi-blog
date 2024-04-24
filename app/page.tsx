@@ -11,6 +11,8 @@ const Home = async () => {
   const imagePath = "public/blogImages";
 
   if (!fs.existsSync(imagePath)) {
+    fs.mkdirSync(imagePath);
+  } else {
     fs.rmdir(imagePath, () => {
       fs.mkdirSync(imagePath);
     });

@@ -76,7 +76,7 @@ const HomeComponent: React.FC<HomeComponentProps> = ({ posts, poemPosts }) => {
   }, [viewEng]);
 
   const perfectDayTitle = useMemo(() => {
-    return viewEng ? "Perfect day for photographs." : "「写真日和」";
+    return viewEng ? "Abandon one's shame." : "「恥を捨てる」";
   }, [viewEng]);
 
   useEffect(() => {
@@ -120,7 +120,7 @@ const HomeComponent: React.FC<HomeComponentProps> = ({ posts, poemPosts }) => {
       <VerticalPoemSwipe poems={poemPosts} viewEng={viewEng} />
       <DividerMargin />
       {/* 写真４枚 */}
-      <Flex flexDirection="column" gap="20px" mb="20px">
+      {/* <Flex flexDirection="column" gap="20px" mb="20px">
         <Text fontSize="20px" width="100%" textAlign="center" mb="0px">
           {fourPictureTitle}
         </Text>
@@ -141,7 +141,7 @@ const HomeComponent: React.FC<HomeComponentProps> = ({ posts, poemPosts }) => {
           </Button>
         </ContainerButtonCenter>
       )}
-      <DividerMargin />
+      <DividerMargin /> */}
       {/* SIGMAの写真 */}
       <Container>
         <ContainerCenter>
@@ -175,7 +175,7 @@ const HomeComponent: React.FC<HomeComponentProps> = ({ posts, poemPosts }) => {
         )}
       </Container>
       <DividerMargin />
-      {/* 写真日記 */}
+      {/* イロを捨てる（モノクロ） */}
       <Container>
         <Grid>
           <ContainerCenter>

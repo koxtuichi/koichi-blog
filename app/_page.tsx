@@ -76,7 +76,7 @@ const HomeComponent: React.FC<HomeComponentProps> = ({ posts, poemPosts }) => {
   }, [viewEng]);
 
   const perfectDayTitle = useMemo(() => {
-    return viewEng ? "Abandon one's shame." : "「恥を捨てる」";
+    return viewEng ? "Square." : "「正方形」";
   }, [viewEng]);
 
   useEffect(() => {

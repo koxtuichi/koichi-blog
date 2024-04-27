@@ -25,7 +25,7 @@ import {
   SecondPostsGridRow,
 } from "@/component/home/styledComponents";
 import ModalImage from "@/component/home/ModalImage";
-import SlideImages from "./_slideImages";
+// import SlideImages from "./_slideImages";
 import { Flex, Text } from "@chakra-ui/react";
 import SnsIcons from "./_snsIcons";
 import { PoemPost } from "@/notionApi/poemNotion";
@@ -40,15 +40,15 @@ const HomeComponent: React.FC<HomeComponentProps> = ({ posts, poemPosts }) => {
   const [selectedPhoto, setSelectedPhoto] = useState<Post | null>(null);
   const [viewEng, setViewEng] = useState<boolean>(true);
   const [viewPosts, setViewPosts] = useState<number>(10);
-  const [viewSlidePosts, setViewSlidePosts] = useState<number>(1);
+  // const [viewSlidePosts, setViewSlidePosts] = useState<number>(1);
   const [viewSigmaPosts, setViewSigmaPosts] = useState<number>(1);
 
-  const slidePosts = useMemo(() => {
-    const filtered = posts.filter(
-      (post) => post.url2 && post.url3 && post.url4
-    );
-    return filtered;
-  }, [posts]);
+  // const slidePosts = useMemo(() => {
+  //   const filtered = posts.filter(
+  //     (post) => post.url2 && post.url3 && post.url4
+  //   );
+  //   return filtered;
+  // }, [posts]);
 
   const notSlidePosts = useMemo(() => {
     const filtered = posts.filter(
@@ -67,9 +67,9 @@ const HomeComponent: React.FC<HomeComponentProps> = ({ posts, poemPosts }) => {
     return viewEng ? "More" : "もっとみる";
   }, [viewEng]);
 
-  const fourPictureTitle = useMemo(() => {
-    return viewEng ? "What Four Photographs Say." : "「４枚で伝えたいこと」";
-  }, [viewEng]);
+  // const fourPictureTitle = useMemo(() => {
+  //   return viewEng ? "What Four Photographs Say." : "「４枚で伝えたいこと」";
+  // }, [viewEng]);
 
   const foveonTitle = useMemo(() => {
     return viewEng ? "This is FOVEON." : "「これがFOVEON」";

@@ -73,7 +73,7 @@ body {
 .swiper-button-prev {
   width: 50% !important;
   height: 100% !important;
-  transform: translateY(-50%) translateX(10px) !important;
+  /* transform: translateY(-50%) translateX(10px) !important; */
   position: absolute;
   top: 22px;
 }
@@ -88,7 +88,7 @@ body {
 .swiper-button-next {
   width: 50% !important;
   height: 100% !important;
-  transform: translateY(-50%) translateX(10px) !important;
+  transform: translateX(10px) !important;
   position: absolute;
   top: 22px;
 }

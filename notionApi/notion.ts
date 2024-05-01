@@ -7,7 +7,7 @@ export type Post = {
   url: any;
   url2: any;
   url3: any;
-  url4: any;
+  // url4: any;
   updatedAt: any;
   shootingDate: any;
   link?: any;
@@ -41,12 +41,12 @@ export const getPageDatas = async () => {
       const image: any = page.properties.url;
       const image2: any = page.properties.url2;
       const image3: any = page.properties.url3;
-      const image4: any = page.properties.url4;
+      // const image4: any = page.properties.url4;
 
       const url = image.files[0]?.file?.url || "";
       const url2 = image2.files[0]?.file?.url || null;
       const url3 = image3.files[0]?.file?.url || null;
-      const url4 = image4.files[0]?.file?.url || null;
+      // const url4 = image4.files[0]?.file?.url || null;
 
       const speechJpnFile = properties.jpnSpeechDescription.files[0]?.file?.url;
       const speechEngFile = properties.engSpeechDescription.files[0]?.file?.url;
@@ -59,7 +59,7 @@ export const getPageDatas = async () => {
         url: url,
         url2: url2,
         url3: url3,
-        url4: url4,
+        // url4: url4,
         updatedAt: properties.updatedAt.date?.start,
         shootingDate: properties.shootingDate.date?.start,
         engDescription: properties.engDescription.rich_text[0]

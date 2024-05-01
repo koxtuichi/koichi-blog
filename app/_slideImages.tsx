@@ -24,7 +24,7 @@ const SlideImages: React.FC<SlideImages> = ({ post }) => {
   const [thumbsSwiper, setThumbsSwiper] = useState<any | null>(null);
   const postComponent = post && (
     <>
-      {Array.from({ length: 4 }).map((_, index) => {
+      {Array.from({ length: 3 }).map((_, index) => {
         return (
           <SwiperSlide
             key={index}
@@ -56,7 +56,7 @@ const SlideImages: React.FC<SlideImages> = ({ post }) => {
         onSwiper={setThumbsSwiper}
         loop={true}
         spaceBetween={10}
-        slidesPerView={4}
+        slidesPerView={3}
         freeMode={true}
         watchSlidesProgress={true}
         modules={[FreeMode, Navigation, Thumbs]}

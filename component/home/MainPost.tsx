@@ -6,7 +6,9 @@ import styled from "@emotion/styled";
 
 import { Image } from "@chakra-ui/react";
 
-const ContainerContent = styled(Card.Content)({});
+const ContainerContent = styled(Card.Content)({
+  whiteSpace: "break-space",
+});
 
 type MainPostProps = {
   posts: Post[];

@@ -3,6 +3,7 @@ import { Client, isFullPageOrDatabase } from "@notionhq/client";
 export type Post = {
   id: string;
   description: string;
+  jpnDescription: string;
   engDescription: string;
   url: any;
   url2: any;
@@ -62,6 +63,9 @@ export const getPageDatas = async () => {
         // url4: url4,
         updatedAt: properties.updatedAt.date?.start,
         shootingDate: properties.shootingDate.date?.start,
+        jpnDescription: properties.jpnDescription.rich_text[0]
+          ? properties.jpnDescription.rich_text[0].plain_text
+          : "",
         engDescription: properties.engDescription.rich_text[0]
           ? properties.engDescription.rich_text[0].plain_text
           : "",

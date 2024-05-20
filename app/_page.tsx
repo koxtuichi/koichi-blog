@@ -15,14 +15,14 @@ import "semantic-ui-css/semantic.min.css";
 import { TranslateButtonGroup } from "@/component/TranslateButtonGroup";
 import Profile from "@/component/home/profile";
 import MainPost from "@/component/home/MainPost";
-import SecondPost from "@/component/home/SecondPost";
+// import SecondPost from "@/component/home/SecondPost";
 import { Analytics } from "@vercel/analytics/react";
 import {
   ContainerButtonCenter,
   ContainerCenter,
   ContainerSelfIntroductionComponent,
   DividerMargin,
-  SecondPostsGridRow,
+  // SecondPostsGridRow,
 } from "@/component/home/styledComponents";
 import ModalImage from "@/component/home/ModalImage";
 // import SlideImages from "./_slideImages";
@@ -38,7 +38,7 @@ type HomeComponentProps = {
 const SIGMA_SELECT = "sigma";
 const HomeComponent: React.FC<HomeComponentProps> = ({ posts, poemPosts }) => {
   const [selectedPhoto, setSelectedPhoto] = useState<Post | null>(null);
-  const [viewEng, setViewEng] = useState<boolean>(true);
+  const [viewEng, setViewEng] = useState<boolean>(false);
   const [viewPosts, setViewPosts] = useState<number>(10);
   // const [viewSlidePosts, setViewSlidePosts] = useState<number>(1);
   const [viewSigmaPosts, setViewSigmaPosts] = useState<number>(1);
@@ -187,13 +187,13 @@ const HomeComponent: React.FC<HomeComponentProps> = ({ posts, poemPosts }) => {
               />
             </Grid.Row>
           </ContainerCenter>
-          <SecondPostsGridRow columns={2}>
+          {/* <SecondPostsGridRow columns={1}>
             <SecondPost
               posts={notSlidePosts.filter((post, index) => index <= viewPosts)}
               viewEng={viewEng}
               setSelectedPhoto={setSelectedPhoto}
             />
-          </SecondPostsGridRow>
+          </SecondPostsGridRow> */}
         </Grid>
       </Container>
       <DividerMargin />

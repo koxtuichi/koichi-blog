@@ -1,12 +1,11 @@
 import { Client } from "@notionhq/client";
+import { NextResponse } from "next/server";
 
 const notion = new Client({
   auth: process.env.NOTION_SECRET,
 });
 
-import { NextResponse } from "next/server";
-
-export async function POST(request: Request) {
+export async function POST(request: Request): Promise<Response> {
   try {
     const response = await request.json();
     const res = await notion.pages.create({
@@ -61,9 +60,21 @@ export async function POST(request: Request) {
       },
     });
 
-    const data = await JSON.stringify(res);
-    return NextResponse.json(data);
+    return NextResponse.json(res); // オブジェクトを直接渡す
   } catch (e) {
     console.dir(e);
+    return new Response(
+      JSON.stringify({
+        success: false,
+        message: "Failed to create page",
+        error: e.message,
+      }),
+      {
+        status: 500,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
   }
 }

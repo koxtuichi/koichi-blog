@@ -15,11 +15,7 @@ type MainPostProps = {
   viewEng: boolean;
   setSelectedPhoto: React.Dispatch<React.SetStateAction<Post | null>>;
 };
-const MainPost: React.FC<MainPostProps> = ({
-  posts,
-  viewEng,
-  setSelectedPhoto,
-}) => {
+const MainPost: React.FC<MainPostProps> = ({ posts, setSelectedPhoto }) => {
   return (
     <>
       {posts
@@ -59,8 +55,8 @@ const MainPost: React.FC<MainPostProps> = ({
                   <Icon name="camera retro" />
                   <span>{post.shootingDate}</span>
                 </Card.Meta> */}
-                <Card.Description>
-                  {/* <SpeakButton
+                {/* <Card.Description>
+                  <SpeakButton
                     text={viewEng ? post.engDescription : post.description}
                     viewEng={viewEng}
                     speechFile={
@@ -68,9 +64,9 @@ const MainPost: React.FC<MainPostProps> = ({
                         ? post.engSpeechDescription
                         : post.jpnSpeechDescription
                     }
-                  /> */}
+                  />
                   {!viewEng ? post.jpnDescription : post.engDescription}
-                </Card.Description>
+                </Card.Description> */}
               </ContainerContent>
             </GridImageComponent>
           );

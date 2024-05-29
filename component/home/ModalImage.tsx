@@ -31,6 +31,7 @@ type ModalImageProps = {
 const ModalImage: React.FC<ModalImageProps> = ({
   selectedPhoto,
   setSelectedPhoto,
+  viewEng,
 }) => {
   return (
     <ModalComponent
@@ -39,14 +40,26 @@ const ModalImage: React.FC<ModalImageProps> = ({
       size="large"
       basic
     >
-      <ModalContent image onClick={() => setSelectedPhoto(null)}>
-        <ImageComponent
-          src={`blogImages/1-${selectedPhoto?.id}.png`}
-          onClick={() => setSelectedPhoto(null)}
-          size="massive"
-          alt="blogImage"
-        />
-      </ModalContent>
+      {!!selectedPhoto && (
+        <ModalContent image onClick={() => setSelectedPhoto(null)}>
+          <ImageComponent
+            src={`blogImages/1-${selectedPhoto?.id}.png`}
+            onClick={() => setSelectedPhoto(null)}
+            size="massive"
+            alt="blogImage"
+          />
+          <div
+            style={{
+              whiteSpace: "break-spaces",
+              maxWidth: "500px",
+            }}
+          >
+            {viewEng
+              ? selectedPhoto.engDescription
+              : selectedPhoto.jpnDescription}
+          </div>
+        </ModalContent>
+      )}
     </ModalComponent>
   );
 };

@@ -1,5 +1,6 @@
 import React from "react";
 import { Button } from "semantic-ui-react";
+import { Link } from "react-scroll";
 
 type TranslateButtonGroupProps = {
   setViewEng: React.Dispatch<React.SetStateAction<boolean>>;
@@ -37,6 +38,21 @@ export const TranslateButtonGroup: React.FC<TranslateButtonGroupProps> = ({
           ENG
         </Button>
       </Button.Group>
+      <Link
+        to="topPage"
+        spy={true}
+        smooth={true}
+        duration={500}
+        style={{
+          cursor: "pointer",
+          color: "inherit",
+          textDecoration: "underline",
+          marginLeft: "12px",
+          fontSize: "12px",
+        }}
+      >
+        TOP
+      </Link>
     </div>
   );
 };

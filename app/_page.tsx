@@ -3,7 +3,6 @@
 import { Post } from "@/notionApi/notion";
 import React, { useEffect, useMemo, useState } from "react";
 import {
-  Button,
   Container,
   Grid,
   Header,
@@ -18,7 +17,6 @@ import MainPost from "@/component/home/MainPost";
 // import SecondPost from "@/component/home/SecondPost";
 import { Analytics } from "@vercel/analytics/react";
 import {
-  ContainerButtonCenter,
   ContainerCenter,
   ContainerSelfIntroductionComponent,
   DividerMargin,
@@ -26,10 +24,12 @@ import {
 } from "@/component/home/styledComponents";
 import ModalImage from "@/component/home/ModalImage";
 // import SlideImages from "./_slideImages";
-import { Flex, Text } from "@chakra-ui/react";
+import { Text } from "@chakra-ui/react";
 import SnsIcons from "./_snsIcons";
 import { PoemPost } from "@/notionApi/poemNotion";
 import VerticalPoemSwipe from "./_verticalPoemSwipe";
+import PageLink from "./_pageLink";
+import { Element } from "react-scroll";
 
 type HomeComponentProps = {
   posts: Post[];
@@ -41,39 +41,59 @@ const HomeComponent: React.FC<HomeComponentProps> = ({ posts, poemPosts }) => {
   const [viewEng, setViewEng] = useState<boolean>(false);
   const [viewPosts, setViewPosts] = useState<number>(10);
   // const [viewSlidePosts, setViewSlidePosts] = useState<number>(1);
-  const [viewSigmaPosts, setViewSigmaPosts] = useState<number>(1);
+  // const [viewSigmaPosts, setViewSigmaPosts] = useState<number>(1);
 
   // const slidePosts = useMemo(() => {
   //   const filtered = posts.filter((post) => post.url2 && post.url3);
   //   return filtered;
   // }, [posts]);
 
-  const notSlidePosts = useMemo(() => {
+  const incompletePosts = useMemo(() => {
     const filtered = posts.filter(
-      (post) => !post.url2 && !post.url3 && post.camera !== SIGMA_SELECT
+      (post) =>
+        !post.url2 &&
+        !post.url3 &&
+        post.camera !== SIGMA_SELECT &&
+        post.jpnDescription &&
+        post.engDescription
     );
     return filtered;
   }, [posts]);
 
-  const sigmaPosts = useMemo(() => {
-    const filtered = posts.filter((post) => post.camera === SIGMA_SELECT);
+  const notSlidePosts = useMemo(() => {
+    const filtered = posts.filter(
+      (post) =>
+        !post.url2 &&
+        !post.url3 &&
+        post.camera !== SIGMA_SELECT &&
+        !post.jpnDescription
+    );
     return filtered;
   }, [posts]);
 
-  const moreText = useMemo(() => {
-    return viewEng ? "More" : "もっとみる";
-  }, [viewEng]);
+  // const sigmaPosts = useMemo(() => {
+  //   const filtered = posts.filter((post) => post.camera === SIGMA_SELECT);
+  //   return filtered;
+  // }, [posts]);
+
+  // const moreText = useMemo(() => {
+  //   return viewEng ? "More" : "もっとみる";
+  // }, [viewEng]);
 
   // const fourPictureTitle = useMemo(() => {
   //   return viewEng ? "Color and Monochrome." : "「カラーとモノクロ」";
   // }, [viewEng]);
 
-  const foveonTitle = useMemo(() => {
-    return viewEng ? "This is FOVEON." : "「これがFOVEON」";
+  // const foveonTitle = useMemo(() => {
+  //   return viewEng ? "This is FOVEON." : "「これがFOVEON」";
+  // }, [viewEng]);
+
+  const incompleteTitle = useMemo(() => {
+    return viewEng ? "Incomplete." : "「未完」";
   }, [viewEng]);
 
-  const perfectDayTitle = useMemo(() => {
-    return viewEng ? "Square." : "「スクエア」";
+  const untitledTitle = useMemo(() => {
+    return viewEng ? "Untitled." : "「無題」";
   }, [viewEng]);
 
   useEffect(() => {
@@ -95,6 +115,9 @@ const HomeComponent: React.FC<HomeComponentProps> = ({ posts, poemPosts }) => {
   return (
     <>
       <Header as="h2" icon textAlign="center">
+        {/* トップページへのリンク */}
+        <Element name="topPage" />
+
         {/* vercelアナリティクス */}
         <Analytics />
         {/* プロフ画像 */}
@@ -109,9 +132,12 @@ const HomeComponent: React.FC<HomeComponentProps> = ({ posts, poemPosts }) => {
         <TranslateButtonGroup setViewEng={setViewEng} viewEng={viewEng} />
         {/* プロフィール */}
         <Profile viewEng={viewEng} />
-        {/* SNSアイコン */}
+        {/* SNSリンク */}
         <SnsIcons />
       </ContainerSelfIntroductionComponent>
+      <DividerMargin />
+      {/* 写真集リンク */}
+      <PageLink viewEng={viewEng} />
       <DividerMargin />
       {/* ポエム */}
       <VerticalPoemSwipe poems={poemPosts} viewEng={viewEng} />
@@ -140,7 +166,7 @@ const HomeComponent: React.FC<HomeComponentProps> = ({ posts, poemPosts }) => {
       )}
       <DividerMargin /> */}
       {/* SIGMAの写真 */}
-      <Container>
+      {/* <Container>
         <ContainerCenter>
           <Text fontSize="20px" width="100%" textAlign="center">
             {foveonTitle}
@@ -170,14 +196,35 @@ const HomeComponent: React.FC<HomeComponentProps> = ({ posts, poemPosts }) => {
             </Button>
           </ContainerButtonCenter>
         )}
-      </Container>
-      <DividerMargin />
-      {/* イロを捨てる（モノクロ） */}
+      </Container> */}
+      {/* 未完 */}
+      {/* 未完へのスクロールリンク */}
+      <Element name="incomplete" />
       <Container>
         <Grid>
           <ContainerCenter>
             <Text fontSize="20px" width="100%" textAlign="center">
-              {perfectDayTitle}
+              {incompleteTitle}
+            </Text>
+            <Grid.Row columns={1}>
+              <MainPost
+                posts={incompletePosts}
+                viewEng={viewEng}
+                setSelectedPhoto={setSelectedPhoto}
+              />
+            </Grid.Row>
+          </ContainerCenter>
+        </Grid>
+      </Container>
+      <DividerMargin />
+      {/* 無題 */}
+      {/* 無題へのスクロールリンク */}
+      <Element name="untitled" />
+      <Container id="untitled">
+        <Grid>
+          <ContainerCenter>
+            <Text fontSize="20px" width="100%" textAlign="center">
+              {untitledTitle}
             </Text>
             <Grid.Row columns={1}>
               <MainPost
@@ -187,13 +234,6 @@ const HomeComponent: React.FC<HomeComponentProps> = ({ posts, poemPosts }) => {
               />
             </Grid.Row>
           </ContainerCenter>
-          {/* <SecondPostsGridRow columns={1}>
-            <SecondPost
-              posts={notSlidePosts.filter((post, index) => index <= viewPosts)}
-              viewEng={viewEng}
-              setSelectedPhoto={setSelectedPhoto}
-            />
-          </SecondPostsGridRow> */}
         </Grid>
       </Container>
       <DividerMargin />

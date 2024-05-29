@@ -38,6 +38,10 @@ const SnsIcons = () => {
               path="https://www.threads.net/@kakikuke_koichi"
             />
             <SnsLinkDiv name="X" path="https://twitter.com/kakikukekoichi" />
+            <SnsLinkDiv
+              name="Youtube"
+              path="https://www.youtube.com/channel/UCT9zPFj--Bp0SGLgsOfOWKg"
+            />
           </ButtonGroup>
         </Grid.Row>
       </Grid>

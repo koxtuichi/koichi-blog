@@ -67,7 +67,7 @@ export async function POST(request: Request): Promise<Response> {
       JSON.stringify({
         success: false,
         message: "Failed to create page",
-        error: e.message,
+        error: "error",
       }),
       {
         status: 500,

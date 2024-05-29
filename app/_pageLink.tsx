@@ -1,4 +1,4 @@
-import { Box, ButtonGroup } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import { Grid } from "semantic-ui-react";
 import { Link } from "react-scroll";
 import { CSSProperties } from "react";

@@ -206,6 +206,20 @@ const HomeComponent: React.FC<HomeComponentProps> = ({ posts, poemPosts }) => {
             <Text fontSize="20px" width="100%" textAlign="center">
               {incompleteTitle}
             </Text>
+            <Text width="100%" textAlign="center">
+              <div style={{ whiteSpace: "pre-line" }}>
+                {viewEng
+                  ? `We are attracted to things that are not finished,
+                that are in the process of growing,
+                that are not in a sufficiently attractive state.
+                Because we are on the way to our goal,
+                we want to document it well.
+                I put it together with that in mind.`
+                  : `完成していない、成長過程、十分に魅力がない状態であるものに惹かれる。
+                目標に向かう途中だからこそ、しっかりと記録をしたい。
+                そんな風に思ってまとめる。`}
+              </div>
+            </Text>
             <Grid.Row columns={1}>
               <MainPost
                 posts={incompletePosts}
@@ -225,6 +239,15 @@ const HomeComponent: React.FC<HomeComponentProps> = ({ posts, poemPosts }) => {
           <ContainerCenter>
             <Text fontSize="20px" width="100%" textAlign="center">
               {untitledTitle}
+            </Text>
+            <Text width="100%" textAlign="center">
+              <div style={{ whiteSpace: "pre-line" }}>
+                {viewEng
+                  ? `These are photos that I took because I was attracted to something.
+                  I don't know what attracted me.`
+                  : `なにかに惹かれてシャッターを切った写真たち。
+                  どこに惹かれたのかはわかっていない。`}
+              </div>
             </Text>
             <Grid.Row columns={1}>
               <MainPost

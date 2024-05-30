@@ -1,5 +1,20 @@
 import styled from "@emotion/styled";
-import { Image, Container, Grid, Label, Divider } from "semantic-ui-react";
+import {
+  Image,
+  Container,
+  Grid,
+  Label,
+  Divider,
+  Header,
+} from "semantic-ui-react";
+
+export const HeaderComponent = styled(Header)({
+  marginTop: "-10px !important",
+});
+
+export const AvatarSemanticImageComponent = styled(Image)({
+  marginTop: "20px !important",
+});
 
 export const ImageComponent = styled(Image)({
   "> *": {

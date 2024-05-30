@@ -2,12 +2,7 @@
 
 import { Post } from "@/notionApi/notion";
 import React, { useEffect, useMemo, useState } from "react";
-import {
-  Container,
-  Grid,
-  Header,
-  Image as SemanticImage,
-} from "semantic-ui-react";
+import { Container, Grid, Header } from "semantic-ui-react";
 // semantic-uiはスタイルを含まないので以下のimportが必要
 import "semantic-ui-css/semantic.min.css";
 
@@ -17,9 +12,11 @@ import MainPost from "@/component/home/MainPost";
 // import SecondPost from "@/component/home/SecondPost";
 import { Analytics } from "@vercel/analytics/react";
 import {
+  AvatarSemanticImageComponent,
   ContainerCenter,
   ContainerSelfIntroductionComponent,
   DividerMargin,
+  HeaderComponent,
   // SecondPostsGridRow,
 } from "@/component/home/styledComponents";
 import ModalImage from "@/component/home/ModalImage";
@@ -30,6 +27,7 @@ import { PoemPost } from "@/notionApi/poemNotion";
 import VerticalPoemSwipe from "./_verticalPoemSwipe";
 import PageLink from "./_pageLink";
 import { Element } from "react-scroll";
+import Image from "next/image";
 
 type HomeComponentProps = {
   posts: Post[];
@@ -114,19 +112,30 @@ const HomeComponent: React.FC<HomeComponentProps> = ({ posts, poemPosts }) => {
 
   return (
     <>
-      <Header as="h2" icon textAlign="center">
+      <HeaderComponent as="h2" icon textAlign="center">
+        <Image
+          src="/mycatheader.jpg"
+          alt="mycatheader"
+          layout="responsive"
+          width={1920} // 任意の幅 (例: 1920px)
+          height={1080} // 任意の高さ (例: 1080px)
+        />
+        {/* <ImageComponent src="/mycatheader.jpg" alt="mycatheader" /> */}
         {/* トップページへのリンク */}
         <Element name="topPage" />
-
         {/* vercelアナリティクス */}
         <Analytics />
         {/* プロフ画像 */}
-        <SemanticImage src="/profileImg.jpg" alt="profileImg" avatar />
+        <AvatarSemanticImageComponent
+          src="/profileImg.jpg"
+          alt="profileImg"
+          avatar
+        />
         {/* タイトル */}
         <Header.Content>
           <p>KAKIKUKE KOICHI</p>
         </Header.Content>
-      </Header>
+      </HeaderComponent>
       <ContainerSelfIntroductionComponent text textAlign="center">
         {/* 日英切り替えボタン */}
         <TranslateButtonGroup setViewEng={setViewEng} viewEng={viewEng} />

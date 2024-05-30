@@ -113,6 +113,8 @@ const HomeComponent: React.FC<HomeComponentProps> = ({ posts, poemPosts }) => {
   return (
     <>
       <HeaderComponent as="h2" icon textAlign="center">
+        {/* トップページへのリンク */}
+        <Element name="topPage" />
         <Image
           src="/mycatheader.jpg"
           alt="mycatheader"
@@ -121,8 +123,6 @@ const HomeComponent: React.FC<HomeComponentProps> = ({ posts, poemPosts }) => {
           height={1080} // 任意の高さ (例: 1080px)
         />
         {/* <ImageComponent src="/mycatheader.jpg" alt="mycatheader" /> */}
-        {/* トップページへのリンク */}
-        <Element name="topPage" />
         {/* vercelアナリティクス */}
         <Analytics />
         {/* プロフ画像 */}
@@ -218,15 +218,16 @@ const HomeComponent: React.FC<HomeComponentProps> = ({ posts, poemPosts }) => {
             <Text width="100%" textAlign="center">
               <div style={{ whiteSpace: "pre-line" }}>
                 {viewEng
-                  ? `We are attracted to things that are not finished,
-                that are in the process of growing,
-                that are not in a sufficiently attractive state.
-                Because we are on the way to our goal,
-                we want to document it well.
-                I put it together with that in mind.`
-                  : `完成していない、成長過程、十分に魅力がない状態であるものに惹かれる。
-                目標に向かう途中だからこそ、しっかりと記録をしたい。
-                そんな風に思ってまとめる。`}
+                  ? `"I want it to be this way."
+                  I impose my own selfish ideals
+                  I feel inadequate on my own.
+                  Why am I attracted to things that bring out
+                  I am somehow attracted to things that bring out my bad qualities.`
+                  : `「こうあってほしい」
+                自分勝手な理想を押し付けてしまう
+                不十分さを勝手に感じてしまう
+                そういった自分の嫌な性格を引き出すものに
+                なぜか惹かれてしまう`}
               </div>
             </Text>
             <Grid.Row columns={1}>

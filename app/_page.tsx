@@ -87,7 +87,9 @@ const HomeComponent: React.FC<HomeComponentProps> = ({ posts, poemPosts }) => {
   // }, [viewEng]);
 
   const incompleteTitle = useMemo(() => {
-    return viewEng ? "Incomplete." : "「未完」";
+    return viewEng
+      ? "Why did you shutter?"
+      : "「どうしてシャッターを切ったのか」";
   }, [viewEng]);
 
   const untitledTitle = useMemo(() => {
@@ -206,8 +208,8 @@ const HomeComponent: React.FC<HomeComponentProps> = ({ posts, poemPosts }) => {
           </ContainerButtonCenter>
         )}
       </Container> */}
-      {/* 未完 */}
-      {/* 未完へのスクロールリンク */}
+      {/* 「どうしてシャッターを切ったのか」 */}
+      {/* 「どうしてシャッターを切ったのか」へのスクロールリンク */}
       <Element name="incomplete" />
       <Container>
         <Grid>

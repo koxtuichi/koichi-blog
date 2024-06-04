@@ -27,7 +27,9 @@ const PageLink: React.FC<PageLinkProps> = ({ viewEng }) => {
               duration={500}
               style={commonStyle}
             >
-              {viewEng ? "incomplete" : "未完"}
+              {viewEng
+                ? "Why did you shutter?"
+                : "どうしてシャッターを切ったのか"}
             </Link>
             <Link
               to="untitled"
